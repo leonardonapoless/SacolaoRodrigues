@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - UserName</title>
+    <link rel="stylesheet" href="../css/perfil.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/components/css/header.css">
+    <link rel="icon" href="/icon/logo.png">
+
+    <div id="header-placeholder"></div>
+    <script type="module" src="/components/js/loadHeader.js"></script>
+
+</head>
+
+<body>
+    <!-- <header>
+        <div class="logo">
+            <img src="../assets/images/logo.png" alt="Sacolão Rodrigues">
+            <h1>SACOLÃO RODRIGUES</h1>
+        </div>
+        <nav>
+            <button class="menu-btn" id="profileBtn">
+                <img src="../assets/images/profile.png" alt="Perfil">
+            </button>
+        </nav>
+    </header> -->
+
+
+
+    <main class="profile-container">
+        <section class="user-info">
+            <div class="avatar">
+                <img src="../assets/images/user-profile-pic.png" alt="Foto do usuário">
+            </div>
+            <h2>Nome do Usuário</h2>
+            <p>email@usuario.com</p>
+        </section>
+
+        <div class="main-content">
+            <section class="user-actions">
+                <button onclick="window.location.href = '../pages/minhas-listas.html'" class="action-btn">
+                    <img src="../assets/images/list-icon.png" alt="Minhas listas">
+                    <span>Minhas Listas</span>
+                </button>
+                <button class="action-btn">
+                    <img src="../assets/images/ofertas.png" alt="Ofertas">
+                    <span>Minhas Ofertas</span>
+                </button>
+                <button class="action-btn" id="editarBtn">
+                    <video loop muted playsinline preload="auto">
+                        <source src="../assets/videos/editar.mp4" type="video/mp4">
+                    </video>
+                    <span>Editar Perfil</span>
+                </button>
+
+                <button onclick="window.location.href = '../pages/ajustes.html'" class="action-btn" id="ajustesBtn">
+                    <img src="../assets/images/ajustes-icon.png" alt="Ajustes">
+                    <span>Ajustes</span>
+                </button>
+                <button class="action-btn" id="logoutBtn">
+                    <img src="../assets/images/log-in.png" alt="Sair">
+                    <span>Sair</span>
+                </button>
+
+
+                <!-- sacolao_rodrigues/assets/videos/editar.mp4 -->
+
+                <!-- <button class="editar-btn-fallback">
+                    <img src="/assets/images/editar_fallback.jpg" class="static">
+                    <img src="/assets/videos/editar.gif" class="animated">
+                    <span>Editar Perfil</span>
+                </button> -->
+            </section>
+
+            <section class="recent-orders">
+                <h3>Últimos Pedidos</h3>
+                <button id="btnNovoPedido" class="btn-gerar-pedido">
+                    + Adicionar Pedido de Exemplo
+                </button>
+                <div class="order-card">
+                    <p>Pedido #1234 - R$ 45,90</p>
+                    <ul class="lista-items">
+                        <li>Frutas
+                            <ul>
+                                <li>Maçã</li>
+                                <li>Banana</li>
+                            </ul>
+                        </li>
+                        <li>Legumes
+                            <ul>
+                                <li>Cenoura
+                                    <p>
+
+                                    </p>
+                                </li>
+                                <li>Batata</li>
+                            </ul>
+                        </li>
+                        <li>Outros
+                            <ul>
+                                <li>Mel</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="status-entregue">12/05/2025 - Entregue</p>
+                </div>
+                <div class="order-card">
+                    <p>Pedido #1233 - R$ 32,50</p>
+                    <p class="status-entregue">10/05/2025 - Entregue</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="separador-footer"></div>
+        <div id="footer-container"></div>
+        <script src="/js/footer.js"></script>
+    </footer>
+
+
+    <script>
+        fetch('/components/html/footer.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+            });
+    </script>
+    <script src="seu-script.js"></script>
+    <script src="../js/perfil.js"></script>
+
+    <script>
+        const gifButton = document.querySelectorAll('.action-btn');
+
+        gifButton.forEach(button => {
+            const video = button.querySelector('video');
+
+            button.addEventListener('mouseenter', () => {
+                video.play();
+            });
+
+            button.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.action-btn').forEach(button => {
+            const video = button.querySelector('video');
+            if (!video) return;
+
+            button.addEventListener('mouseenter', () => {
+                video.play().catch(e => console.error("Video error:", e));
+            });
+
+            button.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
+    </script>
+</body>
+
+</html>
