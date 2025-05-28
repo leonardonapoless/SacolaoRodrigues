@@ -1,146 +1,138 @@
-{
-  "frutas": [
-    {
-      "id": "f1",
-      "nome": "Limão",
-      "preco": "R$2,25 /kg",
-      "imagem": "assets/images/product-image/limao.png",
-      "quantidade": 0,
-      "cor": "#ecf0bd"
-    },
-    {
-      "id": "f2",
-      "nome": "Maçã",
-      "preco": "R$9,98 /kg",
-      "imagem": "assets/images/product-image/maca.png",
-      "quantidade": 0,
-      "cor": "#efb3ae"
-    },
-    {
-      "id": "f3",
-      "nome": "Morango",
-      "preco": "R$12,90 | 250g",
-      "imagem": "assets/images/product-image/morango.png",
-      "quantidade": 0,
-      "cor": "#ee9a9e"
-    },
-    {
-      "id": "f4",
-      "nome": "Abacate",
-      "preco": "R$2,25 /kg",
-      "imagem": "assets/images/product-image/abacate.png",
-      "quantidade": 0,
-      "cor": "#92BA31"
-    },
-    {
-      "id": "f5",
-      "nome": "Abacaxi",
-      "preco": "R$2,25 /kg",
-      "imagem": "assets/images/product-image/abacaxi.png",
-      "quantidade": 0,
-      "cor": "#FEEC9D"
-    },
-    {
-      "id": "f6",
-      "nome": "Uva",
-      "preco": "R$7,90 /kg",
-      "imagem": "assets/images/product-image/uva.png",
-      "quantidade": 0,
-      "cor": "#c5a3cc"
-    },
-    {
-      "id": "f7",
-      "nome": "Banana",
-      "preco": "R$3,99 /kg",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#fef3a5"
-    },
-    {
-      "id": "f8",
-      "nome": "Coco",
-      "preco": "R$4,00 /un",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#f7e7c1"
-    }
-  ],
-  "legumes": [
-    {
-      "id": "l1",
-      "nome": "Cenoura",
-      "preco": "R$3,50 /kg",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#ffcc99"
-    },
-    {
-      "id": "l2",
-      "nome": "Batata",
-      "preco": "R$2,80 /kg",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#f1e1b0"
-    },
-    {
-      "id": "l3",
-      "nome": "Abobrinha",
-      "preco": "R$4,00 /kg",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#bfe2b0"
-    },
-    {
-      "id": "l4",
-      "nome": "Chuchu",
-      "preco": "R$2,30 /kg",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#ccf1b0"
-    }
-  ],
-  "verduras": [
-    {
-      "id": "v1",
-      "nome": "Alface",
-      "preco": "R$1,99 /un",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#c3e6cb"
-    },
-    {
-      "id": "v2",
-      "nome": "Couve",
-      "preco": "R$2,50 /maço",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#a8d5a2"
-    },
-    {
-      "id": "v3",
-      "nome": "Rúcula",
-      "preco": "R$2,00 /maço",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#b0e5b4"
-    }
-  ],
-  "outros": [
-    {
-      "id": "o1",
-      "nome": "Mel",
-      "preco": "R$15,00 /500ml",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#f0c16a"
-    },
-    {
-      "id": "o2",
-      "nome": "Gengibre",
-      "preco": "R$6,00 /kg",
-      "imagem": "https://placehold.co/100x100",
-      "quantidade": 0,
-      "cor": "#e9d4a5"
-    }
-  ]
-}
+[
+  {
+    "id": "f1",
+    "nome": "Limão",
+    "categoria": "frutas",
+    "preco": { "valor": 2.25, "unidade": "kg" },
+    "imagem": "assets/images/product-image/limao.png",
+    "cor": "#ecf0bd"
+  },
+  {
+    "id": "f2",
+    "nome": "Maçã",
+    "categoria": "frutas",
+    "preco": { "valor": 9.98, "unidade": "kg" },
+    "imagem": "assets/images/product-image/maca.png",
+    "cor": "#efb3ae"
+  },
+  {
+    "id": "f3",
+    "nome": "Morango",
+    "categoria": "frutas",
+    "preco": { "valor": 12.90, "unidade": "250g" },
+    "imagem": "assets/images/product-image/morango.png",
+    "cor": "#ee9a9e"
+  },
+  {
+    "id": "f4",
+    "nome": "Abacate",
+    "categoria": "frutas",
+    "preco": { "valor": 2.25, "unidade": "kg" },
+    "imagem": "assets/images/product-image/abacate.png",
+    "cor": "#92BA31"
+  },
+  {
+    "id": "f5",
+    "nome": "Abacaxi",
+    "categoria": "frutas",
+    "preco": { "valor": 2.25, "unidade": "kg" },
+    "imagem": "assets/images/product-image/abacaxi.png",
+    "cor": "#FEEC9D"
+  },
+  {
+    "id": "f6",
+    "nome": "Uva",
+    "categoria": "frutas",
+    "preco": { "valor": 7.90, "unidade": "kg" },
+    "imagem": "assets/images/product-image/uva.png",
+    "cor": "#c5a3cc"
+  },
+  {
+    "id": "f7",
+    "nome": "Banana",
+    "categoria": "frutas",
+    "preco": { "valor": 3.99, "unidade": "kg" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#fef3a5"
+  },
+  {
+    "id": "f8",
+    "nome": "Coco",
+    "categoria": "frutas",
+    "preco": { "valor": 4.00, "unidade": "un" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#f7e7c1"
+  },
+  {
+    "id": "l1",
+    "nome": "Cenoura",
+    "categoria": "legumes",
+    "preco": { "valor": 3.50, "unidade": "kg" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#ffcc99"
+  },
+  {
+    "id": "l2",
+    "nome": "Batata",
+    "categoria": "legumes",
+    "preco": { "valor": 2.80, "unidade": "kg" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#f1e1b0"
+  },
+  {
+    "id": "l3",
+    "nome": "Abobrinha",
+    "categoria": "legumes",
+    "preco": { "valor": 4.00, "unidade": "kg" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#bfe2b0"
+  },
+  {
+    "id": "l4",
+    "nome": "Chuchu",
+    "categoria": "legumes",
+    "preco": { "valor": 2.30, "unidade": "kg" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#ccf1b0"
+  },
+  {
+    "id": "v1",
+    "nome": "Alface",
+    "categoria": "verduras",
+    "preco": { "valor": 1.99, "unidade": "un" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#c3e6cb"
+  },
+  {
+    "id": "v2",
+    "nome": "Couve",
+    "categoria": "verduras",
+    "preco": { "valor": 2.50, "unidade": "maço" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#a8d5a2"
+  },
+  {
+    "id": "v3",
+    "nome": "Rúcula",
+    "categoria": "verduras",
+    "preco": { "valor": 2.00, "unidade": "maço" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#b0e5b4"
+  },
+  {
+    "id": "o1",
+    "nome": "Mel",
+    "categoria": "outros",
+    "preco": { "valor": 15.00, "unidade": "500ml" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#f0c16a"
+  },
+  {
+    "id": "o2",
+    "nome": "Gengibre",
+    "categoria": "outros",
+    "preco": { "valor": 6.00, "unidade": "kg" },
+    "imagem": "https://placehold.co/100x100",
+    "cor": "#e9d4a5"
+  }
+]

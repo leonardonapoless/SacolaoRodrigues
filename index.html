@@ -5,117 +5,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sacolão Rodrigues</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Limelight&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="icon" href="/icon/logo.png">
-
-    <script type="module" src="/components/js/headerComponent.js"></script>
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Limelight&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="icon/logo.png">
 </head>
 
 <body>
+    
+    <header-component></header-component>
 
-    <header class="header-grid">
-    <div class="header-left-box">
-        <button onclick="window.location.href = '../pages/minhas-listas.html'" id="list-btn" title="Lista de Compras"><img src="assets/images/list-icon.png" alt="Minhas Listas"></button>
-        <button onclick="window.location.href = '../pages/ofertas.html'" id="ofertas-btn" title="Ofertas"><img src="assets/images/ofertas.png" alt="Promoções"></button>
-        <div class="search-section">
-            <button id="search-btn-desktop" class="search-toggle-btn" title="Buscar Produto">
-                <img src="assets/images/search-icon.png" alt="Buscar">
-            </button>
-            <div id="search-popup-desktop" class="search-popup">
-                <input type="text" id="search-desktop-input" class="search-bar-popup" placeholder="Buscar produto...">
+    <main>
+        <nav class="categoria-nav">
+            <button class="hamburguer">☰ Categorias</button>
+            <div class="categoria-menu">
+                <button class="categoria-btn" data-category="frutas">Frutas</button>
+                <button class="categoria-btn" data-category="legumes">Legumes</button>
+                <button class="categoria-btn" data-category="verduras">Verduras</button>
+                <button class="categoria-btn" data-category="outros">Outros</button>
+                <button class="categoria-btn active" data-category="todos">Todos</button>
+            </div>
+        </nav>
+        
+        <div class="products product-grid" id="product-container">
+        </div>
+    </main>
+
+    <template id="product-card-template">
+        <div class="product">
+            <img src="" alt="" class="product-image">
+            <div class="product-title"></div>
+            <div class="price"></div>
+            <div class="quantity-controls">
+                <button data-action="sub">-</button>
+                <span class="quantity">0</span>
+                <button data-action="add">+</button>
             </div>
         </div>
-    </div>
-
-    <div class="logo-container">
-        <div class="logo-shape"></div>
-        <div class="logo-content">
-            <a href="/index.html">
-                <img class="logo-sacolao" src="assets/images/logo.png" alt="Logo Sacolão Rodrigues">
-            </a>
-            
-        </div>
-    </div>
-
-    <div class="header-right-box">
-        <div class="action-buttons">
-            <!-- <button onclick="window.location.href = '../pages/ajustes.html'" id="ajustes" title="Ajustes"><img class="fas fa-cog" src="assets/images/ajustes-icon.png"></img>
-            </button> -->
-            <button onclick="window.location.href = '../pages/perfil.html'" id="perfil-btn" title="Meu Perfil"><img class="perfilBtn" src="assets/images/profile.png"></img></button>
-            <button onclick="window.location.href = '../pages/carrinho.html'" id="cart-btn" title="Carrinho"><img class="carrinhoBtn" src="assets/images/cart-icon.png"></img></button>
-        </div>
-    </div>
-
-    <div class="menu-mobile">
-        <button class="menu-hamburguer-drawer">☰</button>
-        <div id="search-popup-mobile" class="search-popup">
-            <input type="text" id="search-mobile-input" class="search-bar-popup" placeholder="Buscar produto...">
-        </div>
-        <div class="opcao-menu" id="opcaoMenu">
-            <button class="opcao-btn" title="Lista de Compras"><img src="assets/images/MyLists.png" alt="Minhas Listas"></button>
-            <button class="opcao-btn" title="Promoções"><img src="assets/images/OnSale.png" alt="Promoções"></button>
-            <button class="opcao-btn search-toggle-btn-mobile" title="Buscar Produto">
-                <img src="assets/images/Search.png" alt="Buscar">
-            </button>
-            <button class="opcao-btn" title="Login/Cadastro"><i class="fas fa-user"></i></button>
-            <button class="opcao-btn" title="Meu Perfil"><i class="fas fa-id-badge"></i></button>
-            <button class="opcao-btn" title="Carrinho"><i class="fas fa-shopping-cart"></i></button>
-        </div>
-    </div>
-</header>
-<main>
-        <nav class="categoria-nav">
-        <button class="hamburguer" onclick="toggleMenu()">☰ Categorias</button>
-        <div class="categoria-menu" id="categoriaMenu">
-            <button class="categoria-btn" onclick="showCategory('frutas')">Frutas</button>
-            <button class="categoria-btn" onclick="showCategory('legumes')">Legumes</button>
-            <button class="categoria-btn" onclick="showCategory('verduras')">Verduras</button>
-            <button class="categoria-btn" onclick="showCategory('outros')">Outros</button>
-            <button class="categoria-btn" onclick="showCategory('todos')">Todos</button>
-        </div>
-    </nav>
-
-    <div id="carrinho">
-        <img src="/assets/images/cart.png" alt="Ícone de Carrinho">
-        <ul id="lista-carrinho"></ul>
-        <div>
-            <nav class="checkout">
-                <button id="botaoFinalizar" onclick="finalizarCompra()">Finalizar Compra</button>
-            </nav>
-        </div>
-    </div>
-
-    <div class="products product-grid" id="product-container"></div>
-
+    </template>
     
+    <footer-component></footer-component>
 
-</main>
-
-<footer>
-    <div class="separador-footer"></div>
-
-    <div id="footer-container"></div>
-</footer>
-
-    <!-- SCRIPTS -->
-
-
-<script src="script.js"></script>
-    <script src="/js/footer.js"></script>
-
-    <script>
-        fetch('/components/html/footer.html')
-            .then(res => res.text())
-            .then(html => {
-                document.getElementById('footer-container').innerHTML = html;
-            });
-    </script>
-
-    
+    <script type="module" src="components/js/headerComponent.js"></script>
+    <script type="module" src="components/js/footerComponent.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>
