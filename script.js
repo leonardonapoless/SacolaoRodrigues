@@ -1,111 +1,130 @@
-let produtos = {};
-let categoriaAtual = 'frutas';
-let searchTerm = '';
+const state = {
+  allProducts: [],
+  productsInCart: [],
+  currentCategory: 'frutas',
+  searchTerm: '',
+};
 
-const container   = document.getElementById('product-container');
-const carrinhoEl  = document.getElementById('carrinho');
-const listaCarrinho = document.getElementById('lista-carrinho');
+const productContainer = document.getElementById('product-container');
 const categoryBtns = document.querySelectorAll('.categoria-btn');
+const cardTemplate = document.getElementById('product-card-template');
 
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('produtos.json')
-    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-    .then(json => {
-      produtos = json;
-      setupCategories();
-      renderProducts(categoriaAtual);
-    })
-    .catch(() => {
-      container.innerHTML = '<p class="no-results">Erro ao carregar produtos.</p>';
-    });
+const normalizeText = (text) => text.toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
+document.addEventListener('DOMContentLoaded', initializeApp);
 
-  document.addEventListener('header-search', e => {
-    searchTerm = e.detail.term;
-    renderProducts(categoriaAtual);
+async function initializeApp() {
+  try {
+    const productsData = await fetchProducts();
+    state.allProducts = productsData.map(p => ({ ...p, quantity: 0 }));
+    setupEventListeners();
+    updateActiveCategoryButton();
+    filterAndDisplayProducts();
+  } catch (error) {
+    productContainer.innerHTML = '<p class="no-results">Erro ao carregar produtos.</p>';
+    console.error(error);
+  }
+}
+
+async function fetchProducts() {
+  const response = await fetch('produtos.json');
+  if (!response.ok) throw new Error('Falha ao carregar produtos.json');
+  return response.json();
+}
+
+function setupEventListeners() {
+  document.addEventListener('header-search', (e) => {
+    state.searchTerm = e.detail.term;
+    filterAndDisplayProducts();
   });
 
-  container.addEventListener('click', e => {
-    const btn = e.target.closest('button');
-    if (!btn) return;
-    const match = btn.dataset.action;  
-    const idx    = btn.dataset.index;
-    if (!match || idx == null) return;
-    alterarQuantidade(categoriaAtual, Number(idx), match === 'add' ? 1 : -1);
-  });
-});
-
-function setupCategories() {
   categoryBtns.forEach(btn => {
-    const cat = btn.textContent.toLowerCase();
-    btn.classList.toggle('active', cat === categoriaAtual);
     btn.addEventListener('click', () => {
-      categoriaAtual = cat;
-      searchTerm = '';
-      document.querySelectorAll('.categoria-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      carrinhoEl.style.display = 'none';
-      renderProducts(cat);
+      state.currentCategory = btn.dataset.category;
+      updateActiveCategoryButton();
+      filterAndDisplayProducts();
     });
+  });
+
+  productContainer.addEventListener('click', (e) => {
+    const button = e.target.closest('[data-action]');
+    if (!button) return;
+
+    const action = button.dataset.action;
+    const card = button.closest('.product');
+    const productId = card.dataset.id;
+    
+    updateQuantity(productId, action === 'add' ? 1 : -1);
   });
 }
 
-function renderProducts(cat) {
-  container.innerHTML = '';
-  const list = produtos[cat] || [];
-  const termos = searchTerm.split(/\s+/).filter(Boolean);
-  const filtered = list.filter(p =>
-    termos.every(t => p.nome.toLowerCase().includes(t))
-  );
+function updateActiveCategoryButton() {
+    const currentActiveBtn = document.querySelector('.categoria-btn.active');
+    if (currentActiveBtn) {
+        currentActiveBtn.classList.remove('active');
+    }
 
-  const toShow = termos.length ? filtered : list;
+    const newActiveBtn = document.querySelector(`.categoria-btn[data-category="${state.currentCategory}"]`);
+    if (newActiveBtn) {
+        newActiveBtn.classList.add('active');
+    }
+}
 
-  if (!toShow.length) {
-    container.innerHTML = '<p class="no-results">Nenhum produto encontrado.</p>';
+function updateQuantity(productId, delta) {
+  const product = state.allProducts.find(p => p.id === productId);
+  if (!product) return;
+
+  product.quantity = Math.max(0, product.quantity + delta);
+  filterAndDisplayProducts();
+}
+
+function filterAndDisplayProducts() {
+  let filteredProducts = state.allProducts;
+
+  if (state.currentCategory !== 'todos') {
+    filteredProducts = filteredProducts.filter(p => p.categoria === state.currentCategory);
+  }
+
+  if (state.searchTerm.trim() !== '') {
+    const normalizedSearch = normalizeText(state.searchTerm);
+    filteredProducts = filteredProducts.filter(p => normalizeText(p.nome).includes(normalizedSearch));
+  }
+
+  renderProducts(filteredProducts);
+}
+
+function formatPrice(priceObject) {
+    const basePrice = `R$ ${priceObject.valor.toFixed(2).replace('.', ',')}`;
+    const unitsWithSlash = ['kg', 'un', 'maço'];
+
+    if (unitsWithSlash.includes(priceObject.unidade)) {
+        return `${basePrice}/${priceObject.unidade}`;
+    } else {
+        return `${basePrice} ${priceObject.unidade}`;
+    }
+}
+
+function renderProducts(productsToRender) {
+  productContainer.innerHTML = '';
+
+  if (productsToRender.length === 0) {
+    productContainer.innerHTML = '<p class="no-results">Nenhum produto encontrado.</p>';
     return;
   }
 
-  toShow.forEach((p, i) => {
-    const card = document.createElement('div');
-    card.className = 'product';
-    card.style.backgroundColor = p.cor;
-    card.innerHTML = `
-      <img src="${p.imagem}" alt="${p.nome}">
-      <div class="product-title">${p.nome}</div>
-      <div class="price">${p.preco}</div>
-      <div class="quantity-controls">
-        <button data-action="sub" data-index="${i}">-</button>
-        <span id="quant-${cat}-${i}">${p.quantidade}</span>
-        <button data-action="add" data-index="${i}">+</button>
-      </div>
-    `;
-    container.appendChild(card);
+  productsToRender.forEach(product => {
+    const card = cardTemplate.content.cloneNode(true);
+    
+    const productDiv = card.querySelector('.product');
+    productDiv.dataset.id = product.id;
+    productDiv.style.backgroundColor = product.cor;
+
+    card.querySelector('.product-image').src = product.imagem;
+    card.querySelector('.product-image').alt = product.nome;
+    card.querySelector('.product-title').textContent = product.nome;
+    card.querySelector('.price').textContent = formatPrice(product.preco);
+    card.querySelector('.quantity').textContent = product.quantity;
+
+    productContainer.appendChild(card);
   });
-}
-
-function alterarQuantidade(cat, index, delta) {
-  const prod = produtos[cat][index];
-  prod.quantidade = Math.max(0, prod.quantidade + delta);
-  document.getElementById(`quant-${cat}-${index}`).textContent = prod.quantidade;
-  atualizarCarrinho();
-}
-
-function mostrarCarrinho() {
-  listaCarrinho.innerHTML = '';
-  for (const cat in produtos) {
-    produtos[cat].forEach(p => {
-      if (p.quantidade > 0) {
-        const li = document.createElement('li');
-        li.textContent = `${p.nome} - Quantidade: ${p.quantidade}`;
-        listaCarrinho.appendChild(li);
-      }
-    });
-  }
-  carrinhoEl.style.display = 'block';
-}
-
-function atualizarCarrinho() {
-  if (carrinhoEl.style.display === 'block') {
-    mostrarCarrinho();
-  }
 }
