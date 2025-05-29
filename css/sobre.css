@@ -7,132 +7,326 @@
 
 html {
     height: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
-    font-size: 22px;
+    font-size: 18px;
     background-color: #f1f0d9;
     color: #333;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-direction: column;
-    height: 100%;
+    min-height: 100vh;
+    line-height: 1.7;
 }
 
-.grid-sobre {
-    margin-left: -70px;
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: minmax(600px, 2fr) auto;
-    gap: 4rem;
-    border: none;
-    box-shadow: none;
-    background-color: transparent;
-}
-
-.grid-main {
-    display: grid;
-    grid-template-columns: minmax(600px, 2fr) minmax(600px, 2fr);
-    gap: 4rem;
-    border: none;
-    box-shadow: none;
-    background-color: transparent;
-}
-
-header {
-    background-color: #e6e6cc;
-    padding: 15px;
-    border-bottom: 2px solid #333;
+.sobre-container {
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.pagina-header {
+    background-color: #e6e6cc;
+    padding: 25px;
+    border-radius: 25px;
+    margin: 20px auto 40px auto;
+    border: 6px double #667b58;
+    box-shadow: 10px 7px 0px #667b58;
+    text-align: center;
+    max-width: 900px;
+}
+
+.pagina-header h1 {
+    color: #2d4a21;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.layout-sobre-principal {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.coluna-texto {
+    background-color: #fffbe6;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.coluna-texto h2 {
+    font-size: 1.4rem;
+    color: #2d4a21;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.coluna-texto h2:first-of-type {
+    margin-top: 0;
+}
+
+.coluna-texto p,
+.coluna-texto strong,
+.coluna-texto {
+    font-size: 1.6rem;
     text-align: left;
 }
-.header {
-    margin-top: 150px;
-    background-color: #e6e6cc;
-    color: #fff;
-    padding: 30px;
-    border-radius: 25px;
-    max-width: 1000px;
-    margin: 40px auto;
-    border-style: double;
-    box-shadow: 15px 10px #667b58;
-    text-align: justify;
-    z-index: 999;
-}
 
-h1 {
+.coluna-texto strong {
     color: #2d4a21;
-    text-align:start;
+    font-weight: bold;
 }
 
-.mapa-title {
-    text-align: center;
-    background-color: #2d4a21;
-    background-color: #e6e6cc;
-    padding: 10px;
-    border-radius: 25px;
-    max-width: 300px;
-    margin: -10px 30px;
-    border-style: double;
-    box-shadow: -6px 8px #667b58;
-    text-align: justify;
-    z-index: 999;
-    order: 1;
+.coluna-lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-h2 {
-    font-size: 16px;
-    text-align: center;
-    color: #2d4a21;
-    /* margin-bottom: 12px; */
-}
-
-main {
-    flex: 1;
-}
-
-main div {
-    max-width: 800px;
-    margin-top: 30px;
+.bloco-lateral {
     background-color: #fffbe6;
-    padding: 40px;
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.mapa-localização {
-    height: 50%;
-    max-height: 300px;
+.titulo-bloco-lateral {
+    font-size: 1.3rem;
+    color: #2d4a21;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
-.mapa-localização iframe {
-    z-index: -999;
-    width: 300px; 
-    height: 600px;
+.carrossel-container {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background-color: #e9e7c9;
+    padding: 10px;
+    padding-bottom: 30px;
+    border-radius: 10px;
 }
 
-.mapa-iframe iframe {
-    border-radius: 30px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+.carrossel {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
 }
 
-button {
-    margin-top: 20px;
-    gap: 10px;
-    border-radius: 30px;
-    font-size: 100%;
-    background-color: #ecf8e9;
-    padding: 10px 15px 10px 15px;
-    border: 1px solid #333;
+.carrossel-item {
+    min-width: 100%;
+    flex-shrink: 0;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.carrossel-item img {
+    display: block;
+    width: 96%;
+    height: 350px;
+    margin: 20px 20px 10px 20px;
+    border: 3px solid #667b58;
+    border-radius: 70px;
+    padding-right: 20px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+}
+
+.carrossel-item span {
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bolder;
+    color: #333;
+    padding: 0 5px;
+}
+
+.carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #667b58;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 50%;
     cursor: pointer;
+    z-index: 1;
+    font-size: 0.7rem;
+    width: 35px;
+    height: 35px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.carrossel-btn:hover {
+    opacity: 1;
+}
+
+.carrossel-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.carrossel-btn.prev {
+    left: 10px;
+}
+
+.carrossel-btn.next {
+    right: 10px;
+}
+
+#localizacao .mapa-wrapper {
+    position: relative;
+}
+
+.mapa-title-custom {
+    position: absolute;
+    top: -30px;
+    left: 83%;
+    transform: translateX(-50%);
+    background-color: #e6e6cc;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 3px double #667b58;
+    box-shadow: -3px 4px 0px #667b58;
+    text-align: center;
+    font-size: 1.1rem !important;
+    color: #2d4a21;
+    z-index: 2;
+    width: fit-content;
+    white-space: nowrap;
+}
+
+#localizacao .mapa-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #d4d0b1;
+    margin-top: 25px;
+}
+
+#localizacao .mapa-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#voltarBtn {
+    display: block;
+    width: fit-content;
+    margin: 40px auto 20px auto;
+    padding: 12px 25px;
+    background-color: #ecf8e9;
+    color: #2d4a21;
+    border: 2px solid #667b58;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#voltarBtn:hover {
+    background-color: #d4e0d0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
 }
 
 footer {
     text-align: center;
     margin-top: 20px;
-    padding: 10px;
+    padding: 20px;
     background-color: #e6e6cc;
     width: 100%;
     border-top: 2px solid #333;
+    font-size: 0.9rem;
+}
+
+.animar-entrada {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.animar-entrada.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (min-width: 769px) {
+    body {
+        font-size: 16px;
+    }
+
+    .layout-sobre-principal {
+        grid-template-columns: 2.5fr 1fr;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .coluna-texto {
+        padding: 40px;
+    }
+
+    .bloco-lateral {
+        padding: 15px;
+    }
+
+    .titulo-bloco-lateral {
+        font-size: 1.5rem;
+    }
+
+    #localizacao .mapa-container {
+        height: 350px;
+    }
+
+    .carrossel-container {
+        max-width: none;
+    }
+    .carrossel-item img {
+        /* Consider if height should also change on wider screens,
+           or if 350px is always appropriate.
+           Alternatively, you could use aspect-ratio here too if
+           the fixed 150px extra space isn't a strict design requirement
+           on wider views. For now, it keeps the 350px height. */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    .pagina-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .coluna-texto h2,
+    .titulo-bloco-lateral {
+        font-size: 1.2rem;
+    }
+
+    .mapa-title-custom {
+        font-size: 1rem !important;
+    }
+
+    #localizacao .mapa-container {
+        height: 250px;
+    }
+
+    #voltarBtn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
 }
