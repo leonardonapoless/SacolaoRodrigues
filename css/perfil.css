@@ -10,35 +10,6 @@ html {
   padding: 1rem;
 }
 
-.user-info {
-  text-align: center;
-  margin-bottom: 2rem;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-.avatar img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #4CAF50;
-  transition: transform 0.3s ease;
-}
-
-.avatar img:hover {
-  transform: scale(1.05);
-}
-
-.user-info h2 {
-  margin: 0.5rem 0 0.2rem;
-  color: #333;
-}
-
-.user-info p {
-  color: #666;
-  margin: 0;
-}
-
 .main-content {
   display: grid;
   grid-template-columns: 200px 1fr;
@@ -91,25 +62,6 @@ html {
   color: #333;
 }
 
-  /* .editar-btn {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-  padding: 1rem;
-  background: white;
-  border: 1px solid #e0e0e0;
-  border: 10px double #000;
-  box-shadow: 5px 2px 0 0 #000;
-  border-radius: 50px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}  */
-
 .action-btn video {
   width: 100%;
   height: 100%;
@@ -118,7 +70,6 @@ html {
   opacity: 1;
   display: block;
   object-fit: cover;
-  /* padding-bottom: 10px; */
   padding-left: 10px;
 }
 
@@ -269,7 +220,6 @@ html {
 @media (max-width: 900px) {
   .recent-orders {
     max-width: 500px;
-    /* Slightly narrower on medium screens */
   }
 }
 
@@ -277,39 +227,32 @@ html {
   .main-content {
     grid-template-columns: 1fr;
     padding: 0 1rem;
-    /* Add side padding */
   }
 
   .recent-orders {
     order: 2;
     max-width: 90%;
-    /* Full width but constrained by parent padding */
     padding: 1.25rem;
-    /* Slightly reduce padding */
   }
 
   .user-actions {
+    display: none;
     order: 1;
     margin-left: 0;
     justify-self: center;
-    /* Center buttons when stacked */
     width: 100%;
     max-width: 250px;
-    /* Constrain button width */
   }
 }
 
 @media (max-width: 480px) {
   .recent-orders {
     padding: 2rem;
-    /* Tighter padding on small screens */
   }
 
   .order-card {
     order: 1;
     padding: 15px;
-    /* Reduce card padding */
     border-radius: 15px;
-    /* Slightly rounder corners */
   }
 }

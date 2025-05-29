@@ -8,29 +8,21 @@
     <link rel="stylesheet" href="../css/perfil.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="icon" href="/icon/logo.png">
-
+    <script src="/components/js/headerComponent.js" defer></script>
 </head>
 
-<body>
+<body> 
 
-    <header-component></header-component>
+    <header-component variant="perfil"></header-component>
 
     <main class="profile-container">
-        <section class="user-info">
-            <div class="avatar">
-                <img src="../assets/images/user-profile-pic.png" alt="Foto do usuário">
-            </div>
-            <h2>Nome do Usuário</h2>
-            <p>email@usuario.com</p>
-        </section>
-
         <div class="main-content">
             <section class="user-actions">
                 <button onclick="window.location.href = '../pages/listas.html'" class="action-btn">
                     <img src="../assets/images/list-icon.png" alt="Minhas listas">
                     <span>Minhas Listas</span>
                 </button>
-                <button class="action-btn">
+                <button onclick="window.location.href = '../pages/ofertas.html'" class="action-btn">
                     <img src="../assets/images/ofertas.png" alt="Ofertas">
                     <span>Minhas Ofertas</span>
                 </button>
@@ -53,9 +45,6 @@
 
             <section class="recent-orders">
                 <h3>Últimos Pedidos</h3>
-                <!-- <button id="btnNovoPedido" class="btn-gerar-pedido">
-                    + Adicionar Pedido de Exemplo
-                </button> -->
                 <div class="order-card">
                     <p>Pedido #1234 - R$ 45,90</p>
                     <ul class="lista-items">
@@ -97,8 +86,6 @@
         <script src="/js/footer.js"></script>
     </footer>
 
-    <script type="module" src="/components/js/headerComponent.js"></script>
-
     <script>
         fetch('/components/html/footer.html')
             .then(res => res.text())
@@ -106,7 +93,6 @@
                 document.getElementById('footer-container').innerHTML = html;
             });
     </script>
-    <!-- <script src="seu-script.js"></script> -->
     <script src="../js/perfil.js"></script>
 
     <script>
@@ -115,7 +101,7 @@
             if (!video) return;
 
             button.addEventListener('mouseenter', () => {
-                video.play().catch(e => console.error("Video error:", e));
+                video.play().catch(e => {});
             });
 
             button.addEventListener('mouseleave', () => {
