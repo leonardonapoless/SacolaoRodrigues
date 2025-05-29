@@ -17,31 +17,100 @@ class Header extends HTMLElement {
         if (variant === 'perfil') {
             variantStyles = `
                 .header-grid {
-                    grid-template-columns: auto 1fr; /* Logo | Direita */
+                    grid-template-columns: auto 1fr auto;
                     justify-content: space-between;
-                    padding: 0 30px;
+                    align-items: center;
+                    padding: 15px 40px; 
+                    gap: 30px;
                 }
                 .logo-container-perfil {
-                    padding: 10px 0;
+                    padding: 0;
+                    justify-self: start;
                 }
                 .logo-container-perfil .logo-sacolao {
-                    max-width: 200px; 
-                    padding-top: 0;
+                    max-width: 180px; 
+                    display: block;
+                }
+                .header-right-box {
+                    height: auto;
+                    padding: 8px 15px; 
+                    border-width: 4px;
+                    gap: 15px; 
+                    justify-self: end; 
+                    margin-left: 0; 
+                }
+                .header-right-box img {
+                    max-width: 28px; 
+                    height: 28px;
+                    padding: 0;
+                }
+                .user-info { 
+                  text-align: center;
+                  margin: 0; 
+                  animation: fadeIn 0.5s ease-in-out;
+                  align-self: center;
+                  justify-self: center;
+                }
+                .avatar img {
+                  width: 80px; 
+                  height: 80px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                  border: 3px solid #4CAF50;
+                  transition: transform 0.3s ease;
+                  margin: 0 auto 8px auto;
+                }
+                .avatar img:hover {
+                  transform: scale(1.05);
+                }
+                .user-info h2 {
+                  margin: 0.5rem 0 0.3rem;
+                  color: #333;
+                  font-size: 1.5rem; 
+                }
+                .user-info p {
+                  color: #666;
+                  margin: 0;
+                  font-size: 1rem; 
                 }
             `;
         }
 
         return `
             <style>
+
+                * {
+                    font-family: 'Jetbrains Mono', monospace;
+                    box-sizing: border-box;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                html {
+                    font-size: 62.5%;
+                }
+
+                body {
+                    background-color: #f1f0d9;
+                }
+
+                @keyframes fadeIn {
+                  from { opacity: 0; transform: translateY(-10px); }
+                  to { opacity: 1; transform: translateY(0); }
+                }
                 :host {
                     display: block;
                     position: relative;
                     z-index: 1000;
+                    
+                }
+                :host([variant="perfil"]) {
+                    margin-bottom: 15px;
                 }
                 a {
                     text-decoration: none;
                     color: inherit;
-                    display: contents; 
+                    display: contents;
                 }
                 button {
                     border: none;
@@ -88,105 +157,197 @@ class Header extends HTMLElement {
                 }
                 .search-section { position: relative; }
                 #search-popup-desktop {
-                    position: absolute;
-                    top: 120%;
-                    right: -10px;
-                    background-color: #f8f8f8;
-                    border: 3px solid #565555;
-                    border-radius: 25px;
-                    padding: 10px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                    z-index: 100;
-                    opacity: 0;
-                    visibility: hidden;
-                    transform: translateY(-10px) translateX(120px);
-                    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-                    min-width: 250px;
+                    position: absolute; top: 120%; right: -10px;
+                    background-color: #f8f8f8; border: 3px solid #565555; border-radius: 25px;
+                    padding: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 100;
+                    opacity: 0; visibility: hidden; transform: translateY(-10px) translateX(120px);
+                    transition: opacity 0.3s ease, visibility 0s linear 0.3s, transform 0.3s ease; min-width: 250px;
                 }
                 #search-popup-desktop.show {
-                    opacity: 1;
-                    visibility: visible;
-                    transform: translateY(0) translateX(120px);
+                    opacity: 1; visibility: visible; transform: translateY(0) translateX(120px);
+                    transition: opacity 0.3s ease, visibility 0s linear 0s, transform 0.3s ease;
                 }
                 .search-bar-popup {
-                    width: 100%; 
-                    padding: 8px 15px; 
-                    border: none;
-                    border-radius: 20px; 
-                    font-size: 1.6rem; 
-                    background-color: #f8f8f8;
-                    box-sizing: border-box;
+                    width: 100%; padding: 8px 15px; border: none; border-radius: 20px;
+                    font-size: 1.6rem; background-color: #f8f8f8; box-sizing: border-box;
                 }
-                .search-bar-popup:focus {
-                    outline: none;
-                }
+                .search-bar-popup:focus { outline: none; }
                 .logo-container { margin-top: 30px; justify-self: center; }
                 .logo-sacolao { max-width: 300px; padding-top: 20px; }
+                
                 .menu-mobile { display: none; }
 
                 ${variantStyles}
 
                 @media (max-width: 768px) {
-                    .header-grid { display: none; }
-                    :host([variant="perfil"]) .header-grid { display: none; }
-
+                    .header-grid { display: none !important; } 
+                    
                     .menu-mobile {
-                        display: flex; flex-direction: column; align-items: center;
-                        width: 100%; position: relative; z-index: 20;
-                        margin-top: 5px; margin-bottom: 5px; gap: 10px;
+                        display: flex; 
+                        flex-direction: column; 
+                        align-items: center;
+                        width: 100%; 
+                        position: relative; 
+                        z-index: 20;
+                        margin-top: 5px; 
+                        margin-bottom: 5px; 
+                        gap: 10px;
+                        box-sizing: border-box;
                     }
-                    .logo-container { width: 90%; order: -1; margin: 0 auto; padding: 10px 0; }
-                    :host([variant="perfil"]) .logo-container { margin-top: 5px; }
+                    
+                    .menu-mobile .logo-container {
+                        width: 90%; order: -1; margin: 0 auto; padding: 10px 0;
+                        display: flex; justify-content: center;
+                    }
+                    .menu-mobile .logo-container .logo-sacolao {
+                         max-width: 180px;
+                         height: auto;
+                    }
 
                     .menu-hamburguer-drawer {
-                        display: block; background-color: #d6a9a1; border: 3px solid #000;
-                        border-radius: 25px; padding: 10px 20px; font-size: 1.8rem;
-                        font-weight: bold; cursor: pointer;
-                        box-shadow: 3px 7px 12.5px 2px rgba(0, 0, 0, 0.25);
-                        width: 90%;
-                    }
-                    .opcao-menu {
-                        display: flex; flex-direction: column; align-items: center;
-                        overflow: hidden; max-height: 0; opacity: 0;
-                        transition: max-height 0.6s ease, opacity 0.6s ease;
-                        pointer-events: none; gap: 10px;
-                        background-color: #79946F; border-radius: 20px;
-                        width: 80%; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-                        padding: 0 15px;
-                    }
-                    .opcao-menu.show { max-height: 500px; opacity: 1; pointer-events: auto; padding: 15px; }
-                    .opcao-btn {
-                        background: none;
-                        border: none;
-                        cursor: pointer;
-                        width: 100%;
-                        display: flex;
-                        align-items: center;
-                        gap: 15px;
-                        padding: 10px;
                         font-family: 'Limelight', normal;
-                        font-size: 1.8rem;
+                        display: block; 
+                        background-color: #d6a9a1; 
+                        border: 4px solid #000;
+                        border-radius: 30px; padding: 10px 20px; font-size: 1.8rem;
+                        font-weight: bold; 
+                        text-shadow: -4px 2px 5px rgba(0, 0, 0, 0.25);
+                        font-size: 1.6rem;
+                        cursor: pointer;
+                        box-shadow: 3px 7px 12.5px 2px rgba(0, 0, 0, 0.25);
+                        width: 90%; 
+                        text-align: center;
+                        box-shadow: 3px 7px 12.5px 2px rgba(0, 0, 0, 0.25), 0px 3px 0px 2px #000;
+                    }
+                    .opcao-menu { 
+                        display: flex; 
+                        flex-direction: column; 
+                        align-items: center;
+                        overflow: hidden; 
+                        max-height: 0; 
+                        opacity: 0; 
+                        visibility: hidden;
+                        transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s linear 0.6s;
+                        pointer-events: none;
+                        gap: 10px; 
+                        background-color: #d6a9a1; 
+                        border: 4px solid #000;
+                        border-radius: 30px; padding: 10px 20px; font-size: 1.8rem;
+                        width: 80%; 
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                        padding: 0 15px; 
+                        box-sizing: border-box; 
+                        margin-top: 0;
+                    }
+                    .opcao-menu.show {
+                        max-height: 500px; opacity: 1; visibility: visible; pointer-events: auto;
+                        padding: 15px;
+                        transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s linear 0s;
+                    }
+
+                    :host([variant="perfil"]) .menu-mobile {
+                        padding: 0;
+                    }
+                    .perfil-mobile-top-row {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 80%;
+                        padding: 8px 15px;
+                        box-sizing: border-box;
+                        gap: 70px;
+                    }
+                    :host([variant="perfil"]) .menu-mobile .logo-container-perfil {
+                        margin: 0; 
+                        padding: 0;
+                        flex-shrink: 0;
+                    }
+                    :host([variant="perfil"]) .menu-mobile .logo-container-perfil .logo-sacolao {
+                        max-width: 100px; 
+                        height: auto;
+                    }
+                    :host([variant="perfil"]) .menu-mobile .user-info {
+                        margin: 0;
+                        margin-left: -20px;
+                        padding-top: 20px;
+                        animation: none; 
+                        display: flex;
+                        flex-direction: row; 
+                        align-items: center; 
+                        gap: 8px; 
+                        flex-grow: 1; 
+                        justify-content: flex-start; 
+                        text-align: left;
+                    }
+                    :host([variant="perfil"]) .menu-mobile .user-info .avatar {
+                        margin:0;
+                        flex-shrink: 0;
+                    }
+                    :host([variant="perfil"]) .menu-mobile .user-info .avatar img {
+                        width: 60px; 
+                        height: 60px;
+                        border-width: 2px;
+                        margin:0;
+                    }
+                    :host([variant="perfil"]) .menu-mobile .user-info .user-text-details {
+                        text-align: left;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                    }
+                    :host([variant="perfil"]) .menu-mobile .user-info h2 {
+                        font-size: 1rem; 
+                        margin: 0;
+                        color: #333;
+                        line-height: 1.1;
+                        padding-bottom: 4px;
+                    }
+                    :host([variant="perfil"]) .menu-mobile .user-info p {
+                        font-size: 0.85rem; 
+                        margin: 0;
+                        color: #555;
+                        line-height: 1.1;
+                    }
+                    :host([variant="perfil"]) .menu-mobile .menu-hamburguer-drawer {
+                        width: 90%; 
+                        margin-top: 10px;
+                    }
+                     :host([variant="perfil"]) .menu-mobile .opcao-menu {
+                        width: 80%;
+                        margin-top: 0px;
+                    }
+                    
+                    .opcao-btn {
+                        background: none; 
+                        border: none; 
+                        cursor: pointer; 
+                        width: 100%;
+                        display: flex; 
+                        align-items: center; 
+                        gap: 15px; 
+                        padding: 10px;
+                        font-family: 'Limelight', normal; 
+                        font-size: 1.8rem; 
                         color: white;
-                        text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+                        text-shadow: 1px 1px 2px rgba(0,0,0,0.4); 
                         border-radius: 15px;
-                        text-decoration: none;
+                        text-decoration: none; 
+                        box-sizing: border-box; 
+                        line-height: normal;
+                        justify-content: flex-start; 
+                        text-align: left;
                     }
-                    .opcao-btn:hover {
-                        background-color: rgba(255,255,255,0.1);
-                    }
-                    .opcao-btn img {
-                        width: 32px;
-                        height: 32px;
-                    }
-                    .search-section-mobile { position: relative; width: 100%; }
-                    #search-popup-mobile {
+                    .opcao-btn:hover { background-color: rgba(255,255,255,0.1); }
+                    .opcao-btn img { width: 32px; height: 32px; flex-shrink: 0; }
+                    .opcao-btn span { flex-grow: 1; }
+
+                    #search-popup-mobile { 
                         position: absolute; top: 110%; left: 50%;
-                        background-color: #f8f8f8; border: 3px solid #565555;
-                        border-radius: 25px; padding: 10px;
-                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 101;
+                        background-color: #f8f8f8; border: 3px solid #565555; border-radius: 25px;
+                        padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 101;
                         opacity: 0; visibility: hidden; width: 90%;
-                        transform: translateX(-50%) translateY(-10px);
-                        transition: all 0.3s ease;
+                        transform: translateX(-50%) translateY(-10px); transition: all 0.3s ease;
                     }
                     #search-popup-mobile.show {
                         opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
@@ -199,7 +360,7 @@ class Header extends HTMLElement {
     getHTML(variant) {
         const isPerfilPage = variant === 'perfil';
 
-        const desktopLeftBox = isPerfilPage ? '' : `
+        const desktopLeftBox = `
             <div class="header-left-box">
                 <a href="/pages/listas.html" title="Lista de Compras">
                     <img src="/assets/images/list-icon.png" alt="Minhas Listas">
@@ -218,20 +379,26 @@ class Header extends HTMLElement {
             </div>
         `;
 
-        const desktopLogoContainer = isPerfilPage ? `
-            <div class="logo-container-perfil">
-                <a href="/index.html">
-                    <img class="logo-sacolao" src="/assets/images/logo.png" alt="Logo Sacolão Rodrigues">
-                </a>
-            </div>
-        ` : `
-            <div class="logo-container">
+        const desktopLogoContainer = `
+            <div class="${isPerfilPage ? 'logo-container-perfil' : 'logo-container'}">
                 <a href="/index.html">
                     <img class="logo-sacolao" src="/assets/images/logo.png" alt="Logo Sacolão Rodrigues">
                 </a>
             </div>
         `;
-        
+
+        const userInfoSection = `
+            <section class="user-info">
+                <div class="avatar">
+                    <img src="/assets/images/user-profile-pic.png" alt="Foto do usuário">
+                </div>
+                <div class="user-text-details">
+                    <h2>Nome do Usuário</h2>
+                    <p>email@usuario.com</p>
+                </div>
+            </section>
+        `;
+
         const desktopRightBox = `
             <div class="header-right-box">
                 ${isPerfilPage ? '' : `
@@ -244,49 +411,80 @@ class Header extends HTMLElement {
             </div>
         `;
 
-        const mobileMenuOptions = isPerfilPage ? `
-            <a href="/index.html" class="opcao-btn" title="Voltar para Loja">
-                <span>Voltar para Loja</span>
-            </a>
-            <a href="/pages/carrinho.html" class="opcao-btn" title="Carrinho">
-                 <img src="/assets/images/cart-icon.png" alt="Carrinho">
-                 <span>Carrinho</span>
-            </a>
-        ` : `
-            <div class="search-section-mobile">
-                <button class="opcao-btn search-toggle-btn-mobile" title="Buscar Produto">
-                    <img src="/assets/images/Search.png" alt="Buscar">
-                    <span>Buscar</span>
+        let mobileMenuOptionsForThisPage = '';
+        if (isPerfilPage) {
+            mobileMenuOptionsForThisPage = `
+                <a href="/pages/listas.html" class="opcao-btn" title="Minhas Listas">
+                    <img src="/assets/images/list-icon.png" alt="Minhas Listas">
+                    <span>Minhas Listas</span>
+                </a>
+                <a href="/pages/ofertas.html" class="opcao-btn" title="Minhas Ofertas">
+                    <img src="/assets/images/ofertas.png" alt="Minhas Ofertas">
+                    <span>Minhas Ofertas</span>
+                </a>
+                <a href="/pages/ajustes.html" class="opcao-btn" title="Ajustes">
+                    <img src="/assets/images/ajustes-icon.png" alt="Ajustes">
+                    <span>Ajustes</span>
+                </a>
+                <button id="logout-btn-mobile" class="opcao-btn" title="Sair">
+                    <img src="/assets/images/log-in.png" alt="Sair">
+                    <span>Sair</span>
                 </button>
-                <div id="search-popup-mobile">
-                    <input type="text" id="search-mobile-input" class="search-bar-popup" placeholder="Buscar produto...">
-                </div>
-            </div>
-            <a href="/pages/listas.html" class="opcao-btn" title="Lista de Compras">
-                <img src="/assets/images/MyLists.png" alt="Minhas Listas">
-                <span>Minhas Listas</span>
-            </a>
-            <a href="/pages/ofertas.html" class="opcao-btn" title="Promoções">
-                <img src="/assets/images/OnSale.png" alt="Promoções">
-                <span>Ofertas</span>
-            </a>
-            <a href="/pages/perfil.html" class="opcao-btn" title="Meu Perfil">
-                <img src="/assets/images/profile.png" alt="Meu Perfil">
-                <span>Meu Perfil</span>
-            </a>
-            <a href="/pages/carrinho.html" class="opcao-btn" title="Carrinho">
-                 <img src="/assets/images/cart-icon.png" alt="Carrinho">
-                 <span>Carrinho</span>
-            </a>
-        `;
+            `;
+        } else {
+            mobileMenuOptionsForThisPage = `
+                <a href="/pages/listas.html" class="opcao-btn" title="Minhas Listas">
+                    <img src="/assets/images/list-icon.png" alt="Minhas Listas">
+                    <span>Minhas Listas</span>
+                </a>
+                <a href="/pages/ofertas.html" class="opcao-btn" title="Minhas Ofertas">
+                    <img src="/assets/images/ofertas.png" alt="Minhas Ofertas">
+                    <span>Minhas Ofertas</span>
+                </a>
+                <a href="/pages/perfil.html" class="opcao-btn" title="Perfil">
+                    <img src="/assets/images/profile.png" alt="Perfil">
+                    <span>Perfil</span>
+                </a>
+                <a href="/pages/ajustes.html" class="opcao-btn" title="Ajustes">
+                    <img src="/assets/images/ajustes-icon.png" alt="Ajustes">
+                    <span>Ajustes</span>
+                </a>
+                <button id="logout-btn-mobile" class="opcao-btn" title="Sair">
+                    <img src="/assets/images/log-in.png" alt="Sair">
+                    <span>Sair</span>
+                </button>
+            `;
+        }
 
-        return `
-            <div class="header-grid">
-                ${isPerfilPage ? desktopLogoContainer : desktopLeftBox}
-                ${isPerfilPage ? '' : desktopLogoContainer}
+        let headerGridDesktopContent = '';
+        if (isPerfilPage) {
+            headerGridDesktopContent = `
+                ${desktopLogoContainer}
+                ${userInfoSection}
                 ${desktopRightBox}
-            </div>
-            <div class="menu-mobile">
+            `;
+        } else {
+            headerGridDesktopContent = `
+                ${desktopLeftBox}
+                ${desktopLogoContainer}
+                ${desktopRightBox}
+            `;
+        }
+
+        let menuMobileContent = '';
+        if (isPerfilPage) {
+            menuMobileContent = `
+                <div class="perfil-mobile-top-row">
+                    ${desktopLogoContainer}
+                    ${userInfoSection}
+                </div>
+                <button class="menu-hamburguer-drawer">☰ Menu</button>
+                <div class="opcao-menu">
+                    ${mobileMenuOptionsForThisPage}
+                </div>
+            `;
+        } else {
+            menuMobileContent = `
                 <div class="logo-container">
                     <a href="/index.html">
                         <img class="logo-sacolao" src="/assets/images/logo.png" alt="Logo Sacolão Rodrigues">
@@ -294,8 +492,17 @@ class Header extends HTMLElement {
                 </div>
                 <button class="menu-hamburguer-drawer">☰ Menu</button>
                 <div class="opcao-menu">
-                    ${mobileMenuOptions}
+                    ${mobileMenuOptionsForThisPage}
                 </div>
+            `;
+        }
+
+        return `
+            <div class="header-grid">
+                ${headerGridDesktopContent}
+            </div>
+            <div class="menu-mobile">
+                ${menuMobileContent}
             </div>
         `;
     }
@@ -306,18 +513,24 @@ class Header extends HTMLElement {
 
         const hamburguerBtn = shadow.querySelector('.menu-hamburguer-drawer');
         const mobileMenu = shadow.querySelector('.opcao-menu');
-        
+
         if (hamburguerBtn && mobileMenu) {
             hamburguerBtn.addEventListener('click', () => {
                 mobileMenu.classList.toggle('show');
             });
         }
-        
+
+        const logoutButtonMobile = shadow.querySelector('#logout-btn-mobile');
+        if (logoutButtonMobile) {
+            logoutButtonMobile.addEventListener('click', () => {
+            });
+        }
+
         const searchBtnDesktop = shadow.querySelector('#search-btn-desktop');
         const searchPopupDesktop = shadow.querySelector('#search-popup-desktop');
         const searchInputDesktop = shadow.querySelector('#search-desktop-input');
-        
-        if (!isPerfilPage && searchBtnDesktop && searchPopupDesktop && searchInputDesktop) {
+
+        if (searchBtnDesktop && searchPopupDesktop && searchInputDesktop) {
             const toggleDesktopSearch = (e) => {
                 e.stopPropagation();
                 searchPopupDesktop.classList.toggle('show');
@@ -333,72 +546,83 @@ class Header extends HTMLElement {
         const searchPopupMobile = shadow.querySelector('#search-popup-mobile');
         const searchInputMobile = shadow.querySelector('#search-mobile-input');
 
-        if (!isPerfilPage && searchBtnMobile && searchPopupMobile && searchInputMobile) {
-            const toggleMobileSearch = (e) => {
+        if (searchBtnMobile && searchPopupMobile && searchInputMobile) {
+            searchBtnMobile.addEventListener('click', (e) => {
                 e.stopPropagation();
                 searchPopupMobile.classList.toggle('show');
-                 if (searchPopupMobile.classList.contains('show')) {
+                if (searchPopupMobile.classList.contains('show')) {
                     setTimeout(() => searchInputMobile.focus(), 0);
                 }
-            }
-            searchBtnMobile.addEventListener('click', toggleMobileSearch);
+            });
             searchPopupMobile.addEventListener('click', e => e.stopPropagation());
         }
 
         document.addEventListener('click', (e) => {
-            if (searchPopupDesktop && searchPopupDesktop.classList.contains('show') && !searchPopupDesktop.contains(e.target) && e.target !== searchBtnDesktop && (searchBtnDesktop && !searchBtnDesktop.contains(e.target)) ) {
-                searchPopupDesktop.classList.remove('show');
+            const searchPopupDesktopEl = shadow.querySelector('#search-popup-desktop');
+            const searchBtnDesktopEl = shadow.querySelector('#search-btn-desktop');
+            if (searchPopupDesktopEl && searchPopupDesktopEl.classList.contains('show') && !searchPopupDesktopEl.contains(e.target) && e.target !== searchBtnDesktopEl && (searchBtnDesktopEl && !searchBtnDesktopEl.contains(e.target))) {
+                searchPopupDesktopEl.classList.remove('show');
             }
-            if (searchPopupMobile && searchPopupMobile.classList.contains('show') && !searchPopupMobile.contains(e.target) && e.target !== searchBtnMobile && (searchBtnMobile && !searchBtnMobile.contains(e.target))) {
-                searchPopupMobile.classList.remove('show');
+
+            const searchPopupMobileEl = shadow.querySelector('#search-popup-mobile');
+            const searchBtnMobileEl = shadow.querySelector('.search-toggle-btn-mobile');
+            if (searchPopupMobileEl && searchPopupMobileEl.classList.contains('show') && !searchPopupMobileEl.contains(e.target) && searchBtnMobileEl && e.target !== searchBtnMobileEl && !searchBtnMobileEl.contains(e.target)) {
+                searchPopupMobileEl.classList.remove('show');
             }
         });
 
         document.addEventListener('keydown', (e) => {
-            if (searchPopupDesktop && searchPopupMobile) {
-                if (e.key === 'Escape' || e.key === 'Esc') {
-                    searchPopupDesktop.classList.remove('show');
-                    searchPopupMobile.classList.remove('show');
+            if (e.key === 'Escape' || e.key === 'Esc') {
+                const searchPopupDesktopEl = shadow.querySelector('#search-popup-desktop');
+                const searchPopupMobileEl = shadow.querySelector('#search-popup-mobile');
+                if (searchPopupDesktopEl && searchPopupDesktopEl.classList.contains('show')) {
+                    searchPopupDesktopEl.classList.remove('show');
+                }
+                if (searchPopupMobileEl && searchPopupMobileEl.classList.contains('show')) {
+                    searchPopupMobileEl.classList.remove('show');
                 }
             }
 
-            if (!isPerfilPage && e.key === '/' && searchBtnDesktop && searchInputDesktop ) {
+            const searchBtnDesktopEl = shadow.querySelector('#search-btn-desktop');
+            const searchInputDesktopEl = shadow.querySelector('#search-desktop-input');
+            if (e.key === '/' && searchBtnDesktopEl && searchInputDesktopEl) {
+                const desktopLeftBoxExists = shadow.querySelector('.header-left-box');
+                if (!desktopLeftBoxExists && !isPerfilPage && !(isPerfilPage && shadow.querySelector('.header-grid .search-section'))) return;
+
                 const activeEl = document.activeElement;
-                const isDesktopSearchInputActive = activeEl === searchInputDesktop;
-                
-                if (getComputedStyle(searchBtnDesktop).display === 'none' && !isDesktopSearchInputActive) {
+                const isDesktopSearchButtonVisible = getComputedStyle(searchBtnDesktopEl).display !== 'none';
+                const isDesktopSearchInputActive = activeEl === searchInputDesktopEl;
+
+                if (!isDesktopSearchButtonVisible || isDesktopSearchInputActive) {
                     return;
                 }
-
-                if (isDesktopSearchInputActive) {
-                    return; 
-                }
-
                 const isTypingElsewhere = (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA');
                 if (isTypingElsewhere) {
                     return;
                 }
-                
                 e.preventDefault();
-                if (searchPopupDesktop.classList.contains('show')) {
-                    searchPopupDesktop.classList.remove('show');
+                const searchPopupDesktopEl = shadow.querySelector('#search-popup-desktop');
+                if (searchPopupDesktopEl.classList.contains('show')) {
+                    searchPopupDesktopEl.classList.remove('show');
                 } else {
-                    searchPopupDesktop.classList.add('show');
-                    setTimeout(() => searchInputDesktop.focus(), 0);
+                    searchPopupDesktopEl.classList.add('show');
+                    setTimeout(() => searchInputDesktopEl.focus(), 0);
                 }
             }
         });
 
-        if (!isPerfilPage && searchInputDesktop && searchInputMobile) {
+        const searchInputDesktopEl = shadow.querySelector('#search-desktop-input');
+        const searchInputMobileEl = shadow.querySelector('#search-mobile-input');
+
+        if (searchInputDesktopEl) {
             const handleSearchInput = (event) => {
                 this.dispatchEvent(new CustomEvent('header-search', {
                     detail: { term: event.target.value },
-                    bubbles: true,
-                    composed: true
+                    bubbles: true, composed: true
                 }));
             };
-            searchInputDesktop.addEventListener('input', handleSearchInput);
-            searchInputMobile.addEventListener('input', handleSearchInput);
+            searchInputDesktopEl.addEventListener('input', handleSearchInput);
+            if (searchInputMobileEl) searchInputMobileEl.addEventListener('input', handleSearchInput);
         }
     }
 }
