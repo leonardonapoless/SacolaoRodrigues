@@ -2,6 +2,8 @@ const footerTemplate = document.createElement('template');
 
 footerTemplate.innerHTML = `
     <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
+
         * {
             font-size: 14px;
         }
@@ -47,6 +49,7 @@ footerTemplate.innerHTML = `
         .custom-footer .social-icons {
             display: flex;
             gap: 16px;
+            align-items: center;
         }
         .custom-footer .social-icons i {
             font-size: 20px;
@@ -54,10 +57,13 @@ footerTemplate.innerHTML = `
             position: relative;
             padding-bottom: 4px;
             transition: transform 0.2s ease-in-out;
+            color: white;
         }
         .custom-footer .social-icons a {
             color: white;
             text-decoration: none;
+            display: flex;
+            align-items: center;
         }
         .custom-footer .social-icons i:hover {
             transform: scale(1.1);
@@ -72,6 +78,49 @@ footerTemplate.innerHTML = `
             border-radius: 40px;
             background: white;
         }
+        
+        .phone-icon-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .phone-popup {
+            position: absolute;
+            background-color: #4a4a3d;
+            color: white;
+            text-align: center;
+            padding: 10px 12px;
+            border-radius: 6px;
+            z-index: 1001;
+            bottom: 100%;
+            left: 100%;
+            width: 230px;
+            
+            opacity: 0;
+            transform: translateX(-50%) translateY(5px) scale(0.95);
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0s linear 0.3s;
+        }
+
+        .phone-popup.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-8px) scale(1);
+            visibility: visible;
+            transition-delay: 0s;
+        }
+
+        .phone-popup::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #4a4a3d transparent transparent transparent;
+        }
+
         .custom-footer .form-box {
             background-color: #dcdcdc;
             border-radius: 25px;
@@ -106,6 +155,9 @@ footerTemplate.innerHTML = `
             padding: 8px 12px;
             border-radius: 20px;
             transition: transform 0.3s ease-in-out;
+        }
+        .custom-footer .form-box button i {
+            color: #5a5a4d;
         }
         .custom-footer .form-box button:hover {
             transform: scale(1.4);
@@ -152,6 +204,10 @@ footerTemplate.innerHTML = `
             .custom-footer .form-box button {
                 width: 100%;
             }
+            .phone-popup {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
         }
     </style>
 
@@ -159,9 +215,14 @@ footerTemplate.innerHTML = `
       <div class="footer-top">
         <div class="sobre"><a href="/pages/sobre.html">Sobre Nós</a></div>
         <div class="social-icons">
-         <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
           <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-          <i class="fas fa-mobile-alt"></i>
+          <div class="phone-icon-container">
+            <i class="fas fa-mobile-alt" id="phoneIcon" title="Ver telefone"></i>
+            <div id="phonePopup" class="phone-popup">
+              Telefone: (XX) XXXXX-XXXX
+            </div>
+          </div>
         </div>
       </div>
     
@@ -193,6 +254,26 @@ class FooterComponent extends HTMLElement {
         const suggestionInput = shadow.getElementById('sugestao');
         const messageBox = shadow.getElementById('messageBox');
 
+        const phoneIcon = shadow.getElementById('phoneIcon');
+        const phonePopup = shadow.getElementById('phonePopup');
+
+        if (phoneIcon && phonePopup) {
+            phoneIcon.addEventListener('click', (event) => {
+                event.stopPropagation();
+                phonePopup.classList.toggle('show');
+            });
+
+            shadow.addEventListener('click', (event) => {
+                if (phonePopup.classList.contains('show')) {
+                    if (!phoneIcon.contains(event.target) && !phonePopup.contains(event.target)) {
+                        phonePopup.classList.remove('show');
+                    }
+                }
+            });
+        } else {
+            console.error('Ícone de telefone (phoneIcon) ou popup de telefone (phonePopup) não encontrado no footer-component.');
+        }
+
         function showMessage(message) {
             messageBox.textContent = message;
             messageBox.classList.add('show');
@@ -211,9 +292,7 @@ class FooterComponent extends HTMLElement {
         if (sendButton && suggestionInput) {
             sendButton.addEventListener('click', function(event) {
                 event.preventDefault();
-
                 sendButton.classList.add('bounce-animation');
-
                 sendButton.addEventListener('animationend', () => {
                     sendButton.classList.remove('bounce-animation');
                 }, { once: true });
@@ -227,7 +306,11 @@ class FooterComponent extends HTMLElement {
                 }
             });
         } else {
-            console.error('Botão de envio ou campo de sugestão não encontrado no footer-component.');
+            if (!(phoneIcon && phonePopup)) {
+                 
+            } else if (!sendButton || !suggestionInput) {
+                 console.error('Botão de envio ou campo de sugestão não encontrado no footer-component.');
+            }
         }
     }
 }
