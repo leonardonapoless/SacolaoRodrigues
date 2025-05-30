@@ -10,6 +10,11 @@ class Header extends HTMLElement {
         const variant = this.getAttribute('variant');
         this.shadowRoot.innerHTML = this.getStyles(variant) + this.getHTML(variant);
         this.addEventListeners(variant);
+        this.shadowRoot.host.style.opacity = '0';
+        requestAnimationFrame(() => {
+            this.shadowRoot.host.style.transition = 'opacity 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s';
+            this.shadowRoot.host.style.opacity = '1';
+        });
     }
 
     getStyles(variant) {
@@ -26,6 +31,9 @@ class Header extends HTMLElement {
                 .logo-container-perfil {
                     padding: 0;
                     justify-self: start;
+                    transform: translateX(-20px);
+                    opacity: 0;
+                    animation: slideInFromLeft 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
                 }
                 .logo-container-perfil .logo-sacolao {
                     max-width: 180px; 
@@ -38,16 +46,23 @@ class Header extends HTMLElement {
                     gap: 15px; 
                     justify-self: end; 
                     margin-left: 0; 
+                    transform: translateX(20px);
+                    opacity: 0;
+                    animation: slideInFromRight 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
                 }
-                .header-right-box img {
+                .header-right-box a img {
                     max-width: 28px; 
                     height: 28px;
                     padding: 0;
+                    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                }
+                .header-right-box a:hover img {
+                    transform: scale(1.15);
                 }
                 .user-info { 
                   text-align: center;
                   margin: 0; 
-                  animation: fadeIn 0.5s ease-in-out;
+                  animation: fadeInUser 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s backwards;
                   align-self: center;
                   justify-self: center;
                 }
@@ -57,11 +72,13 @@ class Header extends HTMLElement {
                   border-radius: 50%;
                   object-fit: cover;
                   border: 3px solid #4CAF50;
-                  transition: transform 0.3s ease;
+                  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
                   margin: 0 auto 8px auto;
+                  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
                 }
                 .avatar img:hover {
-                  transform: scale(1.05);
+                  transform: scale(1.08);
+                  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
                 }
                 .user-info h2 {
                   margin: 0.5rem 0 0.3rem;
@@ -78,7 +95,6 @@ class Header extends HTMLElement {
 
         return `
             <style>
-
                 * {
                     font-family: 'Jetbrains Mono', monospace;
                     box-sizing: border-box;
@@ -94,15 +110,35 @@ class Header extends HTMLElement {
                     background-color: #f1f0d9;
                 }
 
-                @keyframes fadeIn {
-                  from { opacity: 0; transform: translateY(-10px); }
-                  to { opacity: 1; transform: translateY(0); }
+                @keyframes fadeInUser {
+                  from { opacity: 0; transform: translateY(15px) scale(0.95); }
+                  to { opacity: 1; transform: translateY(0) scale(1); }
                 }
+
+                @keyframes slideInFromLeft {
+                    from { opacity: 0; transform: translateX(-30px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+
+                @keyframes slideInFromRight {
+                    from { opacity: 0; transform: translateX(30px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+                
+                @keyframes scaleUp {
+                    from { transform: scale(0.9); opacity: 0;}
+                    to { transform: scale(1); opacity: 1;}
+                }
+
+                @keyframes mobileMenuButtonAppear {
+                    from { opacity: 0; transform: translateY(15px) scale(0.9); }
+                    to { opacity: 1; transform: translateY(0) scale(1); }
+                }
+                
                 :host {
                     display: block;
                     position: relative;
                     z-index: 1000;
-                    
                 }
                 :host([variant="perfil"]) {
                     margin-bottom: 15px;
@@ -110,7 +146,9 @@ class Header extends HTMLElement {
                 a {
                     text-decoration: none;
                     color: inherit;
-                    display: contents;
+                    display: inline-flex; 
+                    align-items: center; 
+                    justify-content: center;
                 }
                 button {
                     border: none;
@@ -142,37 +180,72 @@ class Header extends HTMLElement {
                     background-color: #79946F;
                     border: 6px solid #000;
                     gap: 25px;
+                    transition: box-shadow 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
                 }
                 .header-left-box {
                     box-shadow: -3px -4px 0px 2px #000, 6px 14px 12.5px 2px rgba(0, 0, 0, 0.25);
                     justify-self: start;
+                    transform: translateX(-30px);
+                    opacity: 0;
+                    animation: slideInFromLeft 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s forwards;
                 }
                 .header-right-box {
                     box-shadow: 3px -4px 0px 2px #000, 6px 14px 12.5px 2px rgba(0, 0, 0, 0.25);
                     justify-self: end;
+                    transform: translateX(30px);
+                    opacity: 0;
+                    animation: slideInFromRight 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s forwards;
                 }
-                .header-left-box img, .header-right-box img {
+                 .header-left-box:hover, .header-right-box:hover {
+                    box-shadow: 0px 0px 0px 3px #000, 8px 18px 18px 3px rgba(0, 0, 0, 0.3);
+                 }
+
+                .header-left-box img, .header-right-box a img {
                     max-width: 60px;
                     padding: 8px;
+                    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 }
+                .header-left-box a:hover img, .header-right-box a:hover img,
+                .header-left-box button:hover img {
+                    transform: scale(1.12);
+                }
+
+
                 .search-section { position: relative; }
+                 .search-section button img {
+                    max-width: 60px;
+                    padding: 8px;
+                    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                 }
+                 .search-section button:hover img {
+                    transform: scale(1.12);
+                 }
+
+
                 #search-popup-desktop {
                     position: absolute; top: 120%; right: -10px;
                     background-color: #f8f8f8; border: 3px solid #565555; border-radius: 25px;
-                    padding: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 100;
-                    opacity: 0; visibility: hidden; transform: translateY(-10px) translateX(120px);
-                    transition: opacity 0.3s ease, visibility 0s linear 0.3s, transform 0.3s ease; min-width: 250px;
+                    padding: 12px 15px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); z-index: 100;
+                    opacity: 0; visibility: hidden; transform: translateY(-15px) translateX(120px) scale(0.9);
+                    transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1), visibility 0s linear 0.3s, transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1); min-width: 260px;
                 }
                 #search-popup-desktop.show {
-                    opacity: 1; visibility: visible; transform: translateY(0) translateX(120px);
-                    transition: opacity 0.3s ease, visibility 0s linear 0s, transform 0.3s ease;
+                    opacity: 1; visibility: visible; transform: translateY(0) translateX(120px) scale(1);
+                    transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1), visibility 0s linear 0s, transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
                 }
                 .search-bar-popup {
-                    width: 100%; padding: 8px 15px; border: none; border-radius: 20px;
+                    width: 100%; padding: 10px 18px; border: none; border-radius: 20px;
                     font-size: 1.6rem; background-color: #f8f8f8; box-sizing: border-box;
                 }
                 .search-bar-popup:focus { outline: none; }
-                .logo-container { margin-top: 30px; justify-self: center; }
+
+                .logo-container { 
+                    margin-top: 30px; 
+                    justify-self: center;
+                    opacity: 0;
+                    transform: scale(0.85);
+                    animation: scaleUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s forwards;
+                }
                 .logo-sacolao { max-width: 300px; padding-top: 20px; }
                 
                 .menu-mobile { display: none; }
@@ -191,14 +264,21 @@ class Header extends HTMLElement {
                         z-index: 20;
                         margin-top: 5px; 
                         margin-bottom: 5px; 
-                        gap: 10px;
+                        gap: 12px;
                         box-sizing: border-box;
+                        padding: 0 5%;
                     }
                     
                     .menu-mobile .logo-container {
-                        width: 90%; order: -1; margin: 0 auto; padding: 10px 0;
+                        width: 100%; order: -1; margin: 0 auto; padding: 10px 0;
                         display: flex; justify-content: center;
+                        opacity: 0;
+                        transform: translateY(-20px) scale(0.9);
+                        animation: mobileMenuButtonAppear 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s forwards;
                     }
+                     :host([variant="perfil"]) .menu-mobile .logo-container {
+                        animation-delay: 0s;
+                     }
                     .menu-mobile .logo-container .logo-sacolao {
                          max-width: 180px;
                          height: auto;
@@ -209,16 +289,30 @@ class Header extends HTMLElement {
                         display: block; 
                         background-color: #d6a9a1; 
                         border: 4px solid #000;
-                        border-radius: 30px; padding: 10px 20px; font-size: 1.8rem;
+                        border-radius: 30px; padding: 12px 25px; font-size: 1.8rem;
                         font-weight: bold; 
                         text-shadow: -4px 2px 5px rgba(0, 0, 0, 0.25);
-                        font-size: 1.6rem;
                         cursor: pointer;
-                        box-shadow: 3px 7px 12.5px 2px rgba(0, 0, 0, 0.25);
-                        width: 90%; 
-                        text-align: center;
                         box-shadow: 3px 7px 12.5px 2px rgba(0, 0, 0, 0.25), 0px 3px 0px 2px #000;
+                        width: 100%; 
+                        text-align: center;
+                        transition: background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+                        opacity: 0;
+                        transform: translateY(-20px) scale(0.9);
+                        animation: mobileMenuButtonAppear 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 0.2s forwards;
                     }
+                     :host([variant="perfil"]) .menu-mobile .menu-hamburguer-drawer {
+                        animation-delay: 0.25s;
+                     }
+                    .menu-hamburguer-drawer:hover {
+                        background-color: #c9938b;
+                         box-shadow: 4px 9px 16px 2px rgba(0, 0, 0, 0.3), 0px 4px 0px 2px #000;
+                         transform: translateY(-2px) scale(1.0);
+                    }
+                     .menu-hamburguer-drawer:active {
+                        transform: translateY(0px) scale(0.97);
+                     }
+
                     .opcao-menu { 
                         display: flex; 
                         flex-direction: column; 
@@ -227,41 +321,48 @@ class Header extends HTMLElement {
                         max-height: 0; 
                         opacity: 0; 
                         visibility: hidden;
-                        transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s linear 0.6s;
+                        transform-origin: top center;
+                        transform: translateY(-20px) scaleY(0.92);
+                        transition: max-height 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0.05s, visibility 0s linear 0.6s, transform 0.55s cubic-bezier(0.23, 1, 0.32, 1), padding-top 0.5s cubic-bezier(0.23,1,0.32,1) 0.05s, padding-bottom 0.5s cubic-bezier(0.23,1,0.32,1) 0.05s;
                         pointer-events: none;
-                        gap: 10px; 
+                        gap: 18px; 
                         background-color: #d6a9a1; 
                         border: 4px solid #000;
-                        border-radius: 30px; padding: 10px 20px; font-size: 1.8rem;
-                        width: 80%; 
-                        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                        padding: 0 15px; 
+                        border-radius: 30px; 
+                        font-size: 1.8rem;
+                        width: 90%; 
+                        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+                        padding: 0 20px; 
                         box-sizing: border-box; 
                         margin-top: 0;
                     }
                     .opcao-menu.show {
                         max-height: 500px; opacity: 1; visibility: visible; pointer-events: auto;
-                        padding: 15px;
-                        transition: max-height 0.6s ease, opacity 0.6s ease, visibility 0s linear 0s;
+                        padding: 25px 20px;
+                        transform: translateY(0) scaleY(1);
                     }
 
                     :host([variant="perfil"]) .menu-mobile {
-                        padding: 0;
+                        padding: 0 10%;
                     }
                     .perfil-mobile-top-row {
                         display: flex;
                         flex-direction: row;
                         align-items: center;
                         justify-content: space-between;
-                        width: 80%;
-                        padding: 8px 15px;
+                        width: 100%;
+                        padding: 8px 0;
                         box-sizing: border-box;
-                        gap: 70px;
+                        gap: 15px;
+                        opacity: 0;
+                        transform: translateY(-20px);
+                        animation: mobileMenuButtonAppear 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 0.05s forwards;
                     }
                     :host([variant="perfil"]) .menu-mobile .logo-container-perfil {
                         margin: 0; 
                         padding: 0;
                         flex-shrink: 0;
+                        transform: none; opacity: 1; animation: none;
                     }
                     :host([variant="perfil"]) .menu-mobile .logo-container-perfil .logo-sacolao {
                         max-width: 100px; 
@@ -269,16 +370,16 @@ class Header extends HTMLElement {
                     }
                     :host([variant="perfil"]) .menu-mobile .user-info {
                         margin: 0;
-                        margin-left: -20px;
-                        padding-top: 20px;
+                        padding-top: 0;
                         animation: none; 
                         display: flex;
                         flex-direction: row; 
                         align-items: center; 
-                        gap: 8px; 
+                        gap: 10px; 
                         flex-grow: 1; 
                         justify-content: flex-start; 
                         text-align: left;
+                         transform: none; opacity: 1;
                     }
                     :host([variant="perfil"]) .menu-mobile .user-info .avatar {
                         margin:0;
@@ -289,6 +390,10 @@ class Header extends HTMLElement {
                         height: 60px;
                         border-width: 2px;
                         margin:0;
+                        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    }
+                    :host([variant="perfil"]) .menu-mobile .user-info .avatar img:hover {
+                        transform: scale(1.08);
                     }
                     :host([variant="perfil"]) .menu-mobile .user-info .user-text-details {
                         text-align: left;
@@ -310,11 +415,11 @@ class Header extends HTMLElement {
                         line-height: 1.1;
                     }
                     :host([variant="perfil"]) .menu-mobile .menu-hamburguer-drawer {
-                        width: 90%; 
+                        width: 100%; 
                         margin-top: 10px;
                     }
                      :host([variant="perfil"]) .menu-mobile .opcao-menu {
-                        width: 80%;
+                        width: 100%;
                         margin-top: 0px;
                     }
                     
@@ -322,35 +427,51 @@ class Header extends HTMLElement {
                         background: none; 
                         border: none; 
                         cursor: pointer; 
-                        width: 100%;
-                        display: flex; 
+                        width: auto;
+                        display: inline-flex; 
                         align-items: center; 
-                        gap: 15px; 
+                        justify-content: center;
                         padding: 10px;
-                        font-family: 'Limelight', normal; 
-                        font-size: 1.8rem; 
-                        color: white;
-                        text-shadow: 1px 1px 2px rgba(0,0,0,0.4); 
-                        border-radius: 15px;
+                        border-radius: 50%;
                         text-decoration: none; 
                         box-sizing: border-box; 
                         line-height: normal;
-                        justify-content: flex-start; 
-                        text-align: left;
+                        opacity: 0;
+                        transform: translateY(15px) scale(0.85);
+                        transition: background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
                     }
-                    .opcao-btn:hover { background-color: rgba(255,255,255,0.1); }
-                    .opcao-btn img { width: 32px; height: 32px; flex-shrink: 0; }
-                    .opcao-btn span { flex-grow: 1; }
+                     .opcao-btn span {
+                        display: none;
+                     }
+                    .opcao-menu.show .opcao-btn {
+                        opacity: 1;
+                        transform: translateY(0) scale(1);
+                    }
+                    .opcao-menu.show .opcao-btn:nth-child(1) { transition-delay: 0.12s, 0.12s, 0.12s; }
+                    .opcao-menu.show .opcao-btn:nth-child(2) { transition-delay: 0.19s, 0.19s, 0.19s; }
+                    .opcao-menu.show .opcao-btn:nth-child(3) { transition-delay: 0.26s, 0.26s, 0.26s; }
+                    .opcao-menu.show .opcao-btn:nth-child(4) { transition-delay: 0.33s, 0.33s, 0.33s; }
+                    .opcao-menu.show .opcao-btn:nth-child(5) { transition-delay: 0.40s, 0.40s, 0.40s; }
+
+
+                    .opcao-btn:hover { 
+                        background-color: rgba(255,255,255,0.2); 
+                        transform: translateY(0) scale(1.12);
+                    }
+                    .opcao-btn img { width: 30px; height: 30px; flex-shrink: 0; }
+                    
 
                     #search-popup-mobile { 
                         position: absolute; top: 110%; left: 50%;
                         background-color: #f8f8f8; border: 3px solid #565555; border-radius: 25px;
-                        padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 101;
+                        padding: 12px 15px; box-shadow: 0 6px 15px rgba(0,0,0,0.25); z-index: 101;
                         opacity: 0; visibility: hidden; width: 90%;
-                        transform: translateX(-50%) translateY(-10px); transition: all 0.3s ease;
+                        transform: translateX(-50%) translateY(-15px) scale(0.95); 
+                        transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1), visibility 0s linear 0.3s, transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
                     }
                     #search-popup-mobile.show {
-                        opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+                        opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0) scale(1);
+                         transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1), visibility 0s linear 0s, transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
                     }
                 }
             </style>
@@ -523,6 +644,7 @@ class Header extends HTMLElement {
             });
         }
 
+
         const logoutButtonMobile = shadow.querySelector('#logout-btn-mobile');
         if (logoutButtonMobile) {
             logoutButtonMobile.addEventListener('click', () => {
@@ -538,7 +660,7 @@ class Header extends HTMLElement {
                 e.stopPropagation();
                 searchPopupDesktop.classList.toggle('show');
                 if (searchPopupDesktop.classList.contains('show')) {
-                    setTimeout(() => searchInputDesktop.focus(), 0);
+                    setTimeout(() => searchInputDesktop.focus(), 50);
                 }
             };
             searchBtnDesktop.addEventListener('click', toggleDesktopSearch);
@@ -554,7 +676,7 @@ class Header extends HTMLElement {
                 e.stopPropagation();
                 searchPopupMobile.classList.toggle('show');
                 if (searchPopupMobile.classList.contains('show')) {
-                    setTimeout(() => searchInputMobile.focus(), 0);
+                    setTimeout(() => searchInputMobile.focus(), 50);
                 }
             });
             searchPopupMobile.addEventListener('click', e => e.stopPropagation());
@@ -609,7 +731,7 @@ class Header extends HTMLElement {
                     searchPopupDesktopEl.classList.remove('show');
                 } else {
                     searchPopupDesktopEl.classList.add('show');
-                    setTimeout(() => searchInputDesktopEl.focus(), 0);
+                    setTimeout(() => searchInputDesktopEl.focus(), 50);
                 }
             }
         });
