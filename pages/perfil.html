@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/perfil.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="icon" href="/icon/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="/components/js/headerComponent.js" defer></script>
 </head>
 
@@ -80,12 +81,10 @@
         </div>
     </main>
 
-    <footer>
-        <div class="separador-footer"></div>
-        <div id="footer-container"></div>
-        <script src="/js/footer.js"></script>
-    </footer>
-
+    <div class="separador-footer"></div>
+    <footer-component></footer-component>
+    <script type="module" src="/components/js/footerComponent.js"></script>
+    
     <script>
         fetch('/components/html/footer.html')
             .then(res => res.text())

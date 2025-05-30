@@ -402,6 +402,9 @@ class Header extends HTMLElement {
         const desktopRightBox = `
             <div class="header-right-box">
                 ${isPerfilPage ? '' : `
+                <a href="/pages/cadastro.html" title="Criar Conta">
+                    <img src="/assets/images/log-in.png" alt="Cadastro">
+                </a>
                 <a href="/pages/perfil.html" title="Meu Perfil">
                     <img src="/assets/images/profile.png" alt="Meu Perfil">
                 </a>`}
