@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sacolão Rodrigues</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+    <div class="main-layout">
+        <aside class="sidebar-header">
+            <a href="/" class="logo">
+                <img src="/assets/images/logo.png" alt="Logo Sacolão Rodrigues" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EFEFEF/AAAAAA&text=Image+Not+Found';">
+            </a>
+        </aside>
+        <main class="content-area">
+            <div class="container">
+                <h2>Acesse sua Conta</h2>
+                <form id="loginForm" method="GET" action="#">
+                    <div id="formSubmissionMessage" class="form-message"></div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="Ex: joazinhovieira@gmail.com">
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" required 
+                            placeholder="Digite sua senha">
+                        <div class="error-message" id="passwordError"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Entrar</button>
+                </form>
+                <div class="login-link">
+                    Não tem uma conta? <a href="cadastro.html">Cadastre-se</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/login.js" defer></script>
+</body>
+</html>
