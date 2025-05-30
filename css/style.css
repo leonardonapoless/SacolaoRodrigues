@@ -233,6 +233,85 @@ header-component {
   transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+.product[data-id="f7"] .product-image {
+  max-width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="f8"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="l1"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="l2"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="l3"] .product-image {
+  max-width: 80px;
+  padding: 5px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="l4"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="v1"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="v2"] .product-image {
+  max-width: 90px;
+  padding: 5px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="v3"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="o1"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="o2"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
 .product:hover img {
     transform: scale(1.05);
 }
