@@ -1,9 +1,8 @@
 const footerTemplate = document.createElement('template');
 
 footerTemplate.innerHTML = `
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
-
         * {
             font-size: 14px;
         }
@@ -46,6 +45,25 @@ footerTemplate.innerHTML = `
             background: white;
             border-radius: 40px;
         }
+
+        .custom-footer .duvidas a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .custom-footer .duvidas a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            background: white;
+            border-radius: 40px;
+        }
+
         .custom-footer .social-icons {
             display: flex;
             gap: 16px;
@@ -94,18 +112,18 @@ footerTemplate.innerHTML = `
             border-radius: 6px;
             z-index: 1001;
             bottom: 100%;
-            left: 100%;
+            left: 100%; 
             width: 230px;
             
             opacity: 0;
-            transform: translateX(-50%) translateY(5px) scale(0.95);
+            transform: translateX(-50%) translateY(5px) scale(0.95); 
             visibility: hidden;
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0s linear 0.3s;
         }
 
         .phone-popup.show {
             opacity: 1;
-            transform: translateX(-50%) translateY(-8px) scale(1);
+            transform: translateX(-50%) translateY(-8px) scale(1); 
             visibility: visible;
             transition-delay: 0s;
         }
@@ -207,6 +225,11 @@ footerTemplate.innerHTML = `
             .phone-popup {
                 font-size: 12px;
                 padding: 6px 10px;
+                left: 50%; /* Center popup on small screens */
+                transform: translateX(-50%) translateY(5px) scale(0.95);
+            }
+            .phone-popup.show {
+                transform: translateX(-50%) translateY(-8px) scale(1);
             }
         }
     </style>
@@ -214,13 +237,14 @@ footerTemplate.innerHTML = `
     <footer class="custom-footer">
       <div class="footer-top">
         <div class="sobre"><a href="/pages/sobre.html">Sobre Nós</a></div>
+        <div class="duvidas"><a href="/pages/duvidas.html">Dúvidas</a></div>
         <div class="social-icons">
           <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
           <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
           <div class="phone-icon-container">
             <i class="fas fa-mobile-alt" id="phoneIcon" title="Ver telefone"></i>
             <div id="phonePopup" class="phone-popup">
-              Telefone: (XX) XXXXX-XXXX
+              Telefone: (37) 99820-2021
             </div>
           </div>
         </div>
@@ -270,6 +294,13 @@ class FooterComponent extends HTMLElement {
                     }
                 }
             });
+            
+            document.addEventListener('click', (event) => {
+                if (phonePopup.classList.contains('show') && !this.contains(event.target)) {
+                     phonePopup.classList.remove('show');
+                }
+            }, true);
+
         } else {
             console.error('Ícone de telefone (phoneIcon) ou popup de telefone (phonePopup) não encontrado no footer-component.');
         }

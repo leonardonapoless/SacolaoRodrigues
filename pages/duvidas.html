@@ -7,33 +7,34 @@
     <title>Dúvidas</title>
     <link rel="stylesheet" href="/css/duvidas.css">
     <link rel="icon" href="/icon/logo.png">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
     <div class="background-topo"></div>
-  
+
 
     <header>
         <img src="/assets/images/logo.png" alt="logo">
         <div class="texto-header">
             <h1>O Sacolão Rodrigues agora está presente também no mercado digital!</h1>
 
-            <p>A fim de facilitarmos a sua vida ao comprar os alimentos para casa, agora você pode comprar online também!</p>
-              <p>  Explore o nosso catálogo sem sair do seu conforto.</p>
+            <p>A fim de facilitarmos a sua vida ao comprar os alimentos para casa, agora você pode comprar online
+                também!</p>
+            <p> Explore o nosso catálogo sem sair do seu conforto.</p>
         </div>
     </header>
 
     <br>
     <br>
-  
+
     <section id="barra">
         <a href="/index.html"></a>
     </section>
 
     <main>
         <section id="duvidas">
-            
+
             <div class="separador-duvidas"></div>
 
             <h2>Dúvidas Frequentes</h2>
@@ -164,11 +165,18 @@
             </dl>
             <br><br>
         </section>
+
+        <button id="voltarBtn" class="animar-entrada" type="button">Voltar para a página incial</button>
     </main>
 
-    <footer>
+    <footer-component class="animar-entrada"></footer-component>
+    <script type="module" src="/components/js/footerComponent.js"></script>
 
-    </footer>
+    <script>
+        document.getElementById('voltarBtn').onclick = function () {
+            window.location.href = "../index.html";
+        };
+    </script>
 </body>
 
 </html>
