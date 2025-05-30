@@ -1,13 +1,17 @@
 const state = {
   allProducts: [],
   productsInCart: [],
-  currentCategory: 'frutas',
+  currentCategory: 'todos',
   searchTerm: '',
 };
 
 const productContainer = document.getElementById('product-container');
-const categoryBtns = document.querySelectorAll('.categoria-btn');
+const categoryNav = document.querySelector('.categoria-nav');
+const categoryMenu = categoryNav ? categoryNav.querySelector('.categoria-menu') : null;
+const categoryBtns = categoryNav ? categoryNav.querySelectorAll('.categoria-btn') : [];
 const cardTemplate = document.getElementById('product-card-template');
+const categoryHamburguer = categoryNav ? categoryNav.querySelector('.hamburguer') : null;
+
 
 const normalizeText = (text) => text.toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
@@ -21,7 +25,9 @@ async function initializeApp() {
     updateActiveCategoryButton();
     filterAndDisplayProducts();
   } catch (error) {
-    productContainer.innerHTML = '<p class="no-results">Erro ao carregar produtos.</p>';
+    if (productContainer) {
+        productContainer.innerHTML = '<p class="no-results">Erro ao carregar produtos.</p>';
+    }
     console.error(error);
   }
 }
@@ -43,28 +49,41 @@ function setupEventListeners() {
       state.currentCategory = btn.dataset.category;
       updateActiveCategoryButton();
       filterAndDisplayProducts();
+      if (categoryMenu && categoryMenu.classList.contains('show')) {
+        categoryMenu.classList.remove('show');
+      }
     });
   });
 
-  productContainer.addEventListener('click', (e) => {
-    const button = e.target.closest('[data-action]');
-    if (!button) return;
+  if (categoryHamburguer && categoryMenu) {
+    categoryHamburguer.addEventListener('click', () => {
+        categoryMenu.classList.toggle('show');
+    });
+  }
 
-    const action = button.dataset.action;
-    const card = button.closest('.product');
-    const productId = card.dataset.id;
-    
-    updateQuantity(productId, action === 'add' ? 1 : -1);
-  });
+
+  if (productContainer) {
+    productContainer.addEventListener('click', (e) => {
+        const button = e.target.closest('[data-action]');
+        if (!button) return;
+
+        const action = button.dataset.action;
+        const card = button.closest('.product');
+        if (!card) return; 
+        const productId = card.dataset.id;
+        
+        updateQuantity(productId, action === 'add' ? 1 : -1);
+    });
+  }
 }
 
 function updateActiveCategoryButton() {
-    const currentActiveBtn = document.querySelector('.categoria-btn.active');
+    const currentActiveBtn = categoryNav ? categoryNav.querySelector('.categoria-btn.active') : null;
     if (currentActiveBtn) {
         currentActiveBtn.classList.remove('active');
     }
 
-    const newActiveBtn = document.querySelector(`.categoria-btn[data-category="${state.currentCategory}"]`);
+    const newActiveBtn = categoryNav ? categoryNav.querySelector(`.categoria-btn[data-category="${state.currentCategory}"]`) : null;
     if (newActiveBtn) {
         newActiveBtn.classList.add('active');
     }
@@ -74,11 +93,27 @@ function updateQuantity(productId, delta) {
   const product = state.allProducts.find(p => p.id === productId);
   if (!product) return;
 
+  const oldQuantity = product.quantity;
   product.quantity = Math.max(0, product.quantity + delta);
-  filterAndDisplayProducts();
+  
+  if (oldQuantity !== product.quantity) {
+      const card = productContainer.querySelector(`.product[data-id="${productId}"]`);
+      if (card) {
+          const quantitySpan = card.querySelector('.quantity');
+          quantitySpan.textContent = product.quantity;
+          if (delta !== 0) {
+            quantitySpan.classList.add('updated');
+            quantitySpan.addEventListener('animationend', () => {
+                quantitySpan.classList.remove('updated');
+                quantitySpan.style.transform = 'scale(1)';
+            }, { once: true });
+          }
+      }
+  }
 }
 
 function filterAndDisplayProducts() {
+  if (!productContainer) return;
   let filteredProducts = state.allProducts;
 
   if (state.currentCategory !== 'todos') {
@@ -105,6 +140,7 @@ function formatPrice(priceObject) {
 }
 
 function renderProducts(productsToRender) {
+  if (!productContainer || !cardTemplate) return;
   productContainer.innerHTML = '';
 
   if (productsToRender.length === 0) {
@@ -112,12 +148,16 @@ function renderProducts(productsToRender) {
     return;
   }
 
-  productsToRender.forEach(product => {
+  productsToRender.forEach((product, index) => {
     const card = cardTemplate.content.cloneNode(true);
     
     const productDiv = card.querySelector('.product');
     productDiv.dataset.id = product.id;
-    productDiv.style.backgroundColor = product.cor;
+    if (product.cor) { 
+        productDiv.style.backgroundColor = product.cor;
+    }
+    productDiv.style.animationDelay = `${index * 0.07}s`;
+
 
     card.querySelector('.product-image').src = product.imagem;
     card.querySelector('.product-image').alt = product.nome;
