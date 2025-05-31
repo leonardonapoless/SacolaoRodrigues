@@ -225,7 +225,7 @@ footerTemplate.innerHTML = `
             .phone-popup {
                 font-size: 12px;
                 padding: 6px 10px;
-                left: 50%; /* Center popup on small screens */
+                left: 50%;
                 transform: translateX(-50%) translateY(5px) scale(0.95);
             }
             .phone-popup.show {
