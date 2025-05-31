@@ -1,4 +1,5 @@
 html {
+  cursor: url('/assets/cursors/default.png'), auto;
   font-size: 62.5%;
   font-family: 'Jetbrains Mono', monospace;
   box-sizing: border-box;
@@ -6,6 +7,41 @@ html {
   padding: 0;
 }
 
+
+
 body {
   background-color: #f1f0d9;
+}
+
+a,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+option,
+label,
+.action-btn,
+.categoria-btn,
+.hamburguer,
+.social-icons i,
+.custom-footer .form-box button,
+.custom-footer .sobre a,
+.custom-footer .duvidas a,
+.menu-hamburguer-drawer,
+.opcao-btn,
+.search-section button,
+.submit-btn,
+#voltarBtn,
+.carrossel-btn,
+.quantity-controls button,
+.phone-icon-container i,
+[data-action]
+{
+  cursor: url('/assets/cursors/hover.png'), pointer;
+}
+
+body.cursor-click-active,
+body.cursor-click-active * {
+  cursor: url('/assets/cursors/click.png'), pointer !important;
 }
