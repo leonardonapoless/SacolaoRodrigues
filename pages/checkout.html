@@ -3,16 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Finalizar Compra</title>
+    <title>Finalizar Compra - Sacolão Rodrigues</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/checkout.css">
+    <link rel="icon" href="/icon/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    
-<h1>finalizar Compra</h1>
+    <header-component variant="checkout"></header-component>
 
-    <main>
+    <div class="checkout-page-container">
+        <!-- <h1 class="checkout-title">Finalizar Compra</h1> -->
+        <div class="checkout-main-content">
+            <section class="order-summary-section">
+                <h2>Resumo do Pedido</h2>
+                <div id="order-summary-items">
+                    <p>Carregando resumo do pedido...</p>
+                </div>
+                <div id="order-summary-total" class="summary-total">
+                </div>
+            </section>
 
-    </main>
+            <section class="customer-info-section">
+                <h2>Informações de Entrega e Pagamento</h2>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="fullName">Nome Completo</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Endereço de Entrega</label>
+                        <input type="text" id="address" name="address" required placeholder="Rua, Número, Bairro, Cidade">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentMethod">Método de Pagamento</label>
+                        <select id="paymentMethod" name="paymentMethod">
+                            <option value="pix">PIX</option>
+                            <option value="credito">Cartão de Crédito</option>
+                            <option value="debito">Cartão de Débito</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn checkout-confirm-btn">Confirmar Compra</button>
+                </form>
+            </section>
+        </div>
+    </div>
 
+    <footer-component></footer-component>
+
+    <script type="module" src="/components/js/headerComponent.js"></script>
+    <script type="module" src="/components/js/footerComponent.js"></script>
     <script src="/js/checkout.js"></script>
 </body>
 </html>
