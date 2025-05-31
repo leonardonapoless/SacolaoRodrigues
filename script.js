@@ -1,7 +1,7 @@
 const state = {
   allProducts: [],
   productsInCart: [],
-  currentCategory: 'todos',
+  currentCategory: 'frutas',
   searchTerm: '',
 };
 
