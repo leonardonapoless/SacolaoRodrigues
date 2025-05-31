@@ -1,0 +1,180 @@
+html {
+    font-size: 62.5px;
+}
+body {
+    font-family: 'Jetbrains Mono', monospace; 
+    background-color: #f1f0d9; 
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 1px;
+}
+
+header-component + .checkout-page-container {
+    margin-top: 30px; 
+}
+
+.checkout-page-container {
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 0 20px 40px 20px; 
+}
+
+.checkout-main-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+}
+
+.order-summary-section,
+.customer-info-section {
+    background-color: #ffffff;
+    padding: 25px 30px 30px 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.order-summary-section h2,
+.customer-info-section h2 {
+    font-size: 1.5em;
+    color: #4A4A4A;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#order-summary-items ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#order-summary-items li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    font-size: 1.05rem;
+    border-bottom: 1px dashed #eee;
+}
+#order-summary-items li:last-child {
+    border-bottom: none;
+}
+#order-summary-items .item-name {
+    flex-grow: 1;
+    padding-right: 15px;
+    color: #333;
+}
+#order-summary-items .item-subtotal {
+    font-weight: bold;
+    white-space: nowrap;
+    color: #222;
+}
+
+.summary-total {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 2px solid #6A994E;
+    text-align: right;
+}
+.summary-total h3 {
+    font-size: 1.6em;
+    color: #333;
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.4rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #D8D8D8;
+    border-radius: 20px;
+    box-sizing: border-box;
+    font-size: 0.3rem;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Jetbrains Mono', monospace; 
+}
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #6A994E;
+    box-shadow: 0 0 8px rgba(106, 153, 78, 0.25);
+}
+
+.submit-btn.checkout-confirm-btn {
+    background-color: #76a854; 
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.2em;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn.checkout-confirm-btn:hover {
+    background-color: #448550;
+    transform: translateY(-2px);
+}
+.submit-btn.checkout-confirm-btn:active {
+    transform: translateY(0px);
+}
+
+@media (max-width: 860px) {
+    .checkout-main-content {
+        grid-template-columns: 1fr;
+    }
+    .order-summary-section {
+        margin-bottom: 30px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .checkout-title {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+    .order-summary-section h2,
+    .customer-info-section h2 {
+        font-size: 1.3em;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group select {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    .submit-btn.checkout-confirm-btn {
+        font-size: 1.05em;
+        padding: 12px 18px;
+    }
+    #order-summary-items li {
+        font-size: 1rem;
+    }
+    .summary-total h3 {
+        font-size: 1.25em;
+    }
+}

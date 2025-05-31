@@ -46,36 +46,8 @@
 
             <section class="recent-orders">
                 <h3>Últimos Pedidos</h3>
-                <div class="order-card">
-                    <p>Pedido #1234 - R$ 45,90</p>
-                    <ul class="lista-items">
-                        <li>Frutas
-                            <ul>
-                                <li>Maçã</li>
-                                <li>Banana</li>
-                            </ul>
-                        </li>
-                        <li>Legumes
-                            <ul>
-                                <li>Cenoura
-                                    <p>
-
-                                    </p>
-                                </li>
-                                <li>Batata</li>
-                            </ul>
-                        </li>
-                        <li>Outros
-                            <ul>
-                                <li>Mel</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <p class="status-entregue">12/05/2025 - Entregue</p>
-                </div>
-                <div class="order-card">
-                    <p>Pedido #1233 - R$ 32,50</p>
-                    <p class="status-entregue">10/05/2025 - Entregue</p>
+                <div id="lista-pedidos-recentes">
+                    <p>Carregando seus últimos pedidos...</p>
                 </div>
             </section>
         </div>
@@ -85,13 +57,6 @@
     <footer-component></footer-component>
     <script type="module" src="/components/js/footerComponent.js"></script>
     
-    <script>
-        fetch('/components/html/footer.html')
-            .then(res => res.text())
-            .then(html => {
-                document.getElementById('footer-container').innerHTML = html;
-            });
-    </script>
     <script src="../js/perfil.js"></script>
 
     <script>
