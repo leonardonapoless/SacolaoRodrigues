@@ -1,7 +1,7 @@
 const state = {
   allProducts: [],
   productsInCart: [],
-  currentCategory: 'frutas',
+  currentCategory: 'todos',
   searchTerm: '',
 };
 
@@ -28,7 +28,6 @@ async function initializeApp() {
     if (productContainer) {
         productContainer.innerHTML = '<p class="no-results">Erro ao carregar produtos.</p>';
     }
-    console.error("Error initializing app:", error);
   }
 }
 
@@ -56,7 +55,6 @@ function setupEventListeners() {
         });
     });
   }
-
 
   if (categoryHamburguer && categoryMenu) {
     categoryHamburguer.addEventListener('click', () => {
@@ -104,8 +102,8 @@ function updateQuantity(productId, delta) {
         const card = productContainer.querySelector(`.product[data-id="${productId}"]`);
         if (card) {
             const quantitySpan = card.querySelector('.quantity');
-            quantitySpan.textContent = product.quantity;
-            if (delta !== 0) {
+            if (quantitySpan) quantitySpan.textContent = product.quantity;
+            if (delta !== 0 && quantitySpan) {
               quantitySpan.classList.add('updated');
               quantitySpan.addEventListener('animationend', () => {
                   quantitySpan.classList.remove('updated');
@@ -132,15 +130,17 @@ function saveCartToLocalStorage() {
 }
 
 function loadCartFromLocalStorage() {
-    const cartFromStorage = JSON.parse(localStorage.getItem('cart')) || [];
-    cartFromStorage.forEach(cartItem => {
-        const productInState = state.allProducts.find(p => p.id === cartItem.id);
-        if (productInState) {
-            productInState.quantity = cartItem.quantity;
-        }
-    });
+    const cartFromStorageString = localStorage.getItem('cart');
+    const cartFromStorage = JSON.parse(cartFromStorageString) || [];
+    if (state.allProducts && state.allProducts.length > 0) {
+        cartFromStorage.forEach(cartItem => {
+            const productInState = state.allProducts.find(p => p.id === cartItem.id);
+            if (productInState) {
+                productInState.quantity = cartItem.quantity;
+            }
+        });
+    }
 }
-
 
 function filterAndDisplayProducts() {
   if (!productContainer) return;
@@ -185,11 +185,13 @@ function renderProducts(productsToRender) {
     const card = cardTemplate.content.cloneNode(true);
     
     const productDiv = card.querySelector('.product');
-    productDiv.dataset.id = product.id;
-    if (product.cor) { 
-        productDiv.style.backgroundColor = product.cor;
+    if (productDiv) {
+        productDiv.dataset.id = product.id;
+        if (product.cor) { 
+            productDiv.style.backgroundColor = product.cor;
+        }
+        productDiv.style.animationDelay = `${index * 0.07}s`;
     }
-    productDiv.style.animationDelay = `${index * 0.07}s`;
 
     const productImageEl = card.querySelector('.product-image');
     if (productImageEl) {
@@ -218,37 +220,40 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartForDisplayString = localStorage.getItem('cart');
+    const cartForDisplay = JSON.parse(cartForDisplayString) || [];
 
-    if (cart.length === 0) {
+    if (cartForDisplay.length === 0) {
         cartItemsEl.innerHTML = '<p>Seu carrinho está vazio.</p>';
-        cartTotalEl.textContent = '';
+        if(cartTotalEl) cartTotalEl.textContent = '';
         return;
     }
 
     let total = 0;
     cartItemsEl.innerHTML = '';
 
-    cart.forEach(item => {
-        const subtotal = item.preco.valor * item.quantity;
-        total += subtotal;
+    cartForDisplay.forEach(item => {
+        if (item && item.preco && typeof item.preco.valor === 'number' && typeof item.quantity === 'number') {
+            const subtotal = item.preco.valor * item.quantity;
+            total += subtotal;
 
-        const itemEl = document.createElement('div');
-        itemEl.classList.add('cart-item');
-        itemEl.innerHTML = `
-            <div class="cart-item-details">
-                <img src="/${item.imagem}" alt="${item.nome}" class="cart-item-image">
-                <div class="cart-item-info">
-                    <span class="cart-item-name">${item.nome}</span>
-                    <span class="cart-item-quantity-price">${item.quantity} × ${formatPrice(item.preco)}</span>
+            const itemEl = document.createElement('div');
+            itemEl.classList.add('cart-item');
+            itemEl.innerHTML = `
+                <div class="cart-item-details">
+                    <img src="/${item.imagem}" alt="${item.nome}" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <span class="cart-item-name">${item.nome}</span>
+                        <span class="cart-item-quantity-price">${item.quantity} × ${formatPrice(item.preco)}</span>
+                    </div>
                 </div>
-            </div>
-            <span class="cart-item-subtotal">R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
-        `;
-        cartItemsEl.appendChild(itemEl);
+                <span class="cart-item-subtotal">R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+            `;
+            cartItemsEl.appendChild(itemEl);
+        }
     });
 
-    cartTotalEl.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+    if(cartTotalEl) cartTotalEl.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
     
     const cartSection = document.querySelector('.cart-section');
     if (cartSection && !document.getElementById('checkout-btn')) {

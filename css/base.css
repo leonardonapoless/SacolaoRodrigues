@@ -4,13 +4,14 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: url('/assets/images/default.png') 0 0, auto;
+  /* cursor: url('/assets/images/default.png') 0 0, auto; */
 }
 
 body {
   background-color: #f1f0d9;
 }
 
+/* 
 a,
 button,
 input[type="button"],
@@ -49,5 +50,5 @@ input[type="password"],
 input[type="tel"],
 input[type="date"],
 textarea {
-  cursor: text !important; /* Para garantir que o cursor de texto não seja sobrescrito */
-}
+  cursor: text !important;
+} */

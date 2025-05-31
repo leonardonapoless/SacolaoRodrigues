@@ -1,0 +1,60 @@
+[
+  {
+    "clienteInfo": {
+      "fullName": "Leonardo",
+      "address": "diamante, 23, nova suiça, bh ",
+      "phone": "31 98888-8888",
+      "paymentMethod": "pix"
+    },
+    "itens": [
+      {
+        "id": "f1",
+        "nome": "Limão",
+        "preco": {
+          "valor": 2.25,
+          "unidade": "kg"
+        },
+        "imagem": "assets/images/product-image/limao.png",
+        "quantity": 1,
+        "cor": "#ecf0bd"
+      },
+      {
+        "id": "f2",
+        "nome": "Maçã",
+        "preco": {
+          "valor": 9.98,
+          "unidade": "kg"
+        },
+        "imagem": "assets/images/product-image/maca.png",
+        "quantity": 1,
+        "cor": "#efb3ae"
+      },
+      {
+        "id": "f3",
+        "nome": "Morango",
+        "preco": {
+          "valor": 12.9,
+          "unidade": "250g"
+        },
+        "imagem": "assets/images/product-image/morango.png",
+        "quantity": 1,
+        "cor": "#ee9a9e"
+      },
+      {
+        "id": "f4",
+        "nome": "Abacate",
+        "preco": {
+          "valor": 2.25,
+          "unidade": "kg"
+        },
+        "imagem": "assets/images/product-image/abacate.png",
+        "quantity": 1,
+        "cor": "#92BA31"
+      }
+    ],
+    "totalGeral": 27.380000000000003,
+    "id": "pedido_1748712378809_hrqj8",
+    "data": "2025-05-31T17:26:18.809Z",
+    "status": "Em processamento"
+  }
+]
