@@ -168,3 +168,35 @@ function renderProducts(productsToRender) {
     productContainer.appendChild(card);
   });
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartTotalEl = document.getElementById('cart-total');
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (cart.length === 0) {
+        cartItemsEl.innerHTML = '<p>Seu carrinho está vazio.</p>';
+        cartTotalEl.textContent = '';
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        const itemEl = document.createElement('div');
+        itemEl.classList.add('cart-item');
+        itemEl.innerHTML = `
+            <span class="cart-item-name">${item.name}</span>
+            <span>${item.quantity} × R$ ${item.price.toFixed(2)}</span>
+            <span>= R$ ${subtotal.toFixed(2)}</span>
+        `;
+        cartItemsEl.appendChild(itemEl);
+    });
+
+    cartTotalEl.textContent = `Total: R$ ${total.toFixed(2)}`;
+});
