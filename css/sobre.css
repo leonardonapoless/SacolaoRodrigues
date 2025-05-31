@@ -294,13 +294,8 @@ footer {
     .carrossel-container {
         max-width: none;
     }
-    .carrossel-item img {
-        /* Consider if height should also change on wider screens,
-           or if 350px is always appropriate.
-           Alternatively, you could use aspect-ratio here too if
-           the fixed 150px extra space isn't a strict design requirement
-           on wider views. For now, it keeps the 350px height. */
-    }
+    /* .carrossel-item img {
+    } */
 }
 
 @media (max-width: 480px) {
