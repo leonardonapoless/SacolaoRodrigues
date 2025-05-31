@@ -62,7 +62,6 @@ async function carregarPedidosRecentes() {
         pedidos.forEach(pedido => {
             const pedidoCard = document.createElement('div');
             pedidoCard.classList.add('order-card');
-            // Guardar o ID completo do pedido no elemento para fácil acesso
             pedidoCard.dataset.pedidoId = pedido.id;
 
 
@@ -80,7 +79,7 @@ async function carregarPedidosRecentes() {
                 day: '2-digit', month: '2-digit', year: 'numeric'
             }) : 'Data Indisponível';
 
-            const pedidoIdDisplay = pedido.id ? pedido.id.substring(pedido.id.indexOf('_') + 1).substring(0, 5) : 'N/A'; // Apenas uma parte para exibição
+            const pedidoIdDisplay = pedido.id ? pedido.id.substring(pedido.id.indexOf('_') + 1).substring(0, 5) : 'N/A';
             const totalGeralDisplay = typeof pedido.totalGeral === 'number' ? parseFloat(pedido.totalGeral).toFixed(2).replace('.', ',') : 'N/A';
             const statusPedido = pedido.status || "Status Desconhecido";
             let statusClass = 'status-pendente';
@@ -92,11 +91,11 @@ async function carregarPedidosRecentes() {
 
             // Botão de Deletar
             const btnDeletar = document.createElement('button');
-            btnDeletar.textContent = 'Cancelar Pedido'; // Ou "Deletar Pedido"
-            btnDeletar.classList.add('btn-deletar-pedido'); // Adicione uma classe para estilização
-            btnDeletar.style.marginTop = '10px'; // Estilo básico
+            btnDeletar.textContent = 'Cancelar Pedido';
+            btnDeletar.classList.add('btn-deletar-pedido'); 
+            btnDeletar.style.marginTop = '10px'; 
             btnDeletar.style.padding = '5px 10px';
-            btnDeletar.style.backgroundColor = '#f44336'; // Vermelho
+            btnDeletar.style.backgroundColor = '#f44336';
             btnDeletar.style.color = 'white';
             btnDeletar.style.border = 'none';
             btnDeletar.style.borderRadius = '4px';
