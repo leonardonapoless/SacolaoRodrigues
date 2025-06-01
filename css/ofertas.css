@@ -1,0 +1,109 @@
+.produtos-em-oferta-titulo {
+    font-size: 2.2em;
+    color: #333333;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    padding-bottom: 35px;
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+}
+
+.product {
+    position: relative;
+    overflow: visible;
+}
+
+.badge-imagem-oferta {
+    position: absolute;
+    top: -40px;
+    right: -20px;
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+    object-fit: contain;
+}
+
+.price .preco-original {
+    text-decoration: line-through;
+    color: #888888;
+    font-size: 0.9em;
+    margin-right: 8px;
+    display: inline;
+}
+
+.price .preco-atual {
+    color: #E53935;
+    font-weight: bold;
+    display: inline;
+}
+
+.no-results {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.products.product-grid {
+    padding-top: 20px;
+}
+
+.product[data-id="f1-oferta"] {
+    background-color: #FFEBCC;
+}
+.product[data-id="f1-oferta"] img {
+    max-width: 90px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.product[data-id="f3-oferta"] {
+    background-color: #FFDDC1;
+}
+.product[data-id="f3-oferta"] img {
+    max-width: 90px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+}
+.product[data-id="f3-oferta"] .product-image {
+    max-width: 130px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+}
+.product[data-id="l1-oferta"] {
+    background-color: #E8F5E9;
+}
+.product[data-id="l1-oferta"] img {
+    max-width: 90px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.product[data-id="l1-oferta"] .product-image {
+    max-width: 70px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.product[data-id="v1-oferta"] {
+    background-color: #CFE8DC;
+}
+.product[data-id="v1-oferta"] img {
+    max-width: 90px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+}
+.product[data-id="v1-oferta"] .product-image {
+    max-width: 70px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+}
