@@ -1,26 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Carrinho</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="icon" href="/icon/logo.png">
-    
-    <div id="header-placeholder"></div>
-    <script type="module" src="components/js/loadHeader.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas Imperdíveis - Sacolão Rodrigues</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="/css/ofertas.css">
+    <link rel="icon" href="icon/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
-
 <body>
+    <header-component></header-component>
 
-    <div id="header-placeholder"></div>
+    <main class="container">
 
-    <main>
-        <h1 style="text-align: center;
-        padding-top: 50px;
-        font-size: 60px;">Ofertas Teste</h1>
+        <section>
+            <h2 class="produtos-em-oferta-titulo">Confira as ofertas da semana:</h2>
+            <div class="products product-grid" id="ofertas-product-container">
+
+                <div class="product" data-id="f1-oferta">
+                    <img src="../assets/images/ofertas.png" alt="Selo de Oferta" class="badge-imagem-oferta">
+                    <img src="../assets/images/product-image/banana.png" class="product-image">
+                    <div class="product-title">Banana</div>
+                    <div class="price">
+                        <span class="preco-original">R$ 5,99/kg</span>
+                        <span class="preco-atual">R$ 4,49/kg</span>
+                    </div>
+                    <div class="quantity-controls">
+                        <button data-action="sub" aria-label="Diminuir quantidade">-</button>
+                        <span class="quantity">0</span>
+                        <button data-action="add" aria-label="Aumentar quantidade">+</button>
+                    </div>
+                </div>
+
+                <div class="product" data-id="f3-oferta">
+                    <img src="../assets/images/ofertas.png" alt="Selo de Oferta" class="badge-imagem-oferta">
+                    <img src="../assets/images/product-image/maca.png" class="product-image">
+                    <div class="product-title">Maçã</div>
+                    <div class="price">
+                        <span class="preco-original">R$ 7,50/kg</span>
+                        <span class="preco-atual">R$ 5,99/kg</span>
+                    </div>
+                    <div class="quantity-controls">
+                        <button data-action="sub" aria-label="Diminuir quantidade">-</button>
+                        <span class="quantity">0</span>
+                        <button data-action="add" aria-label="Aumentar quantidade">+</button>
+                    </div>
+                </div>
+
+                <div class="product" data-id="l1-oferta">
+                    <img src="/assets/images/ofertas.png" class="badge-imagem-oferta">
+                    <img src="/assets/images/product-image/batata.png" class="product-image">
+                    <div class="product-title">Batata</div>
+                    <div class="price">
+                        <span class="preco-original">R$ 4,99/kg</span>
+                        <span class="preco-atual">R$ 3,79/kg</span>
+                    </div>
+                    <div class="quantity-controls">
+                        <button data-action="sub" aria-label="Diminuir quantidade">-</button>
+                        <span class="quantity">0</span>
+                        <button data-action="add" aria-label="Aumentar quantidade">+</button>
+                    </div>
+                </div>
+                
+                <div class="product" data-id="v1-oferta">
+                    <img src="/assets/images/ofertas.png" class="badge-imagem-oferta">
+                    <img src="/assets/images/product-image/alface.png" class="product-image">
+                    <div class="product-title">Alface</div>
+                    <div class="price">
+                         <span class="preco-original">R$ 3,50/un</span>
+                         <span class="preco-atual">R$ 2,49/un</span>
+                    </div>
+                    <div class="quantity-controls">
+                        <button data-action="sub" aria-label="Diminuir quantidade">-</button>
+                        <span class="quantity">0</span>
+                        <button data-action="add" aria-label="Aumentar quantidade">+</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </main>
-</body>
+    
+    <div class="separador-footer"></div>
+    <footer-component></footer-component>
 
+    <script type="module" src="../components/js/headerComponent.js"></script>
+    <script type="module" src="../components/js/footerComponent.js"></script>
+</body>
 </html>
