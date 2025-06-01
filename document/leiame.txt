@@ -2,7 +2,7 @@ Sacolão Rodrigues
 
 
 -- link --
-hosting: Sevalla
+https://sacolao-rodrigues-t0m5f.kinsta.page/index.html
 
 Leonardo Nápoles: Tech Lead, Dev. Front-End, Designer.
 Ana Paula Rodrigues: Product Manager
