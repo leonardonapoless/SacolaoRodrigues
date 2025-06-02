@@ -78,5 +78,74 @@
     "id": "pedido_1748807818801_7jx8p",
     "data": "2025-06-01T19:56:58.801Z",
     "status": "Em processamento"
+  },
+  {
+    "clienteInfo": {
+      "fullName": "Leonardo ",
+      "address": "rua, numero, bairro, cidade",
+      "phone": "31 99999-9999",
+      "paymentMethod": "pix"
+    },
+    "itens": [
+      {
+        "id": "f3",
+        "nome": "Morango",
+        "preco": {
+          "valor": 12.9,
+          "unidade": "250g"
+        },
+        "imagem": "assets/images/product-image/morango.png",
+        "quantity": 2,
+        "cor": "#ee9a9e"
+      },
+      {
+        "id": "f4",
+        "nome": "Abacate",
+        "preco": {
+          "valor": 2.25,
+          "unidade": "kg"
+        },
+        "imagem": "assets/images/product-image/abacate.png",
+        "quantity": 2,
+        "cor": "#92BA31"
+      },
+      {
+        "id": "l2",
+        "nome": "Batata",
+        "preco": {
+          "valor": 2.8,
+          "unidade": "kg"
+        },
+        "imagem": "assets/images/product-image/batata.png",
+        "quantity": 2,
+        "cor": "#f1e1b0"
+      },
+      {
+        "id": "l3",
+        "nome": "Abobrinha",
+        "preco": {
+          "valor": 4,
+          "unidade": "kg"
+        },
+        "imagem": "assets/images/product-image/abobrinha.png",
+        "quantity": 2,
+        "cor": "#bfe2b0"
+      },
+      {
+        "id": "o2",
+        "nome": "Gengibre",
+        "preco": {
+          "valor": 6,
+          "unidade": "kg"
+        },
+        "imagem": "assets/images/product-image/gengibre.png",
+        "quantity": 2,
+        "cor": "#e9d4a5"
+      }
+    ],
+    "totalGeral": 55.9,
+    "id": "pedido_1748869301999_z6yq2",
+    "data": "2025-06-02T13:01:41.999Z",
+    "status": "Em processamento"
   }
 ]
