@@ -561,8 +561,8 @@ class Header extends HTMLElement {
                     </div>
                     <h1 class="checkout-title">Finalizar Compra</h1>
                     <div class="actions-container-checkout">
-                        <a href="/pages/perfil.html" title="Meu Perfil/Login">
-                            <img src="/assets/images/profile.png" alt="Meu Perfil/Login">
+                        <a href="/pages/perfil.html" title="Meu Perfil">
+                            <img src="/assets/images/profile.png" alt="Meu Perfil">
                         </a>
                     </div>
                 </div>
@@ -573,8 +573,8 @@ class Header extends HTMLElement {
                         </a>
                     </div>
                     <div class="actions-container-checkout">
-                        <a href="/pages/perfil.html" title="Meu Perfil/Login">
-                            <img src="/assets/images/profile.png" alt="Meu Perfil/Login">
+                        <a href="/pages/perfil.html" title="Meu Perfil">
+                            <img src="/assets/images/profile.png" alt="Meu Perfil">
                         </a>
                     </div>
                 </div>
@@ -653,16 +653,16 @@ class Header extends HTMLElement {
             `;
         } else { 
             mobileMenuOptionsForThisPage = `
-                 <a href="/pages/listas.html" class="opcao-btn" title="Minhas Listas">
+                <!-- <a href="/pages/listas.html" class="opcao-btn" title="Minhas Listas">
                     <img src="/assets/images/list-icon.png" alt="Minhas Listas">
-                </a>
+                </a> !--> 
                 <a href="/pages/ofertas.html" class="opcao-btn" title="Minhas Ofertas">
                     <img src="/assets/images/ofertas.png" alt="Minhas Ofertas">
                 </a>
                  <a href="/pages/perfil.html" class="opcao-btn" title="Perfil">
                     <img src="/assets/images/profile.png" alt="Perfil">
                 </a>
-                 <a href="/pages/carrinho.html" class="opcao-btn" title="Carrinho">
+                 <a href="/pages/checkout.html" class="opcao-btn" title="Carrinho">
                     <img src="/assets/images/cart-icon.png" alt="Carrinho">
                 </a>
                 <div class="search-section">
