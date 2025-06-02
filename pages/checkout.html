@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0", user-scalable=0>
     <title>Finalizar Compra - Sacolão Rodrigues</title>
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -14,7 +14,6 @@
     <header-component variant="checkout"></header-component>
 
     <div class="checkout-page-container">
-        <!-- <h1 class="checkout-title">Finalizar Compra</h1> -->
         <div class="checkout-main-content">
             <section class="order-summary-section">
                 <h2>Resumo do Pedido</h2>
@@ -34,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Endereço de Entrega</label>
-                        <input type="text" id="address" name="address" required placeholder="Rua, Número, Bairro, Cidade">
+                        <input type="text" id="address" name="address" required placeholder="Rua, 23, Bairro, Cidade">
                     </div>
                     <div class="form-group">
                         <label for="phone">Telefone</label>
@@ -42,10 +41,10 @@
                     </div>
                     <div class="form-group">
                         <label for="paymentMethod">Método de Pagamento</label>
-                        <select id="paymentMethod" name="paymentMethod">
-                            <option value="pix">PIX</option>
-                            <option value="credito">Cartão de Crédito</option>
-                            <option value="debito">Cartão de Débito</option>
+                        <select class="payment-method" id="paymentMethod" name="paymentMethod">
+                            <option class="payment-option" value="pix">PIX</option>
+                            <option class="payment-option" value="credito">Cartão de Crédito</option>
+                            <option class="payment-option" value="debito">Cartão de Débito</option>
                         </select>
                     </div>
                     <button type="submit" class="submit-btn checkout-confirm-btn">Confirmar Compra</button>

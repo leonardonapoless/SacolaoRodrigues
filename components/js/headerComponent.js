@@ -22,6 +22,7 @@ class Header extends HTMLElement {
         if (variant === 'perfil') {
             variantStyles = `
                 .header-grid {
+                    margin-top: 30px;
                     grid-template-columns: auto 1fr auto;
                     justify-content: space-between;
                     align-items: center;
@@ -29,6 +30,7 @@ class Header extends HTMLElement {
                     gap: 20px;
                 }
                 .logo-container-perfil {
+                    margin-left: -62px;
                     padding: 0;
                     justify-self: start;
                     transform: translateX(-15px);
@@ -41,11 +43,11 @@ class Header extends HTMLElement {
                 }
                 .header-right-box {
                     height: auto;
-                    padding: 8px 15px; 
+                    padding: 8px 20px; 
                     border-width: 4px;
-                    gap: 15px; 
                     justify-self: end; 
                     margin-left: 0; 
+                    margin-bottom: -20px;
                     transform: translateX(15px);
                     opacity: 0;
                     animation: slideInFromRight 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
@@ -54,27 +56,29 @@ class Header extends HTMLElement {
                     max-width: 28px; 
                     height: 28px;
                     padding: 0;
+                    margin-left: -3px;
                     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 }
                 .header-right-box a:hover img {
                     transform: scale(1.15);
                 }
                 .user-info { 
-                  text-align: center;
-                  margin: 0; 
-                  animation: fadeInUser 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s backwards;
-                  align-self: center;
-                  justify-self: center;
+                    text-align: center;
+                    margin: 0; 
+                    margin-left: -50px;
+                    animation: fadeInUser 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s backwards;
+                    align-self: center;
+                    justify-self: center;
                 }
                 .avatar img {
-                  width: 80px; 
-                  height: 80px;
-                  border-radius: 50%;
-                  object-fit: cover;
-                  border: 3px solid #4CAF50;
-                  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-                  margin: 0 auto 8px auto;
-                  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                    width: 80px; 
+                    height: 80px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    border: 3px solid #4CAF50;
+                    transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+                    margin: 0 auto 8px auto;
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
                 }
                 .avatar img:hover {
                   transform: scale(1.08);
