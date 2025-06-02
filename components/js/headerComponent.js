@@ -30,7 +30,7 @@ class Header extends HTMLElement {
                     gap: 20px;
                 }
                 .logo-container-perfil {
-                    margin-left: -62px;
+                    margin-left: -33px;
                     padding: 0;
                     justify-self: start;
                     transform: translateX(-15px);
