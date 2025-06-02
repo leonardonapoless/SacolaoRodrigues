@@ -1,8 +1,8 @@
 @import url('base.css');
 
-html {
+/* html {
   font-size: 28px;
-}
+} */
 
 .profile-container {
   max-width: 1200px;
@@ -13,11 +13,13 @@ html {
 .main-content {
   display: grid;
   grid-template-columns: 200px 1fr;
-  gap: 3rem;
+  gap: 20rem;
   align-items: start;
   justify-content: center;
-  max-width: 1000px;
+  max-width: 3000px;
   margin: 0 auto;
+  margin-left: -100px;
+  /* border: 10px solid #000; */
 }
 
 .user-actions {
@@ -25,7 +27,8 @@ html {
   grid-template-columns: 1fr;
   gap: 1rem;
   margin-top: 1rem;
-  margin-left: -50px;
+  margin-right: -10px;
+  /* border: 10px solid #000; */
 }
 
 .action-btn {
@@ -77,18 +80,6 @@ html {
   opacity: 1;
 }
 
-.editar-btn-fallback .animated {
-  display: none;
-}
-
-.editar-btn-fallback:hover .static {
-  display: none;
-}
-
-.action-btn-fallback:hover .animated {
-  display: block;
-}
-
 .recent-orders {
   padding: 3rem;
   background-color: #f9f9f9;
@@ -97,6 +88,7 @@ html {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+  margin-left: -20px;
 }
 
 

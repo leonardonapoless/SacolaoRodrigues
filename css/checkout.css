@@ -34,6 +34,10 @@ header-component + .checkout-page-container {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
+.customer-info-section {
+    margin-right: -100px;
+}
+
 .order-summary-section h2,
 .customer-info-section h2 {
     font-size: 1.5em;
@@ -161,12 +165,25 @@ header-component + .checkout-page-container {
     .customer-info-section h2 {
         font-size: 1.3em;
     }
+
+    .customer-info-section {
+    margin-right: 0;
+    }
     .form-group input[type="text"],
     .form-group input[type="tel"],
     .form-group select {
         padding: 10px 12px;
         font-size: 0.95rem;
     }
+
+    .form-group input[placeholder] {
+        font-size: 0.3rem;
+    }
+
+    .form-group .payment-option {
+        font-size: 0.3rem;        
+    }
+
     .submit-btn.checkout-confirm-btn {
         font-size: 1.05em;
         padding: 12px 18px;
