@@ -64,6 +64,22 @@
     "cor": "#f7e7c1"
   },
   {
+    "id": "f9",
+    "nome": "Kiwi",
+    "categoria":"frutas",
+    "preco":{"valor": 17.00, "unidade": "kg"},
+    "imagem":"assets/images/product-image/kiwi.png",
+    "cor": "#DFF2BF"
+  },
+  {
+    "id": "f10",
+    "nome": "Goiaba",
+    "categoria": "frutas",
+    "preco":{"valor": 5.00, "unidade": "kg"},
+    "imagem": "assets/images/product-image/goiaba.png",
+    "cor": "#FADADD"
+  },
+  {
     "id": "l1",
     "nome": "Cenoura",
     "categoria": "legumes",
@@ -96,6 +112,30 @@
     "cor": "#ccf1b0"
   },
   {
+    "id": "l5",
+    "nome": "Quiabo",
+    "categoria": "legumes",
+    "preco": {"valor": 6.00, "unidade": "kg"},
+    "imagem": "assets/images/product-image/quiabo.png",
+    "cor": "#c2f099"
+  },
+  {
+    "id": "l6",
+    "nome": "Pimentão",
+    "categoria": "legumes",
+    "preco": {"valor": 7.00, "unidade": "kg"},
+    "imagem":"assets/images/product-image/pimentão.png",
+    "cor": "#FFD1B3"
+  },
+  {
+    "id": "l7",
+    "nome": "Berinjela",
+    "categoria": "legumes",
+    "preco": {"valor": 5.00, "unidade":"kg"},
+    "imagem": "assets/images/product-image/berinjela.png",
+    "cor": "#E2D5E9"
+  },
+  {
     "id": "v1",
     "nome": "Alface",
     "categoria": "verduras",
@@ -120,6 +160,30 @@
     "cor": "#b0e5b4"
   },
   {
+    "id": "v4",
+    "nome": "Agrião",
+    "categoria": "verduras",
+    "preco":{"valor": 3.00, "unidade": "maço"},
+    "imagem": "assets/images/product-image/agrião.png",
+    "cor": "#D0E7C2"
+  },
+  {
+    "id": "v5",
+    "nome": "Repolho Verde",
+    "categoria": "verduras",
+    "preco":{"valor": 4.00, "unidade":"kg" },
+    "imagem": "assets/images/product-image/repolho.png",
+    "cor": "#D6EBD8"
+  },
+  {
+    "id": "v6",
+    "nome": "Repolho Roxo",
+    "categoria": "verduras",
+    "preco":{"valor": 5.50, "unidade":"kg" },
+    "imagem": "assets/images/product-image/repolho_roxo.png",
+    "cor": "#E4D1EB"
+  },
+  {
     "id": "o1",
     "nome": "Mel",
     "categoria": "outros",
@@ -134,5 +198,37 @@
     "preco": { "valor": 6.00, "unidade": "kg" },
     "imagem": "assets/images/product-image/gengibre.png",
     "cor": "#e9d4a5"
+  },
+  {
+    "id": "o3",
+    "nome": "Ovos de Galinha Caipira",
+    "categoria": "outros",
+    "preco":{"valor": 8.00, "unidade": "dúzia"},
+    "imagem": "assets/images/product-image/pente_de_ovo.png",
+    "cor": "#F5F0E6"
+  },
+  {
+    "id": "o4",
+    "nome": "Chia",
+    "categoria": "outros",
+    "preco":{"valor": 25.00, "unidade":"kg"},
+    "imagem": "assets/images/product-image/chia.png",
+    "cor": "#DAD8D4"
+  },
+  {
+    "id": "o5",
+    "nome": "Castanha de Caju",
+    "categoria": "outros",
+    "preco":{"valor": 65.00, "unidade":"kg"},
+    "imagem": "assets/images/product-image/castanha_de_caju.png",
+    "cor": "#F5E3C4"
+  },
+  {
+    "id": "o6",
+    "nome": "Castanha do Pará",
+    "categoria": "outros",
+    "preco":{"valor": 75.00, "unidade":"kg"},
+    "imagem": "assets/images/product-image/castanha_do_para.png",
+    "cor": "#E6D8C2"
   }
 ]
