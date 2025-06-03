@@ -255,10 +255,10 @@ header-component {
 }
 
 .product[data-id="f10"] .product-image {
-  max-width: 90px;
+  max-width: 95px;
   height: auto;
   display: block;
-  margin: 0 auto 5px;
+  margin: 7px auto 5px;
 }
 
 .product[data-id="l1"] .product-image {
@@ -305,7 +305,7 @@ header-component {
 }
 
 .product[data-id="l7"] .product-image {
-  max-width: 90px;
+  max-width: 100px;
   height: auto;
   display: block;
   margin: 0 auto 5px;
@@ -369,31 +369,31 @@ header-component {
 }
 
 .product[data-id="o3"] .product-image {
-  max-width: 110px;
+  max-width: 108px;
   height: auto;
   display: block;
   margin: 15px auto 5px;
 }
 
 .product[data-id="o4"] .product-image {
-  max-width: 90px;
+  max-width: 77px;
   height: auto;
   display: block;
   margin: 0 auto 5px;
 }
 
 .product[data-id="o5"] .product-image {
-  max-width: 110px;
+  max-width: 100px;
   height: auto;
   display: block;
   margin: 40px auto 5px;
 }
 
 .product[data-id="o6"] .product-image {
-  max-width: 90px;
+  max-width: 75px;
   height: auto;
   display: block;
-  margin: 15px auto 5px;
+  margin: 30px auto 5px;
 }
 
 .product:hover img {
@@ -402,6 +402,14 @@ header-component {
 
 .product[data-id="o3"] .product-title {
   font-size: 1.2rem; 
+}
+
+.product[data-id="o5"] .product-title {
+  font-size: 1.4rem; 
+}
+
+.product[data-id="o6"] .product-title {
+  font-size: 1.4rem; 
 }
 
 
