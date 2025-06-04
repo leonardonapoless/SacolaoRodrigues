@@ -1,140 +1,177 @@
+// quando a pagina de perfil terminar de carregar
 document.addEventListener('DOMContentLoaded', function() {
+    // acha o botao de logout
     const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
-            if(confirm('Deseja realmente sair?')) {
-                window.location.href = "../index.html";
+    if (logoutBtn) { 
+		// se o botao existir
+        logoutBtn.addEventListener('click', function() { // quando clicar nele
+            if (confirm('deseja realmente sair?')) { // pergunta se tem certeza
+                localStorage.removeItem('loggedInUser'); // tira o usuario da "sessao" (localStorage)
+                window.location.href = "../index.html"; // volta pra pagina inicial
             }
         });
     }
+
+    // animacao dos botoes com video (pra dar play/pause quando passa o mouse)
+    document.querySelectorAll('.action-btn').forEach(button => {
+        const video = button.querySelector('video');
+        if (!video) return; // se nao tiver video, nao faz nada
+        button.addEventListener('mouseenter', () => video.play().catch(e => {
+		// nao faz nada se der erro no play 
+		}));
+        button.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+    });
     
-    const cards = document.querySelectorAll('.order-card, .action-btn');
-    if (cards) {
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transition = 'all 0.3s ease';
-            });
-        });
-    }
-
-    const videoButtons = document.querySelectorAll('.action-btn');
-    if (videoButtons) {
-        videoButtons.forEach(button => {
-            const video = button.querySelector('video');
-            if (!video) return;
-
-            button.addEventListener('mouseenter', () => {
-                video.play().catch(e => {});
-            });
-
-            button.addEventListener('mouseleave', () => {
-                video.pause();
-                video.currentTime = 0;
-            });
-        });
-    }
-    
-    carregarPedidosRecentes();
+    atualizarInfoUsuarioHeader(); // chama a funcao pra mostrar nome/email do usuario no header
+    carregarPedidosRecentes(); // chama a funcao pra mostrar os ultimos pedidos
 });
-async function carregarPedidosRecentes() {
-    const containerPedidos = document.getElementById('lista-pedidos-recentes');
+
+// funcao pra mostrar nome e email do usuario no header da pagina de perfil
+function atualizarInfoUsuarioHeader() {
+    const loggedInUserString = localStorage.getItem('loggedInUser'); // pega o usuario logado
+    const headerComponent = document.querySelector('header-component'); // pega o componente do header
+
+    // funcao interna pra tentar atualizar (porque o header pode demorar um pouco pra carregar)
+    function tentarAtualizar() {
+        if (headerComponent && headerComponent.shadowRoot) { 
+			// se o header e o conteudo dele (shadowRoot) existirem
+            const userInfoSection = headerComponent.shadowRoot.querySelector('.user-info'); 
+			// acha a parte de info do usuario no header
+            
+            if (userInfoSection) { 
+				// se achou a secao de info
+                const userNameElement = userInfoSection.querySelector('h2'); // onde vai o nome
+                const userEmailElement = userInfoSection.querySelector('p'); // onde vai o email
+
+                if (loggedInUserString) { 
+					// se tem usuario logado
+                    try {
+                        const loggedInUser = JSON.parse(loggedInUserString); // transforma o texto de volta em objeto
+                        if (userNameElement) userNameElement.textContent = loggedInUser.fullName || "usuario";
+                        if (userEmailElement) userEmailElement.textContent = loggedInUser.email || "email@exemplo.com";
+                    } catch (e) { 
+						// se der erro ao ler os dados
+                        console.error("erro ao ler dados do usuario logado:", e);
+                        if (userNameElement) userNameElement.textContent = "visitante";
+                        if (userEmailElement) userEmailElement.textContent = "erro nos dados";
+                    }
+                } else {
+					// se nao tem usuario logado
+                    if (userNameElement) userNameElement.textContent = "visitante";
+                    if (userEmailElement) userEmailElement.textContent = "faca login para ver seus dados";
+                }
+            }
+            return true; // conseguiu tentar (ou nao precisava)
+        }
+        return false; // header nao estava pronto
+    }
+
+    // se nao conseguiu atualizar de primeira, tenta de novo depois 
+    if (!tentarAtualizar()) {
+        const intervalId = setInterval(() => {
+            if (tentarAtualizar()) { // se conseguir
+                clearInterval(intervalId); // para de tentar
+            }
+        }, 200); // tenta a cada 200 milissegundos
+        setTimeout(() => clearInterval(intervalId), 3000); // para de tentar depois de 3 segundos (pra nao ficar tentando pra sempre "loop infinito")
+    }
+}
+
+// funcao pra carregar e mostrar os ultimos pedidos feitos
+function carregarPedidosRecentes() {
+    const containerPedidos = document.getElementById('lista-pedidos-recentes'); // onde os pedidos vao aparecer
     if (!containerPedidos) {
-        console.error('Elemento "lista-pedidos-recentes" não encontrado.');
+        console.error('elemento "lista-pedidos-recentes" nao encontrado.');
+        return;
+    }
+    containerPedidos.innerHTML = '<p>carregando seus ultimos pedidos...</p>'; // mensagem enquanto carrega
+
+    const pedidosString = localStorage.getItem('pedidosLocais'); // pega os pedidos do localStorage
+    const pedidos = JSON.parse(pedidosString) || []; // se nao tiver, usa lista vazia
+
+    // ordena os pedidos pela data, do mais novo pro mais velho
+    pedidos.sort(function(a, b) {
+        return new Date(b.data) - new Date(a.data); // compara as datas
+    });
+
+    // se nao tiver nenhum pedido
+    if (pedidos.length === 0) {
+        containerPedidos.innerHTML = '<p>Você ainda não fez pedidos.</p>';
         return;
     }
 
-    containerPedidos.innerHTML = '<p>Carregando seus últimos pedidos...</p>';
+    containerPedidos.innerHTML = ''; // limpa a mensagem de "carregando"
 
-    try {
-        const response = await fetch('http://localhost:3000/api/pedidos');
-        if (!response.ok) {
-            throw new Error(`Erro HTTP: ${response.status} - ${response.statusText}`);
+    const pedidosParaMostrar = pedidos.slice(0, 5); // pega so os 5 primeiros (mais recentes)
+
+    // pra cada pedido que vai mostrar
+    pedidosParaMostrar.forEach(function(pedido) {
+        const pedidoCard = document.createElement('div'); // cria um card pro pedido
+        pedidoCard.classList.add('order-card'); // adiciona a classe pra estilizar
+        pedidoCard.dataset.pedidoId = pedido.id; // guarda o id do pedido no card
+
+        // monta a lista de itens do pedido
+        let itensHtml = '<ul class="lista-items">';
+        if (pedido.itens && pedido.itens.length > 0) {
+            pedido.itens.forEach(function(item) {
+                itensHtml += `<li>${item.nome || 'item desconhecido'} (qtd: ${item.quantity || 0})</li>`;
+            });
+        } else {
+            itensHtml += '<li>nenhum item neste pedido.</li>';
         }
-        const pedidos = await response.json();
+        itensHtml += '</ul>';
 
-        if (pedidos.length === 0) {
-            containerPedidos.innerHTML = '<p>Você ainda não fez nenhum pedido.</p>';
-            return;
+        // formata a data, id e total pra mostrar na tela
+        const dataFormatada = pedido.data ? new Date(pedido.data).toLocaleDateString('pt-BR') : 'data indisponivel';
+        const idCurto = pedido.id ? pedido.id.slice(-5) : 'n/a'; // pega so os ultimos 5 chars do id
+        const totalFormatado = typeof pedido.totalGeral === 'number' ? pedido.totalGeral.toFixed(2).replace('.', ',') : 'n/a';
+        
+        // define a classe css pro status do pedido (pra cor)
+        let statusClass = 'status-pendente'; // padrao
+        if (pedido.status && pedido.status.toLowerCase().includes('entregue') || pedido.status.toLowerCase().includes('confirmado')) {
+            statusClass = 'status-entregue';
+        } else if (pedido.status && pedido.status.toLowerCase().includes('cancelado')) {
+            statusClass = 'status-cancelado';
         }
 
-        containerPedidos.innerHTML = '';
+        // coloca as informacoes dentro do card do pedido
+        pedidoCard.innerHTML = `
+            <p>pedido #${idCurto} - r$ ${totalFormatado}</p>
+            ${itensHtml}
+            <p class="${statusClass}"> ${dataFormatada} - ${pedido.status || "status desconhecido"} </p>
+        `;
 
-        pedidos.forEach(pedido => {
-            const pedidoCard = document.createElement('div');
-            pedidoCard.classList.add('order-card');
-            pedidoCard.dataset.pedidoId = pedido.id;
+        // cria o botao de cancelar pedido
+        const btnDeletar = document.createElement('button');
+        btnDeletar.textContent = 'cancelar pedido';
+        // estilos pro botao 
+        btnDeletar.style.marginTop = '10px';
+        btnDeletar.style.padding = '5px 10px';
+        btnDeletar.style.backgroundColor = '#f44336'; // vermelho
+        btnDeletar.style.color = 'white';
+        btnDeletar.style.border = 'none';
+        btnDeletar.style.borderRadius = '4px';
+        btnDeletar.style.cursor = 'pointer';
 
-
-            let itensHtml = '<ul class="lista-items">';
-            if (pedido.itens && Array.isArray(pedido.itens)) {
-                pedido.itens.forEach(item => {
-                    itensHtml += `<li>${item.nome || 'Item desconhecido'} (Qtd: ${item.quantity || 0})</li>`;
+        // quando clicar no botao de cancelar
+        btnDeletar.addEventListener('click', function() {
+            if (confirm(`tem certeza que deseja cancelar o pedido #${idCurto}?`)) { 
+				// pergunta se tem certeza
+                let pedidosAtuais = JSON.parse(localStorage.getItem('pedidosLocais')) || []; 
+				// pega a lista de novo
+                
+				// cria uma lista nova sem o pedido que foi cancelado
+                pedidosAtuais = pedidosAtuais.filter(function(p) {
+                    return p.id !== pedido.id; // mantem so os que tem id diferente
                 });
-            } else {
-                itensHtml += '<li>Informações dos itens não disponíveis.</li>';
+                localStorage.setItem('pedidosLocais', JSON.stringify(pedidosAtuais)); // salva a lista atualizada
+                
+                alert('pedido cancelado localmente.');
+                carregarPedidosRecentes(); // recarrega a lista de pedidos na tela pra atualizar
             }
-            itensHtml += '</ul>';
-            
-            const dataPedido = pedido.data ? new Date(pedido.data).toLocaleDateString('pt-BR', {
-                day: '2-digit', month: '2-digit', year: 'numeric'
-            }) : 'Data Indisponível';
-
-            const pedidoIdDisplay = pedido.id ? pedido.id.substring(pedido.id.indexOf('_') + 1).substring(0, 5) : 'N/A';
-            const totalGeralDisplay = typeof pedido.totalGeral === 'number' ? parseFloat(pedido.totalGeral).toFixed(2).replace('.', ',') : 'N/A';
-            const statusPedido = pedido.status || "Status Desconhecido";
-            let statusClass = 'status-pendente';
-            if (statusPedido.toLowerCase() === 'entregue') {
-                statusClass = 'status-entregue';
-            } else if (statusPedido.toLowerCase() === 'cancelado') {
-                statusClass = 'status-cancelado';
-            }
-
-            // Botão de Deletar
-            const btnDeletar = document.createElement('button');
-            btnDeletar.textContent = 'Cancelar Pedido';
-            btnDeletar.classList.add('btn-deletar-pedido'); 
-            btnDeletar.style.marginTop = '10px'; 
-            btnDeletar.style.padding = '5px 10px';
-            btnDeletar.style.backgroundColor = '#f44336';
-            btnDeletar.style.color = 'white';
-            btnDeletar.style.border = 'none';
-            btnDeletar.style.borderRadius = '4px';
-            btnDeletar.style.cursor = 'pointer';
-
-            btnDeletar.onclick = async function() {
-                const idCompletoPedido = pedido.id;
-                if (confirm(`Tem certeza que deseja cancelar o pedido #${pedidoIdDisplay}?`)) {
-                    try {
-                        const deleteResponse = await fetch(`http://localhost:3000/api/pedidos/${idCompletoPedido}`, {
-                            method: 'DELETE',
-                        });
-                        const resultadoDelete = await deleteResponse.json();
-                        if (deleteResponse.ok) {
-                            alert(resultadoDelete.message);            
-                            pedidoCard.remove();                         
-                        } else {
-                            alert(`Erro ao deletar pedido: ${resultadoDelete.message}`);
-                        }
-                    } catch (err) {
-                        console.error('Erro ao tentar deletar pedido:', err);
-                        alert('Falha ao comunicar com o servidor para deletar o pedido.');
-                    }
-                }
-            };
-
-            pedidoCard.innerHTML = `
-                <p>Pedido #${pedidoIdDisplay} - R$ ${totalGeralDisplay}</p>
-                ${itensHtml}
-                <p class="${statusClass}">
-                    ${dataPedido} - ${statusPedido}
-                </p>
-            `;
-            pedidoCard.appendChild(btnDeletar);
-            containerPedidos.appendChild(pedidoCard);
         });
 
-    } catch (error) {
-        console.error("Erro ao carregar pedidos recentes:", error);
-        containerPedidos.innerHTML = `<p>Não foi possível carregar seus pedidos: ${error.message}. Verifique se o servidor backend está rodando.</p>`;
-    }
+        pedidoCard.appendChild(btnDeletar); // adiciona o botao no card
+        containerPedidos.appendChild(pedidoCard); // adiciona o card na tela
+    });
 }
