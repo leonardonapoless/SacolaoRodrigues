@@ -517,7 +517,7 @@ class Header extends HTMLElement {
                     <button id="search-btn-desktop" class="search-toggle-btn" title="buscar produto">
                         <img src="/assets/images/search-icon.png" alt="buscar">
                     </button>
-                    <div id="search-popup-desktop"> {/* o popup que abre */}
+                    <div id="search-popup-desktop">
                         <input type="text" id="search-desktop-input" class="search-bar-popup" placeholder="buscar produto...">
                     </div>
                 </div>
