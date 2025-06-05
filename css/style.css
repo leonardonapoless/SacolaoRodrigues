@@ -386,14 +386,14 @@ header-component {
   max-width: 100px;
   height: auto;
   display: block;
-  margin: 40px auto 5px;
+  margin: 33px auto 5px;
 }
 
 .product[data-id="o6"] .product-image {
   max-width: 75px;
   height: auto;
   display: block;
-  margin: 30px auto 5px;
+  margin: 21px auto 5px;
 }
 
 .product:hover img {
@@ -412,8 +412,8 @@ header-component {
   font-size: 1.4rem; 
 }
 
-
 .product-title {
+  min-height: 40px;
   font-size: 1.8rem;
   background: black;
   color: white;
@@ -424,6 +424,7 @@ header-component {
 }
 
 .price {
+  min-height: 32px;
   font-size: 1.6rem;
   background: black;
   color: white;
