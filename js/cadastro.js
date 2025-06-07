@@ -141,7 +141,7 @@ function validateConfirmPassword() {
     }
     if (confirmPasswordInput.value !== passwordInput.value) {
 		// se for diferente da primeira senha
-        showError(confirmPasswordInput, 'confirmPasswordError', 'as senhas não coincidem.');
+        showError(confirmPasswordInput, 'confirmPasswordError', 'as senhas não combinam.');
         return false;
     }
     return true;
@@ -201,7 +201,7 @@ phoneInput.addEventListener('input', function (e) {
     let formattedValue = '';
     if (value.length > 0) formattedValue = '(' + value.substring(0, 2); // DDD (xx
 
-    if (value.length > 2) { // ) xxxxx-xxxx resto do numero
+    if (value.length > 2) { // xxxxx-xxxx resto do numero
         const numPart = value.substring(2);
         if (numPart.length <= 4) formattedValue += ') ' + numPart;
         else if (numPart.length <= 8 && value.length <= 10) formattedValue += ') ' + numPart.substring(0, 4) + '-' + numPart.substring(4);
