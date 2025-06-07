@@ -5,10 +5,8 @@ https://sacolao-rodrigues-nhf1l.kinsta.page/
 
 Leonardo Nápoles: Tech Lead, Dev. Front-End, Designer.
 Ana Paula Rodrigues: Product Manager
-Gustavo Arantes: Dev. Front-End.
-João Gabriel S.: Dev. Front-End.
 Julia Caroline: Redatora, Dev. Front-End.
-
+Gustavo Arantes: Dev. Front-End.
 
 
 Objetivo principal do projeto ↓
@@ -55,4 +53,4 @@ em conjunto, além de aplicarmos nossos conhecimentos acerca do conteúdo. E, pr
 que nossa solução traga benefícios ao sacolão e possa ajudar e inspirar outros microempreendedores
 a terem iniciativas similares.
 
-<img width="1470" alt="sacolao-rodrigues" src="https://github.com/user-attachments/assets/1c4cbd66-48ff-41bb-a53c-f438a231b243" />
+<img width="1280" alt="sacolao-rodrigues" src="https://github.com/user-attachments/assets/1c4cbd66-48ff-41bb-a53c-f438a231b243" />
