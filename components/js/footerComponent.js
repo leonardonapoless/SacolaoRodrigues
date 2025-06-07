@@ -116,21 +116,21 @@ footerTemplate.innerHTML = `
             color: white;
             text-align: center;
             padding: 10px 12px;
-            border-radius: 6px;
+            border-radius: 15px;
             z-index: 1001;
             bottom: 100%;
             left: 100%; 
             width: 230px;
-            
+            border: 2px solid #000; 
             opacity: 0;
-            transform: translateX(-50%) translateY(5px) scale(0.95); 
+            transform: translateX(-73.5%) translateY(5px) scale(0.95); 
             visibility: hidden;
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0s linear 0.3s;
         }
 
         .phone-popup.show {
             opacity: 1;
-            transform: translateX(-50%) translateY(-8px) scale(1); 
+			transform: translateX(-73.5%) translateY(-8px) scale(1); 
             visibility: visible;
             transition-delay: 0s;
         }
@@ -217,6 +217,7 @@ footerTemplate.innerHTML = `
             opacity: 1;
         }
         @media (max-width: 375px) {
+
             .custom-footer {
                 width: 80%;
                 margin: 20px auto;
