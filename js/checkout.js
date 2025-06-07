@@ -12,12 +12,8 @@ function formatPrice(priceObject) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Checkout page loaded.");
     const cartString = localStorage.getItem('cart');
-    console.log("Cart string from localStorage:", cartString);
-
     const cart = JSON.parse(cartString) || [];
-    console.log('Produtos no carrinho para checkout:', cart);
 
     const orderSummaryItemsEl = document.getElementById('order-summary-items');
     const orderSummaryTotalEl = document.getElementById('order-summary-total');
@@ -27,20 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let totalGeral = 0;
 
     if (!orderSummaryItemsEl || !orderSummaryTotalEl || !customerInfoSection || !checkoutForm) {
-        console.error('Um ou mais elementos do DOM do checkout não foram encontrados.');
         if(orderSummaryItemsEl) orderSummaryItemsEl.innerHTML = '<p>Erro ao carregar a página de checkout. Tente novamente.</p>';
         return;
     }
 
     if (cart.length === 0) {
-        console.log("Cart is empty, displaying empty message.");
         orderSummaryItemsEl.innerHTML = '<p style="text-align: center; padding: 20px 0;">Seu carrinho está vazio. Não há nada para finalizar.</p>';
         orderSummaryTotalEl.innerHTML = '';
         customerInfoSection.style.display = 'none';
         return;
     }
 
-    console.log("Cart has items, building summary...");
     let summaryHTML = '<ul>';
 
     cart.forEach(item => {
@@ -52,8 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="item-name">${item.nome} (${item.quantity} &times; ${formatPrice(item.preco)})</span>
                     <span class="item-subtotal">R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
                 </li>`;
-        } else {
-            console.warn("Item inválido no carrinho, pulando:", item);
         }
     });
     summaryHTML += '</ul>';
@@ -61,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     orderSummaryItemsEl.innerHTML = summaryHTML;
     orderSummaryTotalEl.innerHTML = `<h3>Total: R$ ${totalGeral.toFixed(2).replace('.', ',')}</h3>`;
 
-    checkoutForm.addEventListener('submit', async (event) => {
+    checkoutForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const formData = new FormData(checkoutForm);
         const clienteInfo = Object.fromEntries(formData.entries());
@@ -72,40 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
             totalGeral: totalGeral 
         };
 
-        console.log('Enviando pedido para o backend:', pedidoParaEnviar);
+        const pedidosLocaisString = localStorage.getItem('pedidosLocais');
+        const pedidosLocais = JSON.parse(pedidosLocaisString) || [];
 
-        try {
-            const response = await fetch('http://localhost:3000/api/pedidos', { 
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(pedidoParaEnviar),
-            });
+        pedidoParaEnviar.id = `pedido_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`;
+        pedidoParaEnviar.data = new Date().toISOString();
+        pedidoParaEnviar.status = "Confirmado";
 
-            const resultado = await response.json();
-            console.log("Resposta completa do backend:", resultado);
-            console.log("Status da resposta do backend:", response.status, "Response OK:", response.ok);
+        pedidosLocais.push(pedidoParaEnviar);
+        localStorage.setItem('pedidosLocais', JSON.stringify(pedidosLocais));
 
-
-            if (response.ok) {
-                let pedidoIdInfo = "N/A";
-                if (resultado && resultado.pedido && resultado.pedido.id) {
-                    pedidoIdInfo = resultado.pedido.id;
-                } else {
-                    console.warn("ID do pedido não encontrado na resposta do backend, mas a resposta foi OK. Resposta:", resultado);
-                }
-                alert(`Pedido ${pedidoIdInfo} confirmado com sucesso!`);
-                localStorage.removeItem('cart');
-                console.log("Redirecionando para /pages/perfil.html");
-                window.location.href = '/pages/perfil.html'; 
-            } else {
-                console.error("Erro ao enviar pedido - backend respondeu com status não OK:", resultado);
-                alert(`Erro ao enviar pedido: ${resultado.message || `Status ${response.status}`}`);
-            }
-        } catch (error) {
-            console.error('Erro ao conectar com o backend ou processar resposta:', error);
-            alert('Não foi possível conectar ao servidor ou processar a resposta do pedido. Verifique sua conexão ou tente mais tarde.');
-        }
+        alert(`Pedido ${pedidoParaEnviar.id} confirmado com sucesso (localmente)!`);
+        localStorage.removeItem('cart');
+        window.location.href = '/pages/perfil.html';
     });
 });

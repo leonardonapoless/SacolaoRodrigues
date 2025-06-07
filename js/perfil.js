@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
     });
     
-    atualizarInfoUsuarioHeader(); // chama a funcao pra mostrar nome/email do usuario no header
+    atualizarInfoUsuarioHeader(); // chama a funcao pra mostrar nome/email do usuario no header da pagina de perfil
     carregarPedidosRecentes(); // chama a funcao pra mostrar os ultimos pedidos
 });
 
@@ -166,7 +166,7 @@ function carregarPedidosRecentes() {
                 });
                 localStorage.setItem('pedidosLocais', JSON.stringify(pedidosAtuais)); // salva a lista atualizada
                 
-                alert('pedido cancelado localmente.');
+                alert('pedido cancelado.');
                 carregarPedidosRecentes(); // recarrega a lista de pedidos na tela pra atualizar
             }
         });

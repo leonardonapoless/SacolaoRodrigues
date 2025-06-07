@@ -347,6 +347,11 @@ header-component {
   margin: 0 auto 5px;
 }
 
+.product[data-id="v5"] .product-title {
+	font-size: 14px;
+	text-align: center;
+}
+
 .product[data-id="v6"] .product-image {
   max-width: 90px;
   height: auto;
@@ -360,6 +365,7 @@ header-component {
   display: block;
   margin: 0 auto 5px;
 }
+
 
 .product[data-id="o2"] .product-image {
   max-width: 90px;
