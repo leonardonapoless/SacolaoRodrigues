@@ -331,9 +331,7 @@ class Header extends HTMLElement {
                 }
                 .search-bar-popup { /* campo de digitacao da busca */
                     width: 100%; padding: 10px 18px; 
-					border: 4px solid #000; 
-					border-radius: 20px; /* aparencia */
-                	box-shadow: 3px -4px 0px 2px #000, 6px 6px 12.5px 2px rgba(0, 0, 0, 0.25); 
+					border: none;
 					font-size: 1.6rem; background-color: #f8f8f8; box-sizing: border-box; /* font-size e cor */
                 }
                 .search-bar-popup:focus { outline: none; } /* tira a borda azul quando clica */
@@ -374,6 +372,13 @@ class Header extends HTMLElement {
                     :host([variant="default"]) .menu-mobile .logo-container .logo-sacolao {
                          max-width: 180px; height: auto; /* tamanho da logo mobile */
                     }
+					
+					.search-bar-popup {
+						border: 4px solid #000; 
+						border-radius: 20px; 
+                		box-shadow: 3px -4px 0px 2px #000, 6px 6px 12.5px 2px rgba(0, 0, 0, 0.25);
+						margin-bottom: 30px;
+					}
 
                     /* botao hamburguer (menu) (default e perfil) */
                     .menu-hamburguer-drawer {
