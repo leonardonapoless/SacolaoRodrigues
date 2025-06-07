@@ -1,0 +1,58 @@
+Sacolão Rodrigues
+
+-- link --
+https://sacolao-rodrigues-nhf1l.kinsta.page/
+
+Leonardo Nápoles: Tech Lead, Dev. Front-End, Designer.
+Ana Paula Rodrigues: Product Manager
+Gustavo Arantes: Dev. Front-End.
+João Gabriel S.: Dev. Front-End.
+Julia Caroline: Redatora, Dev. Front-End.
+
+
+
+Objetivo principal do projeto ↓
+
+   O projeto desenvolvido pelos estudantes do curso de Ciência da Computação
+visa facilitar e adaptar o sacolão, pertencente ao pai da aluna Ana Paula,
+ao mercado, tendo em vista que, atualmente as empresas vêm se aprimorando
+e adentrando ao mercado digital em busca de aumento da clientela. Além disso,
+essa presença online é também um benefício na vida do consumidor, uma vez que
+ele pode adquirir os produtos sem ter que se locomover.
+
+
+
+Descrição resumida do projeto ↓
+  
+   A proposta do projeto surgiu de uma sugestão da aluna Ana Paula, a Product Manager,
+a fim de apoiar o sacolão de seu pai, ela quis oferecer uma alternativa moderna ao comércio
+tradicional já conhecido. Dessa maneira, nosso grupo desenvolveu um site em HTML que 
+permite aos clientes fazerem compras de forma rápida e prática, diretamente de suas casas.
+A principal ideia é facilitar o acesso aos produtos do sacolão, principalmente considerando
+pessoas com dificuldades de locomoção ou que buscam mais conveniência no dia a dia. Além disso,
+o projeto também visa acompanhar a crescente digitalização do comércio, promovendo a inclusão
+tecnológica para pequenos empreendedores. A estrutura do site foi pensada pelo designer 
+Leonardo, que buscou um layout intuitivo, funcional e acessível para diversos 
+dispositivos.
+
+   A organização do site conta com uma página inicial onde é possível navegar por uma variada
+lista de produtos disponíveis no sacolão, como frutas, legumes e verduras. Também há páginas 
+específicas, como uma página dedicada às ofertas do dia, que ajudará o cliente que busca economizar.
+Há ainda uma seção voltada para dúvidas frequentes, que orienta o usuário quanto ao funcionamento
+do site e oferece suporte caso tenha algum imprevisto. Também disponibilizamos formas de contato com 
+os responsavéis pelo gerenciamento do sacolão.
+
+A estética do site foi pensada com cores agradáveis e organização clara, promovendo facilidade de
+navegação. O código foi estruturado com clareza, permitindo que tenha futuras expansões e melhorias, 
+como a inclusão de um sistema de login seguro.
+
+
+Conclusão ↓
+
+   A experiência de desenvolver esse projeto contribuiu para o aprimoramento e o uso prático do que 
+foi ensinado nas aulas de Introdução A Programação WEB. Dessa forma, nós, alunos, pudemos trabalhar
+em conjunto, além de aplicarmos nossos conhecimentos acerca do conteúdo. E, principalmente, esperamos
+que nossa solução traga benefícios ao sacolão e possa ajudar e inspirar outros microempreendedores
+a terem iniciativas similares.
+
+<img width="1470" alt="sacolao-rodrigues" src="https://github.com/user-attachments/assets/1c4cbd66-48ff-41bb-a53c-f438a231b243" />
