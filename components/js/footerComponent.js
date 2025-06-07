@@ -103,6 +103,13 @@ footerTemplate.innerHTML = `
             align-items: center;
         }
 
+		.map-icon-container {
+			position: relative;
+			display: flex;
+			align-items: center;
+			padding: 14px;
+		}
+
         .phone-popup {
             position: absolute;
             background-color: #4a4a3d;
@@ -246,6 +253,11 @@ footerTemplate.innerHTML = `
             <div id="phonePopup" class="phone-popup">
               Telefone: (37) 99820-2021
             </div>
+			<div class="map-icon-container">
+			<a href="/pages/mapa.html">
+				<i class="fas fa-map" id="mapIcon" title="Ver mapa"></i>
+			</a>		
+			</div>
           </div>
         </div>
       </div>

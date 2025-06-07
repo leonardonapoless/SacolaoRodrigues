@@ -519,7 +519,7 @@ footer-component {
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation-delay: 0.15s;
+    animation-delay: 0s;
   }
 
   .hamburguer {
@@ -541,12 +541,12 @@ footer-component {
     padding-right: 0;
     border-radius: 25px;
     margin-top: 10px;
-    width: 85%;
-    background-color: #79946F;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    border: 3px solid #000;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    /*background-color: #79946F;*/
+	/*box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);*/
+    /*border: 3px solid #000;*/
+    /*margin-left: 0;
+    margin-right: 0;*/
     box-sizing: border-box;
   }
 
@@ -616,7 +616,7 @@ footer-component {
   animation: fadeInUp 0.7s 0.25s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/*@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
@@ -627,4 +627,4 @@ footer-component {
     transition-delay: 0ms !important;
     animation-delay: 0ms !important;
   }
-}
+}*/
