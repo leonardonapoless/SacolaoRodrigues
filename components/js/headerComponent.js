@@ -161,7 +161,13 @@ class Header extends HTMLElement {
                     :host([variant="perfil"]) .menu-mobile .user-info .user-text-details { text-align: left; display: flex; flex-direction: column; justify-content: center; } /* nome e email */
                     :host([variant="perfil"]) .menu-mobile .user-info h2 { font-size: 1rem; margin: 0; line-height: 1.1; padding-bottom: 4px; } /* nome */
                     :host([variant="perfil"]) .menu-mobile .user-info p { font-size: 0.85rem; margin: 0; line-height: 1.1; } /* email */
-                    :host([variant="perfil"]) .menu-mobile .menu-hamburguer-drawer { width: 100%; margin-top: 10px; animation-delay: 0.25s; } /* botao de menu */
+                    :host([variant="perfil"]) .menu-mobile .menu-hamburguer-drawer { 
+						width: 100%; 
+						margin-top: 10px; 
+						animation-delay: 0.25s; 
+						font-family: 'Limelight', normal;
+						text-shadow: -4px 2px 5px rgba(0, 0, 0, 0.25); 
+					} 
                     :host([variant="perfil"]) .menu-mobile .opcao-menu { width: 100%; margin-top: 0px; } /* menu que abre */
                 }
             `;
@@ -324,8 +330,11 @@ class Header extends HTMLElement {
                     transition-delay: 0s; /* sem delay pra aparecer */
                 }
                 .search-bar-popup { /* campo de digitacao da busca */
-                    width: 100%; padding: 10px 18px; border: none; border-radius: 20px; /* aparencia */
-                    font-size: 1.6rem; background-color: #f8f8f8; box-sizing: border-box; /* font-size e cor */
+                    width: 100%; padding: 10px 18px; 
+					border: 4px solid #000; 
+					border-radius: 20px; /* aparencia */
+                	box-shadow: 3px -4px 0px 2px #000, 6px 6px 12.5px 2px rgba(0, 0, 0, 0.25); 
+					font-size: 1.6rem; background-color: #f8f8f8; box-sizing: border-box; /* font-size e cor */
                 }
                 .search-bar-popup:focus { outline: none; } /* tira a borda azul quando clica */
 
@@ -371,8 +380,8 @@ class Header extends HTMLElement {
                         display: block; /* sempre aparece no header de celular */
                         background-color: #d6a9a1; border: 4px solid #000; 
                         border-radius: 30px; padding: 12px 25px; font-size: 1.8rem; 
-                        font-weight: bold; text-shadow: -4px 2px 5px rgba(0, 0, 0, 0.25); /* sombra texto */
-                        cursor: pointer; /* indica que e clicavel quando passa o mouse (cursor se transforma em um icone de mao)*/
+                        font-family: 'Limelight', normal;
+						text-shadow: -4px 2px 5px rgba(0, 0, 0, 0.25); /* sombra texto */
                         box-shadow: 3px 7px 12.5px 2px rgba(0, 0, 0, 0.25), 0px 3px 0px 2px #000; /* sombra no botao */
                         width: 100%; text-align: center; 
                         transition: background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); /* animacao suave */
@@ -441,7 +450,7 @@ class Header extends HTMLElement {
                     :host([variant="default"]) #search-popup-mobile.show { /* quando o popup de busca esta aberto */
                         opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0) scale(1); /* faz ele aparecer */
                         transition-delay: 0.8s; /* delay para aparecer */
-                    }
+					}
                 }
 
                 /* regras pra garantir que o layout certo apareca no desktop */
@@ -493,9 +502,6 @@ class Header extends HTMLElement {
                     <div class="actions-container-checkout">
                         <a href="/pages/perfil.html" title="meu perfil">
                             <img src="/assets/images/profile.png" alt="meu perfil">
-                        </a>
-                        <a href="/pages/checkout.html" title="carrinho">
-                            <img src="/assets/images/cart-icon.png" alt="carrinho">
                         </a>
                     </div>
                 </div>
@@ -609,11 +615,11 @@ class Header extends HTMLElement {
                  <a href="/pages/cadastro.html" class="opcao-btn" title="criar conta/login">
                     <img src="/assets/images/log-in.png" alt="login/cadastro">
                 </a>
-                <div class="search-section">
+               <!-- <div class="search-section">
                      <button id="search-btn-mobile-menu" class="opcao-btn search-toggle-btn-mobile" title="buscar produto">
                         <img src="/assets/images/search-icon.png" alt="buscar">
                     </button>
-                </div>
+                </div>!-->
             `;
         }
 
@@ -632,13 +638,13 @@ class Header extends HTMLElement {
             `;
         } else { // variante default
             menuMobileContent = `
-                ${desktopLogoHTML()} 
+                ${desktopLogoHTML()}
+				<div id="search-popup-mobile"> 
+                    <input type="text" id="search-mobile-input" class="search-bar-popup" placeholder="buscar produto...">
+                </div>
                 <button class="menu-hamburguer-drawer">☰ menu</button>
                 <div class="opcao-menu">
                     ${mobileMenuOptions}
-                </div>
-                 <div id="search-popup-mobile"> 
-                    <input type="text" id="search-mobile-input" class="search-bar-popup" placeholder="buscar produto...">
                 </div>
             `;
         }
