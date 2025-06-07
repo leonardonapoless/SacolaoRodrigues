@@ -247,6 +247,20 @@ header-component {
   margin: 0 auto 5px;
 }
 
+.product[data-id="f9"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="f10"] .product-image {
+  max-width: 95px;
+  height: auto;
+  display: block;
+  margin: 7px auto 5px;
+}
+
 .product[data-id="l1"] .product-image {
   max-width: 90px;
   height: auto;
@@ -276,6 +290,27 @@ header-component {
   margin: 0 auto 5px;
 }
 
+.product[data-id="l5"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="l6"] .product-image {
+  max-width: 110px;
+  height: auto;
+  display: block;
+  margin: 10px auto 10px;
+}
+
+.product[data-id="l7"] .product-image {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
 .product[data-id="v1"] .product-image {
   max-width: 90px;
   height: auto;
@@ -298,6 +333,27 @@ header-component {
   margin: 0 auto 5px;
 }
 
+.product[data-id="v4"] .product-image {
+  max-width: 95px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="v5"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="v6"] .product-image {
+  max-width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
 .product[data-id="o1"] .product-image {
   max-width: 90px;
   height: auto;
@@ -312,11 +368,52 @@ header-component {
   margin: 0 auto 5px;
 }
 
+.product[data-id="o3"] .product-image {
+  max-width: 108px;
+  height: auto;
+  display: block;
+  margin: 15px auto 5px;
+}
+
+.product[data-id="o4"] .product-image {
+  max-width: 77px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.product[data-id="o5"] .product-image {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin: 33px auto 5px;
+}
+
+.product[data-id="o6"] .product-image {
+  max-width: 75px;
+  height: auto;
+  display: block;
+  margin: 21px auto 5px;
+}
+
 .product:hover img {
     transform: scale(1.05);
 }
 
+.product[data-id="o3"] .product-title {
+  font-size: 1.2rem; 
+}
+
+.product[data-id="o5"] .product-title {
+  font-size: 1.4rem; 
+}
+
+.product[data-id="o6"] .product-title {
+  font-size: 1.4rem; 
+}
+
 .product-title {
+  min-height: 40px;
   font-size: 1.8rem;
   background: black;
   color: white;
@@ -327,6 +424,7 @@ header-component {
 }
 
 .price {
+  min-height: 32px;
   font-size: 1.6rem;
   background: black;
   color: white;
