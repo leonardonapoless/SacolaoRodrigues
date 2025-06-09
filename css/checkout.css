@@ -2,8 +2,8 @@ html {
     font-size: 62.5px;
 }
 body {
-    font-family: 'Jetbrains Mono', monospace; 
-    background-color: #f1f0d9; 
+    font-family: "Jetbrains Mono", monospace;
+    background-color: #f1f0d9;
     color: #333;
     line-height: 1.6;
     margin: 0;
@@ -11,13 +11,13 @@ body {
 }
 
 header-component + .checkout-page-container {
-    margin-top: 30px; 
+    margin-top: 30px;
 }
 
 .checkout-page-container {
     max-width: 960px;
     margin: 20px auto;
-    padding: 0 20px 40px 20px; 
+    padding: 0 20px 40px 20px;
 }
 
 .checkout-main-content {
@@ -25,7 +25,9 @@ header-component + .checkout-page-container {
     grid-template-columns: 1.2fr 1fr;
     gap: 40px;
 }
-
+.order-summary-section {
+    /* margin-right: 400px; */
+}
 .order-summary-section,
 .customer-info-section {
     background-color: #ffffff;
@@ -41,7 +43,7 @@ header-component + .checkout-page-container {
 .order-summary-section h2,
 .customer-info-section h2 {
     font-size: 1.5em;
-    color: #4A4A4A;
+    color: #4a4a4a;
     margin-top: 0;
     margin-bottom: 25px;
     padding-bottom: 10px;
@@ -79,7 +81,7 @@ header-component + .checkout-page-container {
 .summary-total {
     margin-top: 25px;
     padding-top: 15px;
-    border-top: 2px solid #6A994E;
+    border-top: 2px solid #6a994e;
     text-align: right;
 }
 .summary-total h3 {
@@ -105,13 +107,15 @@ header-component + .checkout-page-container {
 .form-group select {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #D8D8D8;
+    border: 1px solid #d8d8d8;
     border-radius: 20px;
     box-sizing: border-box;
     font-size: 0.3rem;
     color: #333;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    font-family: 'Jetbrains Mono', monospace; 
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    font-family: "Jetbrains Mono", monospace;
 }
 .form-group input::placeholder {
     color: #aaa;
@@ -121,12 +125,12 @@ header-component + .checkout-page-container {
 .form-group input[type="tel"]:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #6A994E;
+    border-color: #6a994e;
     box-shadow: 0 0 8px rgba(106, 153, 78, 0.25);
 }
 
 .submit-btn.checkout-confirm-btn {
-    background-color: #76a854; 
+    background-color: #76a854;
     color: white;
     padding: 14px 20px;
     border: none;
@@ -136,7 +140,9 @@ header-component + .checkout-page-container {
     width: 100%;
     font-weight: bold;
     margin-top: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition:
+        background-color 0.3s ease,
+        transform 0.2s ease;
 }
 
 .submit-btn.checkout-confirm-btn:hover {
@@ -152,7 +158,7 @@ header-component + .checkout-page-container {
         grid-template-columns: 1fr;
     }
     .order-summary-section {
-        margin-bottom: 30px; 
+        margin-bottom: 30px;
     }
 }
 
@@ -167,7 +173,7 @@ header-component + .checkout-page-container {
     }
 
     .customer-info-section {
-    margin-right: 0;
+        margin-right: 0;
     }
     .form-group input[type="text"],
     .form-group input[type="tel"],
@@ -181,7 +187,7 @@ header-component + .checkout-page-container {
     }
 
     .form-group .payment-option {
-        font-size: 0.3rem;        
+        font-size: 0.3rem;
     }
 
     .submit-btn.checkout-confirm-btn {

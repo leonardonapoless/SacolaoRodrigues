@@ -1,4 +1,4 @@
-const footerTemplate = document.createElement('template');
+const footerTemplate = document.createElement("template");
 
 footerTemplate.innerHTML = `
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -96,7 +96,7 @@ footerTemplate.innerHTML = `
             border-radius: 40px;
             background: white;
         }
-        
+
         .phone-icon-container {
             position: relative;
             display: flex;
@@ -119,18 +119,18 @@ footerTemplate.innerHTML = `
             border-radius: 15px;
             z-index: 1001;
             bottom: 100%;
-            left: 100%; 
+            left: 100%;
             width: 230px;
-            border: 2px solid #000; 
+            border: 2px solid #000;
             opacity: 0;
-            transform: translateX(-73.5%) translateY(5px) scale(0.95); 
+            transform: translateX(-73.5%) translateY(5px) scale(0.95);
             visibility: hidden;
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0s linear 0.3s;
         }
 
         .phone-popup.show {
             opacity: 1;
-			transform: translateX(-73.5%) translateY(-8px) scale(1); 
+			transform: translateX(-73.5%) translateY(-8px) scale(1);
             visibility: visible;
             transition-delay: 0s;
         }
@@ -216,14 +216,19 @@ footerTemplate.innerHTML = `
         .message-box.show {
             opacity: 1;
         }
-        @media (max-width: 375px) {
+        @media (max-width: 768px) {
 
             .custom-footer {
-                width: 80%;
-                margin: 20px auto;
+                width: 70%;
+                /*
+                margin: 0px auto;
+                */
+                margin-left: 50px;
+                margin-right: -50px;
                 padding: 15px;
             }
             .custom-footer .form-box {
+                max-height: 80px;
                 flex-direction: column;
                 gap: 8px;
             }
@@ -257,19 +262,19 @@ footerTemplate.innerHTML = `
 			<div class="map-icon-container">
 			<a href="/pages/mapa.html">
 				<i class="fas fa-map" id="mapIcon" title="Ver mapa"></i>
-			</a>		
+			</a>
 			</div>
           </div>
         </div>
       </div>
-    
+
       <div class="form-box">
         <textarea id="sugestao" placeholder="Dúvidas e sugestões"></textarea>
         <button id="sendButton">
           <i class="fas fa-paper-plane"></i>
         </button>
       </div>
-    
+
       <div class="footer-bottom">
         <strong>Sacolão Rodrigues</strong><br>
         <span>&copy;</span>
@@ -279,84 +284,100 @@ footerTemplate.innerHTML = `
 `;
 
 class FooterComponent extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.appendChild(footerTemplate.content.cloneNode(true));
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild(footerTemplate.content.cloneNode(true));
+  }
+
+  connectedCallback() {
+    const shadow = this.shadowRoot;
+    const sendButton = shadow.getElementById("sendButton");
+    const suggestionInput = shadow.getElementById("sugestao");
+    const messageBox = shadow.getElementById("messageBox");
+
+    const phoneIcon = shadow.getElementById("phoneIcon");
+    const phonePopup = shadow.getElementById("phonePopup");
+
+    if (phoneIcon && phonePopup) {
+      phoneIcon.addEventListener("click", (event) => {
+        event.stopPropagation();
+        phonePopup.classList.toggle("show");
+      });
+
+      shadow.addEventListener("click", (event) => {
+        if (phonePopup.classList.contains("show")) {
+          if (
+            !phoneIcon.contains(event.target) &&
+            !phonePopup.contains(event.target)
+          ) {
+            phonePopup.classList.remove("show");
+          }
+        }
+      });
+
+      document.addEventListener(
+        "click",
+        (event) => {
+          if (
+            phonePopup.classList.contains("show") &&
+            !this.contains(event.target)
+          ) {
+            phonePopup.classList.remove("show");
+          }
+        },
+        true,
+      );
+    } else {
+      console.error(
+        "Ícone de telefone (phoneIcon) ou popup de telefone (phonePopup) não encontrado no footer-component.",
+      );
     }
 
-    connectedCallback() {
-        const shadow = this.shadowRoot;
-        const sendButton = shadow.getElementById('sendButton');
-        const suggestionInput = shadow.getElementById('sugestao');
-        const messageBox = shadow.getElementById('messageBox');
-
-        const phoneIcon = shadow.getElementById('phoneIcon');
-        const phonePopup = shadow.getElementById('phonePopup');
-
-        if (phoneIcon && phonePopup) {
-            phoneIcon.addEventListener('click', (event) => {
-                event.stopPropagation();
-                phonePopup.classList.toggle('show');
-            });
-
-            shadow.addEventListener('click', (event) => {
-                if (phonePopup.classList.contains('show')) {
-                    if (!phoneIcon.contains(event.target) && !phonePopup.contains(event.target)) {
-                        phonePopup.classList.remove('show');
-                    }
-                }
-            });
-            
-            document.addEventListener('click', (event) => {
-                if (phonePopup.classList.contains('show') && !this.contains(event.target)) {
-                     phonePopup.classList.remove('show');
-                }
-            }, true);
-
-        } else {
-            console.error('Ícone de telefone (phoneIcon) ou popup de telefone (phonePopup) não encontrado no footer-component.');
-        }
-
-        function showMessage(message) {
-            messageBox.textContent = message;
-            messageBox.classList.add('show');
-            setTimeout(() => {
-                messageBox.classList.remove('show');
-            }, 3000);
-        }
-
-        if (suggestionInput) {
-            suggestionInput.addEventListener('input', function() {
-                this.style.height = 'auto';
-                this.style.height = (this.scrollHeight) + 'px';
-            });
-        }
-
-        if (sendButton && suggestionInput) {
-            sendButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                sendButton.classList.add('bounce-animation');
-                sendButton.addEventListener('animationend', () => {
-                    sendButton.classList.remove('bounce-animation');
-                }, { once: true });
-
-                if (suggestionInput.value.trim() !== '') {
-                    showMessage(`Sugestão enviada: ${suggestionInput.value}`);
-                    suggestionInput.value = '';
-                    suggestionInput.style.height = 'auto';
-                } else {
-                    showMessage('Por favor, escreva algo antes de enviar.');
-                }
-            });
-        } else {
-            if (!(phoneIcon && phonePopup)) {
-                 
-            } else if (!sendButton || !suggestionInput) {
-                 console.error('Botão de envio ou campo de sugestão não encontrado no footer-component.');
-            }
-        }
+    function showMessage(message) {
+      messageBox.textContent = message;
+      messageBox.classList.add("show");
+      setTimeout(() => {
+        messageBox.classList.remove("show");
+      }, 3000);
     }
+
+    if (suggestionInput) {
+      suggestionInput.addEventListener("input", function () {
+        this.style.height = "auto";
+        this.style.height = this.scrollHeight + "px";
+      });
+    }
+
+    if (sendButton && suggestionInput) {
+      sendButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        sendButton.classList.add("bounce-animation");
+        sendButton.addEventListener(
+          "animationend",
+          () => {
+            sendButton.classList.remove("bounce-animation");
+          },
+          { once: true },
+        );
+
+        if (suggestionInput.value.trim() !== "") {
+          showMessage(`Sugestão enviada: ${suggestionInput.value}`);
+          suggestionInput.value = "";
+          suggestionInput.style.height = "auto";
+        } else {
+          showMessage("Por favor, escreva algo antes de enviar.");
+        }
+      });
+    } else {
+      if (!(phoneIcon && phonePopup)) {
+      } else if (!sendButton || !suggestionInput) {
+        console.error(
+          "Botão de envio ou campo de sugestão não encontrado no footer-component.",
+        );
+      }
+    }
+  }
 }
 
-customElements.define('footer-component', FooterComponent);
+customElements.define("footer-component", FooterComponent);
