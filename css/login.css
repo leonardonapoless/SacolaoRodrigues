@@ -25,14 +25,14 @@
 }
 
 body {
-    font-family: 'Jetbrains Mono', monospace;
+    font-family: "Jetbrains Mono", monospace;
     font-size: 18px;
     background-color: #f1f0d9;
     margin: 0;
     padding: 0;
     display: flex;
     min-height: 100vh;
-    color: #4A4A4A;
+    color: #4a4a4a;
     line-height: 1.6;
 }
 
@@ -61,7 +61,6 @@ body {
     display: block;
 }
 
-
 .content-area {
     flex-grow: 1;
     display: flex;
@@ -83,7 +82,7 @@ body {
 
 h2 {
     text-align: center;
-    color: #6A994E;
+    color: #6a994e;
     margin-bottom: 30px;
     font-size: 2em;
     font-weight: 600;
@@ -108,13 +107,15 @@ h2 {
 .form-group select {
     width: 100%;
     padding: 14px;
-    border: 1px solid #D8D8D8;
+    border: 1px solid #d8d8d8;
     border-radius: 25px;
     margin-left: -6px;
     box-sizing: border-box;
     font-size: 1em;
     color: #333;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .form-group input::placeholder {
@@ -123,12 +124,12 @@ h2 {
 
 .form-group input:focus {
     outline: none;
-    border-color: #6A994E;
+    border-color: #6a994e;
     box-shadow: 0 0 8px rgba(106, 153, 78, 0.3);
 }
 
 .form-group .error-message {
-    color: #E57373;
+    color: #e57373;
     font-size: 0.8em;
     margin-top: 6px;
     display: block;
@@ -136,7 +137,7 @@ h2 {
 }
 
 .form-group input.invalid {
-    border-color: #E57373;
+    border-color: #e57373;
 }
 
 .submit-btn {
@@ -148,7 +149,9 @@ h2 {
     cursor: pointer;
     font-size: 1.15em;
     width: 100%;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition:
+        background-color 0.3s ease,
+        transform 0.2s ease;
     font-weight: bold;
     margin-top: 10px;
 }
@@ -205,14 +208,14 @@ h2 {
     }
 
     .sidebar-header {
-        width: 100%;
+        width: 50%;
+        margin-left: 100px;
         height: auto;
-        padding: 10px 10px; 
+        padding: 10px 10px;
         min-height: auto;
-        display: flex; 
-        justify-content: center; 
+        display: flex;
+        justify-content: center;
         align-items: center;
-        
     }
 
     .sidebar-header .logo {

@@ -1,54 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>Sacolão Rodrigues</title>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Limelight&display=swap"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="icon" href="icon/logo.png" />
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sacolão Rodrigues</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Limelight&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="icon" href="icon/logo.png">
-</head>
+    <body>
+        <header-component></header-component>
 
-<body>
+        <main>
+            <nav class="categoria-nav">
+                <button class="hamburguer">☰ Categorias</button>
+                <div class="categoria-menu">
+                    <button class="categoria-btn" data-category="frutas">
+                        Frutas
+                    </button>
+                    <button class="categoria-btn" data-category="legumes">
+                        Legumes
+                    </button>
+                    <button class="categoria-btn" data-category="verduras">
+                        Verduras
+                    </button>
+                    <button class="categoria-btn" data-category="outros">
+                        Outros
+                    </button>
+                    <button class="categoria-btn active" data-category="todos">
+                        Todos
+                    </button>
+                </div>
+            </nav>
 
-    <header-component></header-component>
+            <div class="products product-grid" id="product-container"></div>
+        </main>
 
-    <main>
-        <nav class="categoria-nav">
-            <button class="hamburguer">☰ Categorias</button>
-            <div class="categoria-menu">
-                <button class="categoria-btn" data-category="frutas">Frutas</button>
-                <button class="categoria-btn" data-category="legumes">Legumes</button>
-                <button class="categoria-btn" data-category="verduras">Verduras</button>
-                <button class="categoria-btn" data-category="outros">Outros</button>
-                <button class="categoria-btn active" data-category="todos">Todos</button>
+        <template id="product-card-template">
+            <div class="product">
+                <img src="" alt="" class="product-image" />
+                <div class="product-title"></div>
+                <div class="price"></div>
+                <div class="quantity-controls">
+                    <button data-action="sub">-</button>
+                    <span class="quantity">0</span>
+                    <button data-action="add">+</button>
+                </div>
             </div>
-        </nav>
-        
-        <div class="products product-grid" id="product-container">
-        </div>
-    </main>
+        </template>
 
-    <template id="product-card-template">
-        <div class="product">
-            <img src="" alt="" class="product-image">
-            <div class="product-title"></div>
-            <div class="price"></div>
-            <div class="quantity-controls">
-                <button data-action="sub">-</button>
-                <span class="quantity">0</span>
-                <button data-action="add">+</button>
-            </div>
-        </div>
-    </template>
-    
-    <div class="separador-footer"></div>
-    <footer-component></footer-component>
+        <div class="separador-footer"></div>
+        <footer-component></footer-component>
 
-    <script type="module" src="components/js/headerComponent.js"></script>
-    <script type="module" src="components/js/footerComponent.js"></script>
-    <script src="script.js"></script>
-</body>
+        <script type="module" src="components/js/headerComponent.js"></script>
+        <script type="module" src="components/js/footerComponent.js"></script>
+        <script src="script.js"></script>
+    </body>
 </html>

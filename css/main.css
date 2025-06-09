@@ -1,10 +1,16 @@
 @import url("./base.css");
 @import url("./style.css");
-@import url('./header.css');
+@import url("./header.css");
 @import url("./footer.css");
-
-
 
 .separador-footer {
     padding-top: 120px;
 }
+/*
+@media (max-width: 768px) {
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+    }
+    }
+} */
