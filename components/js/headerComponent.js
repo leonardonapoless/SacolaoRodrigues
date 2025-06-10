@@ -871,5 +871,5 @@ class Header extends HTMLElement {
   }
 }
 
-// define que a tag <header-component> no html vai usar essa nossa classe header
+// define que a tag <header-component> no html vai usar a classe header
 customElements.define("header-component", Header);
