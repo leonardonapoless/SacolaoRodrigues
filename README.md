@@ -4,9 +4,13 @@ Sacolão Rodrigues
 https://sacolao-rodrigues-nhf1l.kinsta.page/
 
 Leonardo Nápoles: Tech Lead, Dev. Front-End, Designer.
+
 Ana Paula Rodrigues: Product Manager
+
 Julia Caroline: Redatora, Dev. Front-End.
+
 Gustavo Arantes: Dev. Front-End.
+
 João Gabriel Serafim: Dev. Front-End.
 
 Objetivo principal do projeto ↓
