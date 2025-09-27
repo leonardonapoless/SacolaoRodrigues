@@ -107,3 +107,97 @@
     display: block;
     margin: 0 auto 5px;
 }
+
+@media (max-width: 768px) {
+    .produtos-em-oferta-titulo {
+        font-size: 1.8em;
+        margin-top: 60px;
+        margin-bottom: 25px;
+        padding-bottom: 25px;
+    }
+    
+    .products.product-grid {
+        padding-top: 15px;
+        gap: 2rem;
+    }
+    
+    .product {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .product h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .product .price {
+        margin-bottom: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .produtos-em-oferta-titulo {
+        font-size: 1.6em;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .products.product-grid {
+        padding-top: 10px;
+        gap: 1.5rem;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .product {
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .product h3 {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .product .price {
+        margin-bottom: 0.5rem;
+    }
+    
+    .badge-imagem-oferta {
+        width: 40px;
+        height: 40px;
+        top: -30px;
+        right: -15px;
+    }
+}
+
+@media (max-width: 320px) {
+    .produtos-em-oferta-titulo {
+        font-size: 1.4em;
+        margin-top: 40px;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .products.product-grid {
+        gap: 1rem;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .product {
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .product h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .product .price {
+        margin-bottom: 0.4rem;
+    }
+}
