@@ -9,10 +9,6 @@ Ana Paula Rodrigues: Product Manager
 
 Julia Caroline: Redatora, Dev. Front-End.
 
-Gustavo Arantes: Dev. Front-End.
-
-João Gabriel Serafim: Dev. Front-End.
-
 Objetivo principal do projeto ↓
 
    O projeto desenvolvido pelos estudantes do curso de Ciência da Computação
