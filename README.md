@@ -1,7 +1,7 @@
 Sacolão Rodrigues
 
 -- link --
-https://sacolao-rodrigues-nhf1l.kinsta.page/
+https://sacolaorodrigues.kinsta.page
 
 Leonardo Nápoles: Tech Lead, Dev. Front-End, Designer.
 
