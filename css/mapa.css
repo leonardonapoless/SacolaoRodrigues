@@ -4,39 +4,67 @@
     margin: 0;
     font-family: "Jetbrains Mono", monospace;
 }
+
 body {
     font-size: 20px;
     background-color: #f1f0d9;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 2rem;
+}
+
+.sobre-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+#localizacao {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 2rem;
+    margin-top: 5rem;
+    opacity: 0;
+    -webkit-animation: fadeInUp 0.8s 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+    animation: fadeInUp 0.8s 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
 }
 
 .bloco-lateral {
     background-color: #fffbe6;
     padding: 20px;
     border-radius: 12px;
+    -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
-
+/*
 .titulo-bloco-lateral {
     font-size: 1.3rem;
     color: #2d4a21;
     text-align: center;
     margin-bottom: 15px;
 }
-
+*/
 #localizacao .mapa-wrapper {
     position: relative;
+    padding-top: 40px;
 }
 
 .mapa-title-custom {
     position: absolute;
-    top: -30px;
+    top: 2%;
     left: 50%;
+    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     background-color: #e6e6cc;
     padding: 8px 15px;
     border-radius: 20px;
     border: 3px double #667b58;
+    -webkit-box-shadow: -3px 4px 0px #667b58;
     box-shadow: -3px 4px 0px #667b58;
     text-align: center;
     font-size: 2rem !important;
@@ -50,52 +78,97 @@ body {
     border-radius: 10px;
     overflow: hidden;
     border: 2px solid #d4d0b1;
-    margin-top: 70px;
-    width: 60%;
-    height: 100%;
-    margin-left: 280px;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
 }
 
 #localizacao .mapa-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 450px;
+    height: 100%;
     border: 0;
 }
 
 #voltarBtn {
     display: block;
     width: fit-content;
-    margin: 40px auto 20px auto;
+    margin: 20px auto;
     padding: 12px 25px;
     background-color: #ecf8e9;
     color: #2d4a21;
     border: 2px solid #667b58;
     border-radius: 30px;
-    font-size: 2.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
     cursor: pointer;
+    -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
+    opacity: 0;
+    -webkit-animation: fadeInUp 0.8s 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+    animation: fadeInUp 0.8s 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
 }
 
 #voltarBtn:hover {
     background-color: #d4e0d0;
+    -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    -webkit-transform: translateY(-1px);
     transform: translateY(-1px);
 }
 
-@media (max-width: 480px) {
+@-webkit-keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
     body {
-        font-size: 24px;
+        overflow-x: hidden;
     }
 
-    #localizacao .mapa-container {
-        width: 100%;
-        height: 100%;
-        margin-left: 0px;
+    .mapa-title-custom {
+        font-size: 1.8rem !important;
+    }
+
+    #voltarBtn {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sobre-container {
+        padding: 1rem;
+    }
+
+    .mapa-title-custom {
+        font-size: 1.5rem !important;
     }
 
     #voltarBtn {
         padding: 10px 20px;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 }

@@ -24,9 +24,15 @@ footerTemplate.innerHTML = `
         }
         .custom-footer .footer-top {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: 20px;
+            gap: 20px;
+        }
+        .custom-footer .footer-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
         .custom-footer .sobre a {
             color: white;
@@ -115,12 +121,12 @@ footerTemplate.innerHTML = `
             background-color: #4a4a3d;
             color: white;
             text-align: center;
-            padding: 10px 12px;
+            padding: 10px 10px;
             border-radius: 15px;
             z-index: 1001;
             bottom: 100%;
-            left: 100%;
-            width: 230px;
+            left: 63%;
+            width: 120px;
             border: 2px solid #000;
             opacity: 0;
             transform: translateX(-73.5%) translateY(5px) scale(0.95);
@@ -154,13 +160,14 @@ footerTemplate.innerHTML = `
             justify-content: space-between;
             align-items: center;
             border: 2px solid #828282;
+            position: relative;
         }
         .custom-footer .form-box textarea {
             border: none;
             background: transparent;
             outline: none;
             flex: 1;
-            padding: 8px;
+            padding: 22px 8px 6px 8px;
             font-style: italic;
             color: #555;
             resize: none;
@@ -200,12 +207,12 @@ footerTemplate.innerHTML = `
         }
         .message-box {
             position: absolute;
-            bottom: 10px;
+            top: -40px;
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 5px;
             font-size: 12px;
             opacity: 0;
@@ -220,37 +227,36 @@ footerTemplate.innerHTML = `
 
             .custom-footer {
                 width: 70%;
-                /*
-                margin: 0px auto;
-                */
-                margin-left: 50px;
-                margin-right: -50px;
+                margin: 0px auto 60px auto;
                 padding: 15px;
             }
-            .custom-footer .form-box {
-                max-height: 80px;
-                flex-direction: column;
+            .custom-footer .footer-top {
+                gap: 12px;
+            }
+            .custom-footer .footer-links {
+                gap: 15px;
+            }
+        }
+        @media (max-width: 480px) {
+            .custom-footer .footer-top {
                 gap: 8px;
             }
-            .custom-footer .form-box button {
-                width: 100%;
+            .custom-footer .footer-links {
+                gap: 12px;
             }
-            .phone-popup {
-                font-size: 12px;
-                padding: 6px 10px;
-                left: 50%;
-                transform: translateX(-50%) translateY(5px) scale(0.95);
-            }
-            .phone-popup.show {
-                transform: translateX(-50%) translateY(-8px) scale(1);
+            .custom-footer .sobre a,
+            .custom-footer .duvidas a {
+                font-size: 11px;
             }
         }
     </style>
 
     <footer class="custom-footer">
       <div class="footer-top">
-        <div class="sobre"><a href="/pages/sobre.html">Sobre Nós</a></div>
-        <div class="duvidas"><a href="/pages/duvidas.html">Dúvidas</a></div>
+        <div class="footer-links">
+          <div class="sobre"><a href="/pages/sobre.html">Sobre Nós</a></div>
+          <div class="duvidas"><a href="/pages/duvidas.html">Dúvidas</a></div>
+        </div>
         <div class="social-icons">
           <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
           <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
@@ -269,6 +275,7 @@ footerTemplate.innerHTML = `
       </div>
 
       <div class="form-box">
+        <div id="messageBox" class="message-box"></div>
         <textarea id="sugestao" placeholder="Dúvidas e sugestões"></textarea>
         <button id="sendButton">
           <i class="fas fa-paper-plane"></i>
@@ -279,7 +286,6 @@ footerTemplate.innerHTML = `
         <strong>Sacolão Rodrigues</strong><br>
         <span>&copy;</span>
       </div>
-      <div id="messageBox" class="message-box"></div>
     </footer>
 `;
 
@@ -362,7 +368,7 @@ class FooterComponent extends HTMLElement {
         );
 
         if (suggestionInput.value.trim() !== "") {
-          showMessage(`Sugestão enviada: ${suggestionInput.value}`);
+          showMessage("Sugestão enviada");
           suggestionInput.value = "";
           suggestionInput.style.height = "auto";
         } else {

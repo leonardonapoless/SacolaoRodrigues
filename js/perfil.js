@@ -1,116 +1,99 @@
-// quando a pagina de perfil terminar de carregar
 document.addEventListener('DOMContentLoaded', function() {
-    // acha o botao de logout
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) { 
-		// se o botao existir
-        logoutBtn.addEventListener('click', function() { // quando clicar nele
-            if (confirm('deseja realmente sair?')) { // pergunta se tem certeza
-                localStorage.removeItem('loggedInUser'); // tira o usuario da "sessao" (localStorage)
-                window.location.href = "../index.html"; // volta pra pagina inicial
+        logoutBtn.addEventListener('click', function() {
+            if (confirm('deseja realmente sair?')) {
+                localStorage.removeItem('loggedInUser');
+                window.location.href = "../index.html";
             }
         });
     }
 
-    // animacao dos botoes com video (pra dar play/pause quando passa o mouse)
-    document.querySelectorAll('.action-btn').forEach(button => {
-        const video = button.querySelector('video');
-        if (!video) return; // se nao tiver video, nao faz nada
-        button.addEventListener('mouseenter', () => video.play().catch(e => {
-		// nao faz nada se der erro no play 
-		}));
-        button.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
-    });
-    
-    atualizarInfoUsuarioHeader(); // chama a funcao pra mostrar nome/email do usuario no header da pagina de perfil
-    carregarPedidosRecentes(); // chama a funcao pra mostrar os ultimos pedidos
+    atualizarInfoUsuarioHeader();
+    carregarPedidosRecentes();
+    inicializarLottiePerfil();
+    inicializarLottieUsuario();
 });
 
-// funcao pra mostrar nome e email do usuario no header da pagina de perfil
 function atualizarInfoUsuarioHeader() {
-    const loggedInUserString = localStorage.getItem('loggedInUser'); // pega o usuario logado
-    const headerComponent = document.querySelector('header-component'); // pega o componente do header
-
-    // funcao interna pra tentar atualizar (porque o header pode demorar um pouco pra carregar)
+    const loggedInUserString = localStorage.getItem('loggedInUser');
+    const headerComponent = document.querySelector('header-component');
+    
     function tentarAtualizar() {
         if (headerComponent && headerComponent.shadowRoot) { 
-			// se o header e o conteudo dele (shadowRoot) existirem
-            const userInfoSection = headerComponent.shadowRoot.querySelector('.user-info'); 
-			// acha a parte de info do usuario no header
+            const userInfoSection = headerComponent.shadowRoot.querySelector('.user-info');
             
             if (userInfoSection) { 
-				// se achou a secao de info
-                const userNameElement = userInfoSection.querySelector('h2'); // onde vai o nome
-                const userEmailElement = userInfoSection.querySelector('p'); // onde vai o email
+                const userNameElement = userInfoSection.querySelector('h2');
+                const userEmailElement = userInfoSection.querySelector('p');
 
                 if (loggedInUserString) { 
-					// se tem usuario logado
                     try {
-                        const loggedInUser = JSON.parse(loggedInUserString); // transforma o texto de volta em objeto
-                        if (userNameElement) userNameElement.textContent = loggedInUser.fullName || "usuario";
-                        if (userEmailElement) userEmailElement.textContent = loggedInUser.email || "email@exemplo.com";
+                        const loggedInUser = JSON.parse(loggedInUserString);
+                        if (userNameElement) {
+                            userNameElement.textContent = loggedInUser.fullName || "usuario";
+                            console.log('Nome atualizado:', userNameElement.textContent);
+                        }
+                        if (userEmailElement) {
+                            userEmailElement.textContent = loggedInUser.email || "email@exemplo.com";
+                            console.log('Email atualizado:', userEmailElement.textContent);
+                        }
                     } catch (e) { 
-						// se der erro ao ler os dados
                         console.error("erro ao ler dados do usuario logado:", e);
                         if (userNameElement) userNameElement.textContent = "visitante";
                         if (userEmailElement) userEmailElement.textContent = "erro nos dados";
                     }
                 } else {
-					// se nao tem usuario logado
                     if (userNameElement) userNameElement.textContent = "visitante";
                     if (userEmailElement) userEmailElement.textContent = "faca login para ver seus dados";
                 }
             }
-            return true; // conseguiu tentar (ou nao precisava)
+            return true;
         }
-        return false; // header nao estava pronto
+        return false;
     }
 
-    // se nao conseguiu atualizar de primeira, tenta de novo depois 
     if (!tentarAtualizar()) {
         const intervalId = setInterval(() => {
-            if (tentarAtualizar()) { // se conseguir
-                clearInterval(intervalId); // para de tentar
+            if (tentarAtualizar()) {
+                clearInterval(intervalId);
             }
-        }, 200); // tenta a cada 200 milissegundos
-        setTimeout(() => clearInterval(intervalId), 3000); // para de tentar depois de 3 segundos (pra nao ficar tentando pra sempre "loop infinito")
+        }, 200);
+        setTimeout(() => clearInterval(intervalId), 3000);
     }
 }
 
-// funcao pra carregar e mostrar os ultimos pedidos feitos
 function carregarPedidosRecentes() {
-    const containerPedidos = document.getElementById('lista-pedidos-recentes'); // onde os pedidos vao aparecer
+    const containerPedidos = document.getElementById('lista-pedidos-recentes');
     if (!containerPedidos) {
         console.error('elemento "lista-pedidos-recentes" nao encontrado.');
         return;
     }
-    containerPedidos.innerHTML = '<p>carregando seus ultimos pedidos...</p>'; // mensagem enquanto carrega
+    containerPedidos.innerHTML = '<p>carregando seus ultimos pedidos...</p>';
 
-    const pedidosString = localStorage.getItem('pedidosLocais'); // pega os pedidos do localStorage
-    const pedidos = JSON.parse(pedidosString) || []; // se nao tiver, usa lista vazia
+    const pedidosString = localStorage.getItem('pedidosLocais');
+    const pedidos = JSON.parse(pedidosString) || [];
 
-    // ordena os pedidos pela data, do mais novo pro mais velho
     pedidos.sort(function(a, b) {
-        return new Date(b.data) - new Date(a.data); // compara as datas
+        return new Date(b.data) - new Date(a.data);
     });
 
-    // se nao tiver nenhum pedido
     if (pedidos.length === 0) {
         containerPedidos.innerHTML = '<p>Você ainda não fez pedidos.</p>';
         return;
     }
 
-    containerPedidos.innerHTML = ''; // limpa a mensagem de "carregando"
+    containerPedidos.innerHTML = '';
 
-    const pedidosParaMostrar = pedidos.slice(0, 5); // pega so os 5 primeiros (mais recentes)
+    const pedidosParaMostrar = pedidos.slice(0, 5);
 
-    // pra cada pedido que vai mostrar
-    pedidosParaMostrar.forEach(function(pedido) {
-        const pedidoCard = document.createElement('div'); // cria um card pro pedido
-        pedidoCard.classList.add('order-card'); // adiciona a classe pra estilizar
-        pedidoCard.dataset.pedidoId = pedido.id; // guarda o id do pedido no card
+    pedidosParaMostrar.forEach(function(pedido, index) {
+        const pedidoCard = document.createElement('div');
+        pedidoCard.classList.add('order-card');
+        pedidoCard.dataset.pedidoId = pedido.id;
+        
+        pedidoCard.style.animationDelay = `${0.1 + (index * 0.05)}s`;
 
-        // monta a lista de itens do pedido
         let itensHtml = '<ul class="lista-items">';
         if (pedido.itens && pedido.itens.length > 0) {
             pedido.itens.forEach(function(item) {
@@ -121,57 +104,136 @@ function carregarPedidosRecentes() {
         }
         itensHtml += '</ul>';
 
-        // formata a data, id e total pra mostrar na tela
         const dataFormatada = pedido.data ? new Date(pedido.data).toLocaleDateString('pt-BR') : 'data indisponivel';
-        const idCurto = pedido.id ? pedido.id.slice(-5) : 'n/a'; // pega so os ultimos 5 chars do id
+        const idCurto = pedido.id ? pedido.id.slice(-5) : 'n/a';
         const totalFormatado = typeof pedido.totalGeral === 'number' ? pedido.totalGeral.toFixed(2).replace('.', ',') : 'n/a';
         
-        // define a classe css pro status do pedido (pra cor)
-        let statusClass = 'status-pendente'; // padrao
+        let statusClass = 'status-pendente';
         if (pedido.status && pedido.status.toLowerCase().includes('entregue') || pedido.status.toLowerCase().includes('confirmado')) {
             statusClass = 'status-entregue';
         } else if (pedido.status && pedido.status.toLowerCase().includes('cancelado')) {
             statusClass = 'status-cancelado';
         }
 
-        // coloca as informacoes dentro do card do pedido
         pedidoCard.innerHTML = `
             <p>pedido #${idCurto} - r$ ${totalFormatado}</p>
             ${itensHtml}
             <p class="${statusClass}"> ${dataFormatada} - ${pedido.status || "status desconhecido"} </p>
         `;
 
-        // cria o botao de cancelar pedido
         const btnDeletar = document.createElement('button');
         btnDeletar.textContent = 'cancelar pedido';
-        // estilos pro botao 
         btnDeletar.style.marginTop = '10px';
         btnDeletar.style.padding = '5px 10px';
-        btnDeletar.style.backgroundColor = '#f44336'; // vermelho
+        btnDeletar.style.backgroundColor = '#f44336';
         btnDeletar.style.color = 'white';
         btnDeletar.style.border = 'none';
         btnDeletar.style.borderRadius = '4px';
         btnDeletar.style.cursor = 'pointer';
 
-        // quando clicar no botao de cancelar
         btnDeletar.addEventListener('click', function() {
             if (confirm(`tem certeza que deseja cancelar o pedido #${idCurto}?`)) { 
-				// pergunta se tem certeza
-                let pedidosAtuais = JSON.parse(localStorage.getItem('pedidosLocais')) || []; 
-				// pega a lista de novo
+                let pedidosAtuais = JSON.parse(localStorage.getItem('pedidosLocais')) || [];
                 
-				// cria uma lista nova sem o pedido que foi cancelado
                 pedidosAtuais = pedidosAtuais.filter(function(p) {
-                    return p.id !== pedido.id; // mantem so os que tem id diferente
+                    return p.id !== pedido.id;
                 });
-                localStorage.setItem('pedidosLocais', JSON.stringify(pedidosAtuais)); // salva a lista atualizada
+                localStorage.setItem('pedidosLocais', JSON.stringify(pedidosAtuais));
                 
                 alert('pedido cancelado.');
-                carregarPedidosRecentes(); // recarrega a lista de pedidos na tela pra atualizar
+                carregarPedidosRecentes();
             }
         });
 
-        pedidoCard.appendChild(btnDeletar); // adiciona o botao no card
-        containerPedidos.appendChild(pedidoCard); // adiciona o card na tela
+        pedidoCard.appendChild(btnDeletar);
+        containerPedidos.appendChild(pedidoCard);
     });
+}
+
+function inicializarLottiePerfil() {
+    if (typeof lottie === 'undefined') {
+        console.warn('Lottie library not loaded. Profile animations will not work.');
+        return;
+    }
+
+    const initializeLottieAnimation = (elementId, animationPath, speed = 1.5, loopOnHover = false) => {
+        const element = document.querySelector(elementId);
+        const button = element ? element.closest('.action-btn') : null;
+        
+        console.log(`Inicializando Lottie: ${elementId}, Path: ${animationPath}`);
+        
+        if (element && button) {
+            try {
+                const animation = lottie.loadAnimation({
+                    container: element,
+                    renderer: 'svg',
+                    loop: false,
+                    autoplay: false,
+                    path: animationPath
+                });
+
+                animation.setSpeed(speed);
+                animation.goToAndStop(0, true);
+
+                console.log(`Animação Lottie carregada com sucesso para: ${elementId}`);
+
+                button.addEventListener('mouseenter', () => {
+                    console.log(`Hover iniciado em: ${elementId}`);
+                    if (loopOnHover) {
+                        animation.setLoop(true);
+                        animation.play();
+                    } else {
+                        animation.play();
+                    }
+                });
+                
+                button.addEventListener('mouseleave', () => {
+                    console.log(`Hover finalizado em: ${elementId}`);
+                    if (loopOnHover) {
+                        animation.setLoop(false);
+                        animation.stop();
+                        animation.goToAndStop(0, true);
+                    } else {
+                        animation.stop();
+                        animation.goToAndStop(0, true);
+                    }
+                });
+            } catch (error) {
+                console.error(`Erro ao carregar animação Lottie para ${elementId}:`, error);
+            }
+        } else {
+            console.warn(`Elemento não encontrado: ${elementId}`);
+        }
+    };
+
+    initializeLottieAnimation('#list-lottie-perfil', '/assets/images/animatedicons/list-icon.json', 1.5, false);
+    initializeLottieAnimation('#ofertas-lottie-perfil', '/assets/images/animatedicons/ofertas.json', 1.5, true);
+    initializeLottieAnimation('#editar-lottie-perfil', '/assets/images/animatedicons/editar.json', 1.5, true);
+    initializeLottieAnimation('#ajustes-lottie-perfil', '/assets/images/animatedicons/editar.json', 1.5, false);
+    initializeLottieAnimation('#logout-lottie-perfil', '/assets/images/animatedicons/login-in.json', 1.5, false);
+}
+
+function inicializarLottieUsuario() {
+    const headerComponent = document.querySelector('header-component');
+    
+    function tentarInicializarLottie() {
+        if (headerComponent && headerComponent.shadowRoot) {
+            const userProfileLottie = headerComponent.shadowRoot.querySelector('#user-profile-lottie');
+            if (userProfileLottie) {
+                console.log('Inicializando Lottie do usuário no header');
+                initializeLottieAnimation('#user-profile-lottie', '/assets/images/animatedicons/user-profile-pic.json', 1.0, false);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    if (!tentarInicializarLottie()) {
+        const intervalId = setInterval(() => {
+            if (tentarInicializarLottie()) {
+                clearInterval(intervalId);
+            }
+        }, 200);
+        setTimeout(() => clearInterval(intervalId), 3000);
+    }
 }

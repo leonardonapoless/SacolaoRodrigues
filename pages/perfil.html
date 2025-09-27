@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil - UserName</title>
     <link rel="stylesheet" href="../css/perfil.css">
-    <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/landscape-lock.css" />
     <link rel="icon" href="/icon/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script src="/components/js/headerComponent.js" defer></script>
 </head>
 
@@ -19,27 +21,25 @@
     <main class="profile-container">
         <div class="main-content">
             <section class="user-actions">
-                <button onclick="window.location.href = '../pages/listas.html'" class="action-btn">
-                    <img src="../assets/images/list-icon.png" alt="Minhas listas">
+                <button onclick="window.location.href = 'listas.html'" class="action-btn">
+                    <div id="list-lottie-perfil" style="width: 40px; height: 40px;"></div>
                     <span>Minhas Listas</span>
                 </button>
-                <button onclick="window.location.href = '../pages/ofertas.html'" class="action-btn">
-                    <img src="../assets/images/ofertas.png" alt="Ofertas">
+                <button onclick="window.location.href = 'ofertas.html'" class="action-btn">
+                    <div id="ofertas-lottie-perfil" style="width: 40px; height: 40px;"></div>
                     <span>Minhas Ofertas</span>
                 </button>
                 <button class="action-btn" id="editarBtn">
-                    <video loop muted playsinline preload="auto">
-                        <source src="../assets/videos/editar.mp4" type="video/mp4">
-                    </video>
+                    <div id="editar-lottie-perfil" style="width: 40px; height: 40px;"></div>
                     <span>Editar Perfil</span>
                 </button>
 
-                <button onclick="window.location.href = '../pages/ajustes.html'" class="action-btn" id="ajustesBtn">
-                    <img src="../assets/images/ajustes-icon.png" alt="Ajustes">
+                <button onclick="window.location.href = 'ajustes.html'" class="action-btn" id="ajustesBtn">
+                    <div id="ajustes-lottie-perfil" style="width: 40px; height: 40px;"></div>
                     <span>Ajustes</span>
                 </button>
                 <button class="action-btn" id="logoutBtn">
-                    <img src="../assets/images/log-in.png" alt="Sair">
+                    <div id="logout-lottie-perfil" style="width: 40px; height: 40px;"></div>
                     <span>Sair</span>
                 </button>
             </section>
@@ -59,21 +59,6 @@
     
     <script src="../js/perfil.js"></script>
 
-    <script>
-        document.querySelectorAll('.action-btn').forEach(button => {
-            const video = button.querySelector('video');
-            if (!video) return;
-
-            button.addEventListener('mouseenter', () => {
-                video.play().catch(e => {});
-            });
-
-            button.addEventListener('mouseleave', () => {
-                video.pause();
-                video.currentTime = 0;
-            });
-        });
-    </script>
 </body>
 
 </html>

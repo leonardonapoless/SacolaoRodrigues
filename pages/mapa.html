@@ -7,9 +7,11 @@
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
         <title>Sacolão Rodrigues - Localização</title>
-        <!-- <link rel="stylesheet" href="/css/style.css" /> -->
         <link rel="stylesheet" href="/css/mapa.css" />
         <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/landscape-lock.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <link rel="icon" href="/icon/logo.png" />
     </head>
     <body>
         <main class="sobre-container">
@@ -27,10 +29,12 @@
                 </div>
             </section>
             <button id="voltarBtn" class="animar-entrada" type="button">
-                Voltar para a página incial
+                Voltar para a página inicial
             </button>
         </main>
+        <footer-component></footer-component>
 
+        <script type="module" src="/components/js/footerComponent.js"></script>
         <script>
             document.getElementById("voltarBtn").onclick = function () {
                 window.location.href = "../index.html";

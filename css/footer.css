@@ -11,11 +11,16 @@
   margin: 40px auto;
   padding: 20px;
   text-align: center;
+  -webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
   position: relative;
 }
 
 @media (max-width: 375px) {
+  body {
+    overflow-x: hidden;
+  }
+
   .custom-footer {
     width: 80%;
     margin: 20px auto;
@@ -45,7 +50,6 @@
   text-decoration: none;
   position: relative;
   padding-bottom: 4px;
-  /* transition: transform 0.6s ease-in-out; */
 }
 
 /* .custom-footer .sobre a:hover {
@@ -73,6 +77,7 @@
   cursor: pointer;
   position: relative;
   padding-bottom: 4px;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
 }
 
@@ -80,6 +85,7 @@
   color: white;
 }
 .custom-footer .social-icons i:hover {
+  -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
 
@@ -130,10 +136,12 @@
   color: #5a5a4d;
   padding: 8px 12px;
   border-radius: 20px;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
 }
 
 .custom-footer .form-box button:hover {
+  -webkit-transform: scale(1.4);
   transform: scale(1.4);
 }
 
@@ -149,19 +157,23 @@
   50%,
   80%,
   100% {
+    -webkit-transform: translateY(0);
     transform: translateY(0);
   }
 
   40% {
+    -webkit-transform: translateY(-10px);
     transform: translateY(-10px);
   }
 
   60% {
+    -webkit-transform: translateY(-5px);
     transform: translateY(-5px);
   }
 }
 
 .bounce-animation {
+  -webkit-animation: bounce 0.6s ease-in-out;
   animation: bounce 0.6s ease-in-out;
 }
 
@@ -170,6 +182,7 @@
   position: absolute;
   bottom: 10px;
   left: 50%;
+  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
@@ -177,6 +190,7 @@
   border-radius: 5px;
   font-size: 12px;
   opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
   z-index: 1000;
   white-space: nowrap;
