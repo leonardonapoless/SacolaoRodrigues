@@ -383,15 +383,7 @@ class Header extends HTMLElement {
                         max-width: 70px;
                         height: auto;
                         padding: 8px 0;
-                        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                         filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.06));
-                        transform: perspective(800px) rotateX(0deg) rotateY(0deg);
-                    }
-                    
-                    :host([variant="perfil"]) .menu-mobile .logo-container-perfil:hover .logo-sacolao {
-                        transform: perspective(800px) rotateX(-2deg) rotateY(-1deg) scale(1.02);
-                        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08)) 
-                                drop-shadow(0 0 8px rgba(121, 148, 111, 0.1));
                     }
                     :host([variant="perfil"]) .menu-mobile .user-info {
                         margin: 0; animation: none; display: grid !important; grid-template-columns: auto 1fr; align-items: center;
@@ -442,16 +434,7 @@ class Header extends HTMLElement {
                     height: auto;
                     display: block;
                     padding: 15px 0;
-                    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
-                    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
-                }
-                
-                :host([variant="checkout"]) .logo-container-checkout:hover .logo-sacolao {
-                    transform: perspective(1000px) rotateX(-3deg) rotateY(-1deg) scale(1.03);
-                    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12)) 
-                            drop-shadow(0 0 15px rgba(121, 148, 111, 0.15));
-                    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 }
                 :host([variant="checkout"]) .checkout-title {
                     text-align: center; 
@@ -509,15 +492,7 @@ class Header extends HTMLElement {
                         max-width: 70px;
                         height: auto;
                         padding: 8px 0;
-                        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                         filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.06));
-                        transform: perspective(800px) rotateX(0deg) rotateY(0deg);
-                    }
-                    
-                    :host([variant="checkout"]) .menu-mobile.checkout-variant .logo-container-checkout:hover .logo-sacolao {
-                        transform: perspective(800px) rotateX(-2deg) rotateY(1deg) scale(1.01);
-                        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08)) 
-                                drop-shadow(0 0 8px rgba(121, 148, 111, 0.1));
                     }
                     :host([variant="checkout"]) .menu-mobile.checkout-variant .actions-container-checkout {
                         background-color: #79946F;
@@ -665,17 +640,7 @@ class Header extends HTMLElement {
                     max-width: 130px;
                     height: auto;
                     padding: 15px 0;
-                    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
-                    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
-                }
-                
-                .logo-container:hover .logo-sacolao,
-                .logo-container-perfil:hover .logo-sacolao {
-                    transform: perspective(500px) rotateX(-5deg) rotateY(2deg) scale(1.01);
-                    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12)) 
-                            drop-shadow(0 0 15px rgba(121, 148, 111, 0.15));
-                    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 }
 
 
@@ -704,16 +669,7 @@ class Header extends HTMLElement {
                          max-width: 90px;
                          height: auto; /* tamanho da logo mobile */
                          padding: 8px 0;
-                         transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                          filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.06));
-                         transform: perspective(800px) rotateX(0deg) rotateY(0deg);
-                    }
-                    
-                    /* Animação da logo mobile no hover */
-                    :host([variant="default"]) .menu-mobile .logo-container:hover .logo-sacolao {
-                        transform: perspective(800px) rotateX(-2deg) rotateY(1deg) scale(1.01);
-                        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08)) 
-                                drop-shadow(0 0 8px rgba(121, 148, 111, 0.1));
                     }
 
 					.search-bar-popup {
@@ -765,10 +721,8 @@ class Header extends HTMLElement {
                         border-radius: 30px;
                         border: 3px solid #000;
                         cursor: pointer;
-                        -webkit-box-shadow: 3px 7px 12.5px 2px rgba(0, 0, 0, 0.25), 0px 3px 0px 2px #000;
                         box-shadow: 3px 7px 12.5px 2px rgba(0, 0, 0, 0.25), 0px 3px 0px 2px #000;
                         margin: 0;
-                        -webkit-transition: background-color 0.35s cubic-bezier(0.25, 0.1, 0.25, 1), color 0.35s cubic-bezier(0.25, 0.1, 0.25, 1), -webkit-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-box-shadow 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
                         transition: background-color 0.35s cubic-bezier(0.25, 0.1, 0.25, 1), color 0.35s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
                         display: inline-flex; align-items: center; justify-content: center;
                         text-decoration: none;
@@ -788,9 +742,7 @@ class Header extends HTMLElement {
                     .opcao-btn:hover {
                         background-color: #c9938b;
                         color: #fff;
-                        -webkit-transform: translateY(-5px) scale(1.04);
                         transform: translateY(-5px) scale(1.04);
-                        -webkit-box-shadow: 5px 11px 18px 2px rgba(0, 0, 0, 0.3), 0px 5px 0px 2px #000;
                         box-shadow: 5px 11px 18px 2px rgba(0, 0, 0, 0.3), 0px 5px 0px 2px #000;
                     }
                     .opcao-btn img { width: 28px; height: 28px; flex-shrink: 0; margin-right: 8px; }
