@@ -1,0 +1,72 @@
+* {
+    cursor: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+*::before,
+*::after,
+*:hover,
+*:active,
+*:focus {
+    cursor: none !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea {
+    cursor: none !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 26px;
+    height: 26px;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+    transition: width 0.15s ease-out, 
+                height 0.15s ease-out,
+                opacity 0.3s ease;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 1;
+    will-change: transform;
+}
+
+.custom-cursor.default {
+    background-image: url('../assets/cursors/default.png');
+    width: 26px;
+    height: 26px;
+}
+
+.custom-cursor.hover {
+    background-image: url('../assets/cursors/hover.png');
+    width: 33px;
+    height: 33px;
+}
+
+.custom-cursor.click {
+    background-image: url('../assets/cursors/click.png');
+    width: 34px;
+    height: 34px;
+    animation: clickPulse 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes clickPulse {
+    0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    50% { transform: translate(-50%, -50%) scale(0.8) rotate(-5deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+}

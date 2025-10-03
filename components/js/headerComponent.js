@@ -29,6 +29,8 @@ class Header extends HTMLElement {
         this.initializeCheckoutLottieAnimations();
       }, 200);
     }
+
+    this.addCursorHoverSupport();
   }
 
   tryUpdateUserInfoForProfileHeader() {
@@ -206,6 +208,22 @@ class Header extends HTMLElement {
     initializeOfertasLottie('#ofertas-lottie-desktop');
     initializeOfertasLottie('#ofertas-lottie-mobile', true);
     initializeOfertasLottie('#ofertas-lottie-mobile-default', true);
+  }
+
+  addCursorHoverSupport() {
+    const selectors = 'a, button, img, [id*="lottie"], .logo-container, .logo-container-perfil, .logo-container-checkout, .logo-sacolao, .opcao-btn, .header-icon, [role="button"]';
+    const events = {
+      mouseenter: 'cursor-hover-enter',
+      mouseleave: 'cursor-hover-leave',
+      mousedown: 'cursor-click',
+      mouseup: 'cursor-release'
+    };
+
+    this.shadowRoot.querySelectorAll(selectors).forEach(el => {
+      Object.entries(events).forEach(([event, customEvent]) => {
+        el.addEventListener(event, () => document.dispatchEvent(new CustomEvent(customEvent)));
+      });
+    });
   }
 
   getStyles(variant) {
@@ -534,11 +552,16 @@ class Header extends HTMLElement {
     return `
             <style>
 
-                *{
+                * {
                     font-family: 'Jetbrains Mono', monospace;
                     box-sizing: border-box;
                     margin: 0;
                     padding: 0;
+                    cursor: none !important;
+                }
+                
+                *:hover, *:active, *:focus {
+                    cursor: none !important;
                 }
 
 				@keyframes fadeInUser { from { opacity: 0; transform: translateY(15px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }

@@ -5,6 +5,10 @@ footerTemplate.innerHTML = `
     <style>
         * {
             font-size: 14px;
+            cursor: none !important;
+        }
+        *:hover, *:active, *:focus {
+            cursor: none !important;
         }
         :host {
             display: block;
@@ -383,6 +387,24 @@ class FooterComponent extends HTMLElement {
         );
       }
     }
+
+    this.addCursorHoverSupport();
+  }
+
+  addCursorHoverSupport() {
+    const selectors = 'a, button, i, .footer-icon, #phoneIcon, #sendButton, [role="button"]';
+    const events = {
+      mouseenter: 'cursor-hover-enter',
+      mouseleave: 'cursor-hover-leave',
+      mousedown: 'cursor-click',
+      mouseup: 'cursor-release'
+    };
+
+    this.shadowRoot.querySelectorAll(selectors).forEach(el => {
+      Object.entries(events).forEach(([event, customEvent]) => {
+        el.addEventListener(event, () => document.dispatchEvent(new CustomEvent(customEvent)));
+      });
+    });
   }
 }
 
