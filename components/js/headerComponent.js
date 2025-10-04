@@ -649,23 +649,25 @@ class Header extends HTMLElement {
                 @media (max-width: 768px) {
                     :host(:not([variant="checkout"])) .header-grid { display: none !important; }
 
+                    /* mostra e ajusta o header mobile (default e perfil) */
                     :host(:not([variant="checkout"])) .menu-mobile {
-                        display: flex !important;
-                        flex-direction: column; align-items: center; width: 100%;
-                        position: relative; z-index: 20;
-                        margin-top: 5px; margin-bottom: 5px; gap: 12px;
-                        box-sizing: border-box; padding: 0 5%;
+                        display: flex !important; /* faz ele aparecer */
+                        flex-direction: column; align-items: center; width: 100%; /* um item embaixo do outro, no centro */
+                        position: relative; z-index: 20; /* pra ficar a frente e posicionar o popup de busca */
+                        margin-top: 5px; margin-bottom: 5px; gap: 12px; /* espacamentos */
+                        box-sizing: border-box; padding: 0 5%; /* espacamento nas laterais */
                     }
 
+                    /* logo header mobile (variante default) */
                     :host([variant="default"]) .menu-mobile .logo-container {
-                        width: 100%; order: -1;
-                        margin: 0 auto; padding: 10px 0; display: flex; justify-content: center;
-                        opacity: 0; transform: translateY(-20px) scale(0.9);
-                        animation: mobileMenuButtonAppear 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s forwards;
+                        width: 100%; order: -1; /* logo vem primeiro */
+                        margin: 0 auto; padding: 10px 0; display: flex; justify-content: center; /* centraliza */
+                        opacity: 0; transform: translateY(-20px) scale(0.9); /* pra animacao */
+                        animation: mobileMenuButtonAppear 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s forwards; /* animacao */
                     }
                     :host([variant="default"]) .menu-mobile .logo-container .logo-sacolao {
                          max-width: 90px;
-                         height: auto;
+                         height: auto; /* tamanho da logo mobile */
                          padding: 8px 0;
                          filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.06));
                     }
@@ -782,25 +784,25 @@ class Header extends HTMLElement {
       return `
                 <div class="header-grid checkout-variant">
                     <div class="logo-container-checkout">
-                        <a href="/">
+                        <a href="/index.html">
                             <img class="logo-sacolao" src="/assets/images/logo.png" alt="logo sacolao rodrigues">
                         </a>
                     </div>
                     <h1 class="checkout-title">Finalizar Compra</h1>
                     <div class="actions-container-checkout">
-                        <a href="/perfil" title="meu perfil">
+                        <a href="/pages/perfil.html" title="meu perfil">
                             <div id="profile-lottie-checkout-desktop" style="width: 45px; height: 45px;"></div>
                         </a>
                     </div>
                 </div>
                 <div class="menu-mobile checkout-variant">
                      <div class="logo-container-checkout">
-                        <a href="/">
+                        <a href="/index.html">
                             <img class="logo-sacolao" src="/assets/images/logo.png" alt="logo sacolao rodrigues">
                         </a>
                     </div>
                     <div class="actions-container-checkout">
-                        <a href="/perfil" title="meu perfil">
+                        <a href="/pages/perfil.html" title="meu perfil">
                             <div id="profile-lottie-checkout-mobile" style="width: 40px; height: 40px;"></div>
                         </a>
                     </div>
@@ -810,10 +812,10 @@ class Header extends HTMLElement {
 
     const desktopLeftBoxHTML = `
             <div class="header-left-box">
-                <a href="/listas" title="lista de compras">
+                <a href="/pages/listas.html" title="lista de compras">
                     <div id="list-lottie-desktop" style="width: 55px; height: 55px;"></div>
                 </a>
-                <a href="/ofertas" title="ofertas">
+                <a href="/pages/ofertas.html" title="ofertas">
                     <div id="ofertas-lottie-desktop" style="width: 55px; height: 55px;"></div>
                 </a>
                 <div class="search-section">
@@ -829,7 +831,7 @@ class Header extends HTMLElement {
 
     const desktopLogoHTML = (logoContainerClass = "logo-container") => `
             <div class="${logoContainerClass}">
-                <a href="/">
+                <a href="/index.html">
                     <img class="logo-sacolao" src="/assets/images/logo.png" alt="logo sacolao rodrigues">
                 </a>
             </div>
@@ -853,14 +855,14 @@ class Header extends HTMLElement {
                   isPerfilPage
                     ? ""
                     : `
-                <a href="/cadastro" title="criar conta">
+                <a href="/pages/cadastro.html" title="criar conta">
                     <div id="login-lottie-desktop" style="width: 60px; height: 60px;"></div>
                 </a>
-                <a href="/perfil" title="meu perfil">
+                <a href="/pages/perfil.html" title="meu perfil">
                     <div id="profile-lottie-desktop" style="width: 60px; height: 60px;"></div>
                 </a>`
                 }
-                <a href="/checkout" title="carrinho">
+                <a href="/pages/checkout.html" title="carrinho">
                     <div id="cart-lottie-desktop" style="width: 60px; height: 60px;"></div>
                 </a>
             </div>
@@ -884,13 +886,13 @@ class Header extends HTMLElement {
     let mobileMenuOptions = "";
     if (isPerfilPage) {
       mobileMenuOptions = `
-                <a href="/listas" class="opcao-btn" title="minhas listas">
+                <a href="/pages/listas.html" class="opcao-btn" title="minhas listas">
                     <div id="list-lottie-mobile" style="width: 30px; height: 30px;"></div>
                 </a>
-                <a href="/ofertas" class="opcao-btn" title="minhas ofertas">
+                <a href="/pages/ofertas.html" class="opcao-btn" title="minhas ofertas">
                     <div id="ofertas-lottie-mobile" style="width: 30px; height: 30px;"></div>
                 </a>
-                <a href="/ajustes" class="opcao-btn" title="ajustes">
+                <a href="/pages/ajustes.html" class="opcao-btn" title="ajustes">
                     <div id="ajustes-lottie-mobile" style="width: 30px; height: 30px;"></div>
                 </a>
                 <button id="logout-btn-mobile" class="opcao-btn" title="sair">
@@ -899,16 +901,16 @@ class Header extends HTMLElement {
             `;
     } else {
       mobileMenuOptions = `
-                <a href="/ofertas" class="opcao-btn" title="minhas ofertas">
+                <a href="/pages/ofertas.html" class="opcao-btn" title="minhas ofertas">
                     <div id="ofertas-lottie-mobile-default" style="width: 30px; height: 30px;"></div>
                 </a>
-                <a href="/perfil" class="opcao-btn" title="perfil">
+                <a href="/pages/perfil.html" class="opcao-btn" title="perfil">
                     <div id="profile-lottie-mobile" style="width: 30px; height: 30px;"></div>
                 </a>
-                <a href="/checkout" class="opcao-btn" title="carrinho">
+                <a href="/pages/checkout.html" class="opcao-btn" title="carrinho">
                     <div id="cart-lottie-mobile" style="width: 30px; height: 30px;"></div>
                 </a>
-                 <a href="/cadastro" class="opcao-btn" title="criar conta/login">
+                 <a href="/pages/cadastro.html" class="opcao-btn" title="criar conta/login">
                     <div id="login-lottie-mobile" style="width: 30px; height: 30px;"></div>
                 </a>
                <!-- <div class="search-section">
@@ -984,7 +986,7 @@ class Header extends HTMLElement {
         logoutButtonMobile.addEventListener("click", () => {
           if (confirm("deseja realmente sair?")) {
             localStorage.removeItem("loggedInUser");
-            window.location.href = "/";
+            window.location.href = "/index.html";
           }
         });
       }

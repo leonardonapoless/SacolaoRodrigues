@@ -53,11 +53,7 @@ form.addEventListener('submit', function (event) {
         form.reset();
 
         setTimeout(function() {
-            if (window.router) {
-                window.router.goTo('/perfil');
-            } else {
-                window.location.href = '/pages/perfil.html';
-            }
+            window.location.href = '/pages/perfil.html';
         }, 2000);
 
     } else {
