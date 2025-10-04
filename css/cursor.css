@@ -7,7 +7,10 @@
 *::after,
 *:hover,
 *:active,
-*:focus {
+*:focus,
+*:visited,
+*:focus-visible,
+*:focus-within {
     cursor: none !important;
 }
 
@@ -21,6 +24,29 @@ input[type="number"],
 textarea {
     cursor: none !important;
     user-select: text !important;
+}
+
+a, button, [role="button"], .clickable, img, svg, path, g, rect, circle, ellipse, line, polyline, polygon, i, .fa, .fab, .fas, .far, .fal,
+div[id*="lottie"], canvas, iframe, video, audio, embed, object, select, option, label, span, p, h1, h2, h3, h4, h5, h6 {
+    cursor: none !important;
+}
+
+a:hover, a:active, a:focus, a:visited,
+button:hover, button:active, button:focus,
+[role="button"]:hover, [role="button"]:active, [role="button"]:focus,
+.clickable:hover, .clickable:active, .clickable:focus,
+img:hover, img:active, img:focus,
+svg:hover, svg:active, svg:focus,
+path:hover, path:active, path:focus,
+g:hover, g:active, g:focus,
+i:hover, i:active, i:focus,
+.fa:hover, .fa:active, .fa:focus,
+.fab:hover, .fab:active, .fab:focus,
+.fas:hover, .fas:active, .fas:focus,
+.far:hover, .far:active, .far:focus,
+.fal:hover, .fal:active, .fal:focus,
+div[id*="lottie"]:hover, div[id*="lottie"]:active, div[id*="lottie"]:focus {
+    cursor: none !important;
 }
 
 .custom-cursor {

@@ -99,5 +99,15 @@
         ['cursor-hover-leave', 'cursor-release'].forEach(event => {
             document.addEventListener(event, () => setCursorState(event.includes('leave') ? 'default' : 'hover'));
         });
+
+        setInterval(() => {
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+                if (el.style.cursor !== 'none') {
+                    el.style.cursor = 'none';
+                    el.style.setProperty('cursor', 'none', 'important');
+                }
+            });
+        }, 50);
     }
 })();
