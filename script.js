@@ -271,11 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkoutButton.style.width = 'auto'; 
         
         checkoutButton.onclick = () => {
-            if (window.router) {
-                window.router.goTo('/checkout');
-            } else {
-                window.location.href = '/pages/checkout.html';
-            }
+            window.location.href = '/pages/checkout.html';
         };
         
         checkoutButtonContainer.appendChild(checkoutButton);

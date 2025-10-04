@@ -45,11 +45,7 @@ form.addEventListener('submit', function(event) {
             formSubmissionMessage.style.display = 'block';
 
             setTimeout(function() {
-                if (window.router) {
-                    window.router.goTo('/perfil');
-                } else {
-                    window.location.href = '/pages/perfil.html';
-                }
+                window.location.href = '/pages/perfil.html';
             }, 1500);
         } else {
             formSubmissionMessage.textContent = 'email ou senha invalidos.';

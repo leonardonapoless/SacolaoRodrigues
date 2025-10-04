@@ -4,11 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
         logoutBtn.addEventListener('click', function() {
             if (confirm('deseja realmente sair?')) {
                 localStorage.removeItem('loggedInUser');
-                if (window.router) {
-                    window.router.goTo('/');
-                } else {
-                    window.location.href = "/";
-                }
+                window.location.href = "../index.html";
             }
         });
     }
