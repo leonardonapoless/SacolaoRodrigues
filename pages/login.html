@@ -6,8 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Sacolão Rodrigues</title>
     <link rel="stylesheet" href="/css/login.css">
-    <link rel="stylesheet" href="/css/cursor.css" />
-    <script src="/js/cursor.js" defer></script>
+    <link rel="stylesheet" href="/css/cursor.css" media="(hover: hover) and (pointer: fine)" />
+    <script>
+        (function() {
+            var shouldLoadCursor = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            if (shouldLoadCursor) {
+                var s = document.createElement('script');
+                s.src = '/js/cursor.js';
+                s.defer = true;
+                document.head.appendChild(s);
+            }
+        })();
+    </script>
     <script src="/js/login.js" defer></script>
 </head>
 
