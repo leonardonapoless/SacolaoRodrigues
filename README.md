@@ -53,5 +53,6 @@ em conjunto, além de aplicarmos nossos conhecimentos acerca do conteúdo. E, pr
 que nossa solução traga benefícios ao sacolão e possa ajudar e inspirar outros microempreendedores
 a terem iniciativas similares.
 
+<img width="6026" height="6543" alt="SacolãoRodrigues" src="https://github.com/user-attachments/assets/75aff484-9075-4731-9229-80fdf5ca257d" />
 
-[Sacolão Rodrigues.pdf](https://github.com/user-attachments/files/22962423/Sacolao.Rodrigues.pdf)
+
