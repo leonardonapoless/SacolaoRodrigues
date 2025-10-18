@@ -10,7 +10,6 @@ html {
     scrollbar-width: none;
 }
 
-
 body {
     background-color: #f1f0d9;
 }
@@ -73,7 +72,8 @@ body {
 
 header-component {
     display: block;
-    animation: fadeInDown 0.8s 0.15s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
+    animation: fadeInDown 0.8s 0.15s cubic-bezier(0.39, 0.575, 0.565, 1)
+        backwards;
 }
 
 .categoria-nav {
@@ -163,8 +163,7 @@ header-component {
     opacity: 0;
     transform: translateY(20px) scale(0.95);
     transform: translateY(20px) scale(0.95);
-    animation: fadeInUp 0.6s cubic-bezier(0.39, 0.575, 0.565, 1)
-        forwards;
+    animation: fadeInUp 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
     animation: fadeInUp 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
 }
 
@@ -271,9 +270,6 @@ header-component {
     transition:
         opacity 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
         transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-    transition:
-        opacity 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
-        transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .product-grid {
@@ -305,8 +301,7 @@ header-component {
     opacity: 0;
     transform: translateY(25px) scale(0.92);
     transform: translateY(25px) scale(0.92);
-    animation: productEnter 0.6s cubic-bezier(0.39, 0.575, 0.565, 1)
-        forwards;
+    animation: productEnter 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
     animation: productEnter 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
 }
 
@@ -602,8 +597,7 @@ header-component {
 }
 
 .quantity-controls .quantity.updated {
-    animation: pulseQuantity 0.35s cubic-bezier(0.39, 0.575, 0.565, 1)
-        forwards;
+    animation: pulseQuantity 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
     animation: pulseQuantity 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
     transform: scale(1.15);
     transform: scale(1.15);
@@ -639,8 +633,7 @@ header-component {
 
 footer-component {
     display: block;
-    animation: fadeInUp 0.8s 0.55s cubic-bezier(0.39, 0.575, 0.565, 1)
-        backwards;
+    animation: fadeInUp 0.8s 0.55s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
     animation: fadeInUp 0.8s 0.55s cubic-bezier(0.39, 0.575, 0.565, 1) backwards;
 }
 
@@ -728,14 +721,20 @@ footer-component {
 }
 
 .no-results {
+    white-space: nowrap;
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     font-weight: bold;
     text-align: center;
     padding: 40px 20px;
     opacity: 0;
     transform: translateY(25px);
-    transform: translateY(25px);
-    animation: fadeInUp 0.7s 0.25s cubic-bezier(0.39, 0.575, 0.565, 1)
-        forwards;
     animation: fadeInUp 0.7s 0.25s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+}
+
+.no-results-wrapper {
+    display: flex;
+    justify-content: center; /* horizontal centering */
+    align-items: center; /* vertical centering */
+    min-height: 300px; /* height of empty container */
+    width: 100%;
 }

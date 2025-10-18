@@ -1,106 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ofertas Imperdíveis - Sacolão Rodrigues</title>
-    <link rel="stylesheet" href="../css/base.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ofertas Imperdíveis - Sacolão Rodrigues</title>
+        <link rel="stylesheet" href="../css/base.css" />
         <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="/css/ofertas.css">
-    <link rel="stylesheet" href="/css/cursor.css" media="(hover: hover) and (pointer: fine)" />
-    <link rel="icon" href="icon/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-    <script type="module" src="../components/js/headerComponent.js" defer></script>
-    <script type="module" src="../components/js/footerComponent.js" defer></script>
-    <script>
-        (function() {
-            var shouldLoadCursor = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-            if (shouldLoadCursor) {
-                var s = document.createElement('script');
-                s.src = '/js/cursor.js';
-                s.defer = true;
-                document.head.appendChild(s);
-            }
-        })();
-    </script>
-</head>
+        <link rel="stylesheet" href="/css/ofertas.css" />
+        <link
+            rel="stylesheet"
+            href="/css/cursor.css"
+            media="(hover: hover) and (pointer: fine)"
+        />
+        <link rel="icon" href="icon/logo.webp" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+        <script
+            type="module"
+            src="../components/js/headerComponent.js"
+            defer
+        ></script>
+        <script
+            type="module"
+            src="../components/js/footerComponent.js"
+            defer
+        ></script>
+        <script>
+            (function () {
+                var shouldLoadCursor =
+                    window.matchMedia &&
+                    window.matchMedia("(hover: hover) and (pointer: fine)")
+                        .matches;
+                if (shouldLoadCursor) {
+                    var s = document.createElement("script");
+                    s.src = "/js/cursor.js";
+                    s.defer = true;
+                    document.head.appendChild(s);
+                }
+            })();
+        </script>
+    </head>
 
-<body>
-    <header-component></header-component>
+    <body>
+        <header-component></header-component>
 
-    <main class="container">
-
-        <section>
-            <h2 class="produtos-em-oferta-titulo">Confira as ofertas da semana:</h2>
-            <div class="products product-grid" id="ofertas-product-container">
-
-                <div class="product" data-id="f1-oferta">
-                    <img src="../assets/images/ofertas.png" alt="Selo de Oferta" class="badge-imagem-oferta">
-                    <img src="../assets/images/product-image/banana.png" class="product-image">
-                    <div class="product-title">Banana</div>
-                    <div class="price">
-                        <span class="preco-original">R$ 3,99/kg</span>
-                        <span class="preco-atual">R$ 2,29/kg</span>
+        <main class="container">
+            <section>
+                <h2 class="produtos-em-oferta-titulo">
+                    Confira as ofertas da semana:
+                </h2>
+                <div
+                    class="products product-grid"
+                    id="ofertas-product-container"
+                >
+                    <div class="product" data-id="f1-oferta">
+                        <img
+                            src="../assets/images/ofertas.png"
+                            alt="Selo de Oferta"
+                            class="badge-imagem-oferta"
+                        />
+                        <img
+                            src="../assets/images/product-image/banana.webp"
+                            class="product-image"
+                        />
+                        <div class="product-title">Banana</div>
+                        <div class="price">
+                            <span class="preco-original">R$ 3,99/kg</span>
+                            <span class="preco-atual">R$ 2,29/kg</span>
+                        </div>
+                        <div class="quantity-controls">
+                            <button
+                                data-action="sub"
+                                aria-label="Diminuir quantidade"
+                            >
+                                -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button
+                                data-action="add"
+                                aria-label="Aumentar quantidade"
+                            >
+                                +
+                            </button>
+                        </div>
                     </div>
-                    <div class="quantity-controls">
-                        <button data-action="sub" aria-label="Diminuir quantidade">-</button>
-                        <span class="quantity">0</span>
-                        <button data-action="add" aria-label="Aumentar quantidade">+</button>
+
+                    <div class="product" data-id="f3-oferta">
+                        <img
+                            src="../assets/images/ofertas.png"
+                            alt="Selo de Oferta"
+                            class="badge-imagem-oferta"
+                        />
+                        <img
+                            src="../assets/images/product-image/maca.webp"
+                            class="product-image"
+                        />
+                        <div class="product-title">Maçã</div>
+                        <div class="price">
+                            <span class="preco-original">R$ 9,98/kg</span>
+                            <span class="preco-atual">R$ 7,49/kg</span>
+                        </div>
+                        <div class="quantity-controls">
+                            <button
+                                data-action="sub"
+                                aria-label="Diminuir quantidade"
+                            >
+                                -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button
+                                data-action="add"
+                                aria-label="Aumentar quantidade"
+                            >
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product" data-id="l1-oferta">
+                        <img
+                            src="/assets/images/ofertas.png"
+                            class="badge-imagem-oferta"
+                        />
+                        <img
+                            src="/assets/images/product-image/batata.webp"
+                            class="product-image"
+                        />
+                        <div class="product-title">Batata</div>
+                        <div class="price">
+                            <span class="preco-original">R$ 2,80/kg</span>
+                            <span class="preco-atual">R$ 1,99/kg</span>
+                        </div>
+                        <div class="quantity-controls">
+                            <button
+                                data-action="sub"
+                                aria-label="Diminuir quantidade"
+                            >
+                                -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button
+                                data-action="add"
+                                aria-label="Aumentar quantidade"
+                            >
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product" data-id="v1-oferta">
+                        <img
+                            src="/assets/images/ofertas.png"
+                            class="badge-imagem-oferta"
+                        />
+                        <img
+                            src="/assets/images/product-image/alface.webp"
+                            class="product-image"
+                        />
+                        <div class="product-title">Alface</div>
+                        <div class="price">
+                            <span class="preco-original">R$ 1,99/un</span>
+                            <span class="preco-atual">R$ 1,29/un</span>
+                        </div>
+                        <div class="quantity-controls">
+                            <button
+                                data-action="sub"
+                                aria-label="Diminuir quantidade"
+                            >
+                                -
+                            </button>
+                            <span class="quantity">0</span>
+                            <button
+                                data-action="add"
+                                aria-label="Aumentar quantidade"
+                            >
+                                +
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </section>
+        </main>
 
-                <div class="product" data-id="f3-oferta">
-                    <img src="../assets/images/ofertas.png" alt="Selo de Oferta" class="badge-imagem-oferta">
-                    <img src="../assets/images/product-image/maca.png" class="product-image">
-                    <div class="product-title">Maçã</div>
-                    <div class="price">
-                        <span class="preco-original">R$ 9,98/kg</span>
-                        <span class="preco-atual">R$ 7,49/kg</span>
-                    </div>
-                    <div class="quantity-controls">
-                        <button data-action="sub" aria-label="Diminuir quantidade">-</button>
-                        <span class="quantity">0</span>
-                        <button data-action="add" aria-label="Aumentar quantidade">+</button>
-                    </div>
-                </div>
-
-                <div class="product" data-id="l1-oferta">
-                    <img src="/assets/images/ofertas.png" class="badge-imagem-oferta">
-                    <img src="/assets/images/product-image/batata.png" class="product-image">
-                    <div class="product-title">Batata</div>
-                    <div class="price">
-                        <span class="preco-original">R$ 2,80/kg</span>
-                        <span class="preco-atual">R$ 1,99/kg</span>
-                    </div>
-                    <div class="quantity-controls">
-                        <button data-action="sub" aria-label="Diminuir quantidade">-</button>
-                        <span class="quantity">0</span>
-                        <button data-action="add" aria-label="Aumentar quantidade">+</button>
-                    </div>
-                </div>
-                
-                <div class="product" data-id="v1-oferta">
-                    <img src="/assets/images/ofertas.png" class="badge-imagem-oferta">
-                    <img src="/assets/images/product-image/alface.png" class="product-image">
-                    <div class="product-title">Alface</div>
-                    <div class="price">
-                         <span class="preco-original">R$ 1,99/un</span>
-                         <span class="preco-atual">R$ 1,29/un</span>
-                    </div>
-                    <div class="quantity-controls">
-                        <button data-action="sub" aria-label="Diminuir quantidade">-</button>
-                        <span class="quantity">0</span>
-                        <button data-action="add" aria-label="Aumentar quantidade">+</button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </main>
-    
-    <div class="separador-footer"></div>
-    <footer-component></footer-component>
-
-</body>
+        <div class="separador-footer"></div>
+        <footer-component></footer-component>
+    </body>
 </html>
