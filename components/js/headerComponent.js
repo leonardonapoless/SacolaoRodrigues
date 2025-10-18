@@ -23,7 +23,7 @@ class Header extends HTMLElement {
     }
 
     this.initializeCartLottieAnimations();
-    
+
     if (variant === "checkout") {
       setTimeout(() => {
         this.initializeCheckoutLottieAnimations();
@@ -96,7 +96,7 @@ class Header extends HTMLElement {
           element.addEventListener('mouseenter', () => {
             animation.play();
           });
-          
+
           element.addEventListener('mouseleave', () => {
             animation.stop();
             animation.goToAndStop(0, true);
@@ -109,9 +109,9 @@ class Header extends HTMLElement {
     initializeLottieAnimation('#cart-lottie-mobile', '/assets/images/animatedicons/cart.json', 1.5, true);
     initializeLottieAnimation('#list-lottie-desktop', '/assets/images/animatedicons/list-icon.json');
     initializeLottieAnimation('#list-lottie-mobile', '/assets/images/animatedicons/list-icon.json', 1.5, true);
-    
+
     this.initializeOfertasAnimation();
-    
+
     initializeLottieAnimation('#search-lottie-desktop', '/assets/images/animatedicons/search-icon.json');
     initializeLottieAnimation('#profile-lottie-desktop', '/assets/images/animatedicons/profile.json');
     initializeLottieAnimation('#profile-lottie-mobile', '/assets/images/animatedicons/profile.json', 1.5, true);
@@ -151,7 +151,7 @@ class Header extends HTMLElement {
           element.addEventListener('mouseenter', () => {
             animation.play();
           });
-          
+
           element.addEventListener('mouseleave', () => {
             animation.stop();
             animation.goToAndStop(0, true);
@@ -195,7 +195,7 @@ class Header extends HTMLElement {
             animation.setLoop(true);
             animation.play();
           });
-          
+
           element.addEventListener('mouseleave', () => {
             animation.setLoop(false);
             animation.stop();
@@ -286,17 +286,17 @@ class Header extends HTMLElement {
                 }
                 :host([variant="perfil"]) .avatar img:hover { transform: scale(1.08); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
                 :host([variant="perfil"]) .avatar div[id*="lottie"] {
-                    width: 80px !important; 
-                    height: 80px !important; 
-                    border-radius: 50%; 
+                    width: 80px !important;
+                    height: 80px !important;
+                    border-radius: 50%;
                     border: 3px solid #4CAF50;
                     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
                     transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
                     margin: 0 auto 8px auto;
                 }
-                :host([variant="perfil"]) .avatar:hover div[id*="lottie"] { 
-                    transform: scale(1.08); 
-                    box-shadow: 0 6px 12px rgba(0,0,0,0.15); 
+                :host([variant="perfil"]) .avatar:hover div[id*="lottie"] {
+                    transform: scale(1.08);
+                    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
                 }
                 :host([variant="perfil"]) .user-info h2 { margin: 0.5rem 0 0.3rem; color: #333; font-size: 2rem; font-family: 'JetBrains Mono', monospace; }
                 :host([variant="perfil"]) .user-info p { color: #666; margin: 0; font-size: 1.4rem; font-family: 'JetBrains Mono', monospace; }
@@ -312,7 +312,7 @@ class Header extends HTMLElement {
                         max-width: 10%;
                         margin: 0 auto;
                     }
-                    
+
                     @media (max-width: 768px) {
                         :host([variant="perfil"]) .menu-mobile {
                             display: block !important;
@@ -394,9 +394,9 @@ class Header extends HTMLElement {
                     :host([variant="perfil"]) .menu-mobile .user-info .avatar { margin:0; justify-self: start; display: block !important; visibility: visible !important; }
                     :host([variant="perfil"]) .menu-mobile .user-info .avatar img { width: 60px; height: 60px; border-width: 2px; margin:0; }
                     :host([variant="perfil"]) .menu-mobile .user-info .avatar div[id*="lottie"] {
-                        width: 60px !important; 
-                        height: 60px !important; 
-                        border-radius: 50%; 
+                        width: 60px !important;
+                        height: 60px !important;
+                        border-radius: 50%;
                         border: 2px solid #4CAF50;
                         box-shadow: 0 2px 6px rgba(0,0,0,0.1);
                         margin: 0;
@@ -437,19 +437,19 @@ class Header extends HTMLElement {
                     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
                 }
                 :host([variant="checkout"]) .checkout-title {
-                    text-align: center; 
-                    color: #000; 
-                    font-size: 2.2em; 
+                    text-align: center;
+                    color: #000;
+                    font-size: 2.2em;
                     font-weight: 700;
-                    margin: 0; 
-                    text-shadow: -3px 2px 4px rgba(0, 0, 0, 0.2), 0 0 20px rgba(121, 148, 111, 0.3); 
+                    margin: 0;
+                    text-shadow: -3px 2px 4px rgba(0, 0, 0, 0.2), 0 0 20px rgba(121, 148, 111, 0.3);
                     flex-grow: 1;
                     opacity: 0;
                     transform: translateY(-25px) scale(0.9);
                     animation: fadeInUser 1s cubic-bezier(0.39, 0.575, 0.565, 1) 0.4s forwards;
                     letter-spacing: 1px;
                 }
-                
+
                 :host([variant="checkout"]) .checkout-title:hover {
                     transform: scale(1.02);
                     text-shadow: -3px 2px 6px rgba(0, 0, 0, 0.25), 0 0 25px rgba(121, 148, 111, 0.4);
@@ -534,7 +534,7 @@ class Header extends HTMLElement {
                     padding: 0;
                     cursor: none !important;
                 }
-                
+
                 *:hover, *:active, *:focus {
                     cursor: none !important;
                 }
@@ -672,12 +672,13 @@ class Header extends HTMLElement {
                          filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.06));
                     }
 
-					.search-bar-popup {
-						border: 4px solid #000;
-						border-radius: 20px;
-                		box-shadow: 3px -4px 0px 2px #000, 6px 6px 12.5px 2px rgba(0, 0, 0, 0.25);
-						margin-bottom: 30px;
-					}
+           					.search-bar-popup {
+            						border: 4px solid #000;
+            						border-radius: 35px;
+                        box-shadow: 0px -5px 0px -1px #000, 6px 6px 12.5px 2px rgba(0, 0, 0, 0.25);
+            						margin-bottom: 30px;
+                        text-align: center;
+           					}
 
                     .menu-hamburguer-drawer {
                         display: block;
@@ -731,11 +732,11 @@ class Header extends HTMLElement {
                         opacity: 0;
                     }
                     .opcao-btn span { display: none; }
-                    .opcao-btn div[id*="lottie"] { 
-                        width: 28px !important; 
-                        height: 28px !important; 
-                        margin-right: 8px; 
-                        flex-shrink: 0; 
+                    .opcao-btn div[id*="lottie"] {
+                        width: 28px !important;
+                        height: 28px !important;
+                        margin-right: 8px;
+                        flex-shrink: 0;
                     }
                     .opcao-menu.show .opcao-btn { opacity: 1; }
 
