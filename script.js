@@ -71,7 +71,7 @@ function setupEventListeners() {
         const card = button.closest('.product');
         if (!card) return;
         const productId = card.dataset.id;
-        
+
         updateQuantity(productId, action === 'add' ? 1 : -1);
     });
   }
@@ -177,17 +177,21 @@ function renderProducts(productsToRender) {
   productContainer.innerHTML = '';
 
   if (productsToRender.length === 0) {
-    productContainer.innerHTML = '<p class="no-results">Nenhum produto encontrado.</p>';
+    productContainer.innerHTML = `
+        <div class="no-results-wrapper">
+            <p class="no-results">Nenhum produto encontrado.</p>
+        </div>
+    `;
     return;
   }
 
   productsToRender.forEach((product, index) => {
     const card = cardTemplate.content.cloneNode(true);
-    
+
     const productDiv = card.querySelector('.product');
     if (productDiv) {
         productDiv.dataset.id = product.id;
-        if (product.cor) { 
+        if (product.cor) {
             productDiv.style.backgroundColor = product.cor;
         }
         productDiv.style.animationDelay = `${index * 0.07}s`;
@@ -197,11 +201,12 @@ function renderProducts(productsToRender) {
     if (productImageEl) {
         productImageEl.src = product.imagem;
         productImageEl.alt = product.nome;
+        productImageEl.loading = 'lazy';
     }
-    
+
     const productTitleEl = card.querySelector('.product-title');
     if (productTitleEl) productTitleEl.textContent = product.nome;
-    
+
     const priceEl = card.querySelector('.price');
     if (priceEl) priceEl.textContent = formatPrice(product.preco);
 
@@ -254,26 +259,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if(cartTotalEl) cartTotalEl.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
-    
+
     const cartSection = document.querySelector('.cart-section');
     if (cartSection && !document.getElementById('checkout-btn')) {
         const checkoutButtonContainer = document.createElement('div');
         checkoutButtonContainer.style.textAlign = 'right';
         checkoutButtonContainer.style.marginTop = '20px';
-        
+
         const checkoutButton = document.createElement('button');
         checkoutButton.textContent = 'Finalizar Compra';
         checkoutButton.id = 'checkout-btn';
-        checkoutButton.classList.add('submit-btn'); 
+        checkoutButton.classList.add('submit-btn');
         checkoutButton.style.padding = '10px 20px';
         checkoutButton.style.fontSize = '1.2rem';
         checkoutButton.style.cursor = 'pointer';
-        checkoutButton.style.width = 'auto'; 
-        
+        checkoutButton.style.width = 'auto';
+
         checkoutButton.onclick = () => {
             window.location.href = '/pages/checkout.html';
         };
-        
+
         checkoutButtonContainer.appendChild(checkoutButton);
         cartSection.appendChild(checkoutButtonContainer);
     }
