@@ -456,7 +456,7 @@ class Header extends HTMLElement {
                     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 }
                 :host([variant="checkout"]) .actions-container-checkout {
-                    box-shadow: 3px -4px 0px 2px #000, 6px 14px 12.5px 2px rgba(0, 0, 0, 0.25);
+                    box-shadow: 3px -4px 0px 2px #000, -2px 14px 12.5px 2px rgba(0, 0, 0, 0.25);
                     height: 80px; padding: 0 25px; display: flex; align-items: center; justify-content: center;
                     border-radius: 60px; background-color: #79946F; border: 6px solid #000;
                     gap: 20px; transition: box-shadow 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -469,7 +469,7 @@ class Header extends HTMLElement {
                     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
                 }
                 :host([variant="checkout"]) .actions-container-checkout:hover {
-                    box-shadow: 0px 0px 0px 3px #000, 8px 18px 18px 3px rgba(0, 0, 0, 0.3);
+                    box-shadow: 0px 0px 0px 3px #000, -4px 18px 18px 3px rgba(0, 0, 0, 0.3);
                 }
                 :host([variant="checkout"]) .actions-container-checkout a:hover img { transform: scale(1.1); }
 
@@ -584,13 +584,17 @@ class Header extends HTMLElement {
                     animation: slideInFromLeft 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s forwards;
                 }
                 .header-right-box {
-                    box-shadow: 3px -4px 0px 2px #000, 6px 14px 12.5px 2px rgba(0, 0, 0, 0.25);
+                    box-shadow: 3px -4px 0px 2px #000, -6px 14px 12.5px 2px rgba(0, 0, 0, 0.25);
                     justify-self: end;
                     transform: translateX(30px); opacity: 0;
                     animation: slideInFromRight 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s forwards;
                 }
-                .header-left-box:hover, .header-right-box:hover {
+                .header-left-box:hover {
                     box-shadow: 0px 0px 0px 3px #000, 8px 18px 18px 3px rgba(0, 0, 0, 0.3);
+                }
+
+                .header-right-box:hover {
+                    box-shadow: 0px 0px 0px 3px #000, -8px 18px 18px 3px rgba(0, 0, 0, 0.3);
                 }
 
 				.header-left-box img, .header-right-box a img {
